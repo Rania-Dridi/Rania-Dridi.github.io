@@ -97,7 +97,8 @@ const T = {
           "Backend Go / Gin en couches Router → Handler → Service → Repository, API REST, PostgreSQL (Neon) en SQL natif.",
           "Intégrations : paiement iPay.tn, e-mails transactionnels Brevo, médias Cloudinary, assistant IA conversationnel via Groq.",
           "Qualité : tests d'intégration Go, tests d'API Postman/Newman, tests de bout en bout Playwright."],
-       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"]},
+       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"],
+       code:"https://github.com/Rania-Dridi/layered-api-go", codeLabel:"Démo de l'architecture en couches (code indépendant, sans code Wledi)"},
       {t:"Plateforme freelances / clients (FreelancePro)", m:"Projet académique · Esprit School of Business",
        d:"Application web de gestion de missions freelance avec trois rôles : administrateur, client et freelance.",
        b:["Authentification avec Laravel Breeze et accès selon le rôle.","Base MySQL, modèles, contrôleurs et vues Laravel.","Une première version en PHP natif (HTML5, CSS3, MySQL) a précédé la version Laravel."],
@@ -136,7 +137,8 @@ const T = {
           "Go / Gin backend in layers Router → Handler → Service → Repository, REST API, PostgreSQL (Neon) with plain SQL.",
           "Integrations: iPay.tn payments, Brevo transactional email, Cloudinary media, Groq-powered AI assistant.",
           "Quality: Go integration tests, Postman/Newman API tests, Playwright end-to-end tests."],
-       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"]},
+       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"],
+       code:"https://github.com/Rania-Dridi/layered-api-go", codeLabel:"Layered architecture demo (independent code, no Wledi code)"},
       {t:"Freelancer / client platform (FreelancePro)", m:"Academic project · Esprit School of Business",
        d:"Web app managing freelance missions with three roles: admin, client and freelancer.",
        b:["Authentication with Laravel Breeze and role-based access.","MySQL database, Laravel models, controllers and views.","A first plain-PHP version (HTML5, CSS3, MySQL) preceded the Laravel one."],
@@ -186,7 +188,7 @@ function render(){
       <p>${esc(p.d)}</p>
       <ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
       <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
-      ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(t.seeCode)} →</a></p>`:''}
+      ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(p.codeLabel||t.seeCode)} →</a></p>`:''}
     </article>`).join('');
 
   document.getElementById('skillGrid').innerHTML = t.skills.map(s =>
