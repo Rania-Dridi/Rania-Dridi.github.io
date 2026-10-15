@@ -44,7 +44,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <nav><a href="#projects" data-i="nav_projects"></a><a href="#skills" data-i="nav_skills"></a><a href="#contact" data-i="nav_contact"></a></nav>
+  <nav><a href="#projects" data-i="nav_projects"></a><a href="#about" data-i="nav_about"></a><a href="#skills" data-i="nav_skills"></a><a href="#contact" data-i="nav_contact"></a></nav>
   <button class="lang" id="lang" aria-label="Language">EN</button>
 </div></header>
 
@@ -58,6 +58,11 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 <section id="projects">
   <h2 data-i="nav_projects"></h2>
   <div class="grid" id="projectGrid"></div>
+</section>
+
+<section id="about">
+  <h2 data-i="nav_about"></h2>
+  <div class="grid" id="aboutGrid"></div>
 </section>
 
 <section id="skills" class="skills">
@@ -85,7 +90,7 @@ const LINKS = {
 
 const T = {
   fr:{
-    nav_projects:"Projets", nav_skills:"Compétences", nav_contact:"Contact",
+    nav_projects:"Projets", nav_about:"Parcours", nav_skills:"Compétences", nav_contact:"Contact",
     role:"Développement full-stack, tests et data",
     intro:"Diplômée en Informatique de Gestion (Business Information System, Esprit School of Business, 2026). J'ai conçu et livré une plateforme e-learning complète (React, Go, PostgreSQL) lors de mon PFE chez Audasoft Technology, avec intégrations de paiement, e-mail et IA, et une chaîne de tests automatisés.",
     contact_text:"Je recherche un poste en développement, tests logiciels ou analyse de données.",
@@ -106,12 +111,19 @@ const T = {
       {t:"Analyse des revenus (CRISP-DM)", m:"Projet d'analyse de données",
        d:"Analyse de données clients et ventes pour comprendre les revenus et construire des indicateurs d'aide à la décision.",
        b:["Démarche CRISP-DM : compréhension métier, préparation des données, analyse, évaluation.","Visualisation des KPI et recommandations."],
-       tags:["CRISP-DM","KPI","Data"]},
+       tags:["CRISP-DM","KPI","Data"],
+       img:"assets/monthly_revenue.png", code:"https://github.com/Rania-Dridi/revenue-analysis-crispdm", codeLabel:"Code et méthode sur GitHub (données synthétiques)"},
       {t:"DemoQA Test Project", m:"Automatisation de tests web",
        d:"Scénarios de tests automatisés d'une application web de démonstration avec Selenium.",
        b:["Simulation des parcours utilisateur dans le navigateur.","Code versionné sur GitHub."],
        tags:["Selenium","Git","QA"],
        code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+    ],
+    about:[
+      {t:"Stagiaire PFE · Audasoft Technology", m:"Fév. – juin 2026 · Tunis", v:"Digitalisation de la gestion pédagogique (plateforme SaaS Wledi) : développement front et back, intégrations tierces, tests automatisés."},
+      {t:"Licence Informatique de Gestion", m:"Esprit School of Business · 2023 – 2026", v:"Spécialité Business Information System."},
+      {t:"Conseillère client · Téléperformance", m:"2020 – présent", v:"Opérateurs télécoms et e-commerce : suivi des demandes, résolution de problèmes techniques, travail en équipe multi-environnements."},
+      {t:"Licence en Protection de l'Environnement", m:"ISSBAT Tunis · 2015 – 2019", v:"Management qualité des systèmes environnementaux. Secrétaire générale de la junior entreprise Clipeum ISSBAT (2019)."}
     ],
     skills:[
       {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
@@ -125,7 +137,7 @@ const T = {
     ]
   },
   en:{
-    nav_projects:"Projects", nav_skills:"Skills", nav_contact:"Contact",
+    nav_projects:"Projects", nav_about:"Background", nav_skills:"Skills", nav_contact:"Contact",
     role:"Full-stack development, testing and data",
     intro:"Business Information Systems graduate (Esprit School of Business, 2026). For my final-year project at Audasoft Technology I built and shipped a complete e-learning platform (React, Go, PostgreSQL) with payment, email and AI integrations and an automated test pipeline.",
     contact_text:"I'm looking for a role in software development, QA or data analysis.",
@@ -146,12 +158,19 @@ const T = {
       {t:"Revenue analysis (CRISP-DM)", m:"Data analysis project",
        d:"Analysis of customer and sales data to understand revenue and build decision-support indicators.",
        b:["CRISP-DM approach: business understanding, data preparation, analysis, evaluation.","KPI visualisation and recommendations."],
-       tags:["CRISP-DM","KPI","Data"]},
+       tags:["CRISP-DM","KPI","Data"],
+       img:"assets/monthly_revenue.png", code:"https://github.com/Rania-Dridi/revenue-analysis-crispdm", codeLabel:"Code and method on GitHub (synthetic data)"},
       {t:"DemoQA Test Project", m:"Web test automation",
        d:"Automated test scenarios for a demo web application using Selenium.",
        b:["Simulates user journeys in the browser.","Versioned on GitHub."],
        tags:["Selenium","Git","QA"],
        code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+    ],
+    about:[
+      {t:"Final-year intern · Audasoft Technology", m:"Feb – Jun 2026 · Tunis", v:"Digitalising academic management (Wledi SaaS platform): frontend and backend development, third-party integrations, automated testing."},
+      {t:"BSc Business Information Systems", m:"Esprit School of Business · 2023 – 2026", v:"Specialisation: Business Information System."},
+      {t:"Customer advisor · Teleperformance", m:"2020 – present", v:"Telecom and e-commerce accounts: request handling, technical problem solving, teamwork across environments."},
+      {t:"BSc Environmental Protection", m:"ISSBAT Tunis · 2015 – 2019", v:"Quality management of environmental systems. General Secretary of the Clipeum ISSBAT junior enterprise (2019)."}
     ],
     skills:[
       {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
@@ -188,8 +207,12 @@ function render(){
       <p>${esc(p.d)}</p>
       <ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
       <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
+      ${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy" style="width:100%;border-radius:10px;margin-top:8px">`:''}
       ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(p.codeLabel||t.seeCode)} →</a></p>`:''}
     </article>`).join('');
+
+  document.getElementById('aboutGrid').innerHTML = t.about.map(a =>
+    `<div class="card"><h3>${esc(a.t)}</h3><p class="meta">${esc(a.m)}</p><p style="margin:0">${esc(a.v)}</p></div>`).join('');
 
   document.getElementById('skillGrid').innerHTML = t.skills.map(s =>
     `<div class="card"><h3>${esc(s.t)}</h3><p class="meta" style="margin:0">${esc(s.v)}</p></div>`).join('');
