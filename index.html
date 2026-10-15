@@ -117,7 +117,7 @@ const T = {
        d:"Scénarios de tests automatisés d'une application web de démonstration avec Selenium.",
        b:["Simulation des parcours utilisateur dans le navigateur.","Code versionné sur GitHub."],
        tags:["Selenium","Git","QA"],
-       code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+       code:"https://github.com/Rania-Dridi/DemoQA_TestProject", code2:"https://github.com/Rania-Dridi/selenium-pytest-demo", code2Label:"Démo Selenium + pytest, Page Object (6 tests)"}
     ],
     about:[
       {t:"Stagiaire PFE · Audasoft Technology", m:"Fév. – juin 2026 · Tunis", v:"Digitalisation de la gestion pédagogique (plateforme SaaS Wledi) : développement front et back, intégrations tierces, tests automatisés."},
@@ -164,7 +164,7 @@ const T = {
        d:"Automated test scenarios for a demo web application using Selenium.",
        b:["Simulates user journeys in the browser.","Versioned on GitHub."],
        tags:["Selenium","Git","QA"],
-       code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+       code:"https://github.com/Rania-Dridi/DemoQA_TestProject", code2:"https://github.com/Rania-Dridi/selenium-pytest-demo", code2Label:"Selenium + pytest demo, Page Object (6 tests)"}
     ],
     about:[
       {t:"Final-year intern · Audasoft Technology", m:"Feb – Jun 2026 · Tunis", v:"Digitalising academic management (Wledi SaaS platform): frontend and backend development, third-party integrations, automated testing."},
@@ -209,6 +209,7 @@ function render(){
       <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
       ${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy" style="width:100%;border-radius:10px;margin-top:8px">`:''}
       ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(p.codeLabel||t.seeCode)} →</a></p>`:''}
+      ${p.code2?`<p><a href="${esc(p.code2)}" target="_blank" rel="noopener">${esc(p.code2Label)} →</a></p>`:''}
     </article>`).join('');
 
   document.getElementById('aboutGrid').innerHTML = t.about.map(a =>
