@@ -201,7 +201,7 @@ function render(){
   document.getElementById('cta').innerHTML = row;
   document.getElementById('contactBtns').innerHTML = row;
 
-  document.getElementById('projectGrid').innerHTML = t.projects.map(p => `
+  document.getElementById('projectGrid').innerHTML = t.projects.map((p, i) => `
     <article class="card${p.featured?' featured':''}">
       <h3>${esc(p.t)}</h3><p class="meta">${esc(p.m)}</p>
       <p>${esc(p.d)}</p>
