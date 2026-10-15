@@ -95,6 +95,10 @@ h2{font-size:1.5rem;margin-bottom:6px}
 .timeline small{color:var(--text-muted)}
 .timeline p{margin:2px 0 0;color:var(--text-muted);font-size:.95rem}
 
+.form{display:grid;gap:10px;max-width:560px;margin-bottom:18px}
+.form input,.form textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg-subtle);color:var(--text);font:inherit}
+.form input:focus,.form textarea:focus{outline:2px solid var(--solid);border-color:var(--solid)}
+.form .btn{justify-self:start;cursor:pointer}
 footer{border-top:1px solid var(--border-soft);padding:24px 0;color:var(--text-muted);font-size:.9rem}
 
 @media (max-width:720px){
@@ -133,6 +137,11 @@ footer{border-top:1px solid var(--border-soft);padding:24px 0;color:var(--text-m
     <div class="skills" id="skillGrid"></div>
   </section>
 
+  <section id="services">
+    <h2 data-i="svc_t"></h2>
+    <div class="skills" id="svcGrid"></div>
+  </section>
+
   <section id="projects">
     <h2 data-i="nav_projects"></h2>
     <p class="sub" data-i="projects_sub"></p>
@@ -148,6 +157,12 @@ footer{border-top:1px solid var(--border-soft);padding:24px 0;color:var(--text-m
   <section id="contact">
     <h2 data-i="nav_contact"></h2>
     <p class="sub" data-i="contact_text"></p>
+    <form id="contactForm" class="form">
+      <input id="fName" required autocomplete="name">
+      <input id="fEmail" type="email" required autocomplete="email">
+      <textarea id="fMsg" rows="4" required></textarea>
+      <button class="btn" type="submit" id="fSend"></button>
+    </form>
     <div class="btns" id="contactBtns"></div>
   </section>
 </main>
@@ -170,6 +185,9 @@ fr:{
   nav_projects:"Projets", nav_about:"Parcours", nav_contact:"Contact",
   role:"Développeuse full-stack · Tests automatisés",
   intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). J'ai livré une plateforme e-learning complète pendant mon PFE chez Audasoft Technology : interfaces React, API Go, paiement, e-mail, IA et tests de bout en bout.",
+  svc_t:"À votre service",
+  svc:[["Développement full-stack","Interfaces React et API Go ou Laravel, de la maquette à la mise en production."],["API et intégrations","Paiement, e-mail, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'intégration, d'API et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, KPI et tableaux de bord pour aider à décider."]],
+  f_name:"Votre nom", f_email:"Votre e-mail", f_msg:"Votre message", f_send:"Envoyer",
   skills_t:"Compétences",
   skills:[["Langages","TypeScript · Go · Python"],["Framework","React"],["Base de données","PostgreSQL"],["Tests","Playwright · Selenium"]],
   projects_sub:"Trois projets à la une. Chacun a son code sur GitHub.",
@@ -210,6 +228,9 @@ en:{
   nav_projects:"Projects", nav_about:"Background", nav_contact:"Contact",
   role:"Full-stack developer · Test automation",
   intro:"Business Information Systems graduate (Esprit School of Business, 2026). I delivered a complete e-learning platform during my final-year project at Audasoft Technology: React interfaces, Go APIs, payments, email, AI and end-to-end tests.",
+  svc_t:"What I can do for you",
+  svc:[["Full-stack development","React interfaces and Go or Laravel APIs, from mock-up to production."],["APIs and integrations","Payments, email, media and AI plugged cleanly into your application."],["Test automation","Integration, API and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, KPIs and dashboards to support decisions."]],
+  f_name:"Your name", f_email:"Your email", f_msg:"Your message", f_send:"Send",
   skills_t:"Skills",
   skills:[["Languages","TypeScript · Go · Python"],["Framework","React"],["Database","PostgreSQL"],["Testing","Playwright · Selenium"]],
   projects_sub:"Three featured projects. Each one has its code on GitHub.",
@@ -266,6 +287,12 @@ function render(){
   document.getElementById('heroBtns').innerHTML = row;
   document.getElementById('contactBtns').innerHTML = row;
 
+  document.getElementById('svcGrid').innerHTML = t.svc.map(s => `<div class="skill"><b>${esc(s[0])}</b><span style="font-weight:400;color:var(--text-muted)">${esc(s[1])}</span></div>`).join('');
+  document.getElementById('fName').placeholder = t.f_name;
+  document.getElementById('fEmail').placeholder = t.f_email;
+  document.getElementById('fMsg').placeholder = t.f_msg;
+  document.getElementById('fSend').textContent = t.f_send;
+
   document.getElementById('skillGrid').innerHTML = t.skills.map(s => `<div class="skill"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
 
   document.getElementById('projectList').innerHTML = t.p.map(p => `
@@ -290,6 +317,11 @@ document.getElementById('lang').onclick = () => {
   try { localStorage.setItem('lang', lang); } catch(e){}
   render();
 };
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const n = document.getElementById('fName').value, em = document.getElementById('fEmail').value, m = document.getElementById('fMsg').value;
+  location.href = 'mailto:' + L.email + '?subject=' + encodeURIComponent('Portfolio — ' + n) + '&body=' + encodeURIComponent(m + '\n\n' + n + ' <' + em + '>');
+});
 document.getElementById('yr').textContent = new Date().getFullYear();
 render();
 </script>
