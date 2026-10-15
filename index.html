@@ -3,199 +3,254 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rania Dridi — Portfolio</title>
-<meta name="description" content="Rania Dridi, Business Computing (ESPRIT). Développement full-stack, tests logiciels et analyse de données. Projets et contact.">
-<meta property="og:title" content="Rania Dridi — Portfolio">
-<meta property="og:description" content="Développement full-stack (React, Go, Laravel), tests automatisés et analyse de données.">
+<title>Rania Dridi — Développeuse full-stack</title>
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL) et tests automatisés. Projets, code et contact.">
+<meta property="og:title" content="Rania Dridi — Développeuse full-stack">
+<meta property="og:description" content="React, Go, PostgreSQL et tests automatisés. Découvrez mes projets.">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf8fd;--card:#fff;--ink:#1d1730;--muted:#5f5877;--accent:#6d3fc0;--accent-soft:#efe8fb;--line:#e4dcf2}
-@media (prefers-color-scheme:dark){:root{--bg:#14101f;--card:#1d1830;--ink:#f1ecfb;--muted:#a79fc0;--accent:#a88af0;--accent-soft:#2a2145;--line:#332a52}}
+/* Palette : échelle violette et neutre de Radix Colors, clair et sombre */
+:root{
+  --bg:#fefcfe; --bg-subtle:#fbf7fe; --card:#f7f1fd; --border:#e2cbf5; --border-soft:#ebdcf9;
+  --solid:#8e4ec6; --solid-hover:#8347b9; --accent-text:#8145b5; --on-solid:#fff;
+  --text:#211f26; --text-muted:#6f6e77; --tag-bg:#f2e9fb; --tag-text:#8145b5;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#18111b; --bg-subtle:#1e1523; --card:#301c3b; --border:#54346b; --border-soft:#48295c;
+  --solid:#8e4ec6; --solid-hover:#9a5cd0; --accent-text:#d19dff; --on-solid:#fff;
+  --text:#ecd9fa; --text-muted:#b4b0bd; --tag-bg:#3d224e; --tag-text:#d19dff;
+}}
+:root[data-theme="light"]{--bg:#fefcfe;--bg-subtle:#fbf7fe;--card:#f7f1fd;--border:#e2cbf5;--border-soft:#ebdcf9;--solid:#8e4ec6;--solid-hover:#8347b9;--accent-text:#8145b5;--text:#211f26;--text-muted:#6f6e77;--tag-bg:#f2e9fb;--tag-text:#8145b5}
+:root[data-theme="dark"]{--bg:#18111b;--bg-subtle:#1e1523;--card:#301c3b;--border:#54346b;--border-soft:#48295c;--solid:#8e4ec6;--solid-hover:#9a5cd0;--accent-text:#d19dff;--text:#ecd9fa;--text-muted:#b4b0bd;--tag-bg:#3d224e;--tag-text:#d19dff}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--accent)}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header.top{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Sora,Inter,system-ui,sans-serif;line-height:1.2;margin:0}
+a{color:var(--accent-text)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+/* animations courtes et discrètes */
+a,button,.card,.shot img{transition:background-color .15s,border-color .15s,transform .15s,color .15s}
+
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-soft)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
-nav a{margin-right:16px;text-decoration:none;color:var(--muted);font-size:.95rem}
-nav a:hover{color:var(--accent)}
-button.lang{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.85rem}
-.hero{padding:72px 0 48px}
-.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 12px}
-.hero h1 span{color:var(--accent)}
-.hero p{max-width:620px;color:var(--muted);font-size:1.1rem;margin:0 0 24px}
+.logo{font-family:Sora,sans-serif;font-weight:700;text-decoration:none;color:var(--text)}
+nav{display:flex;align-items:center;gap:18px}
+nav a{color:var(--text-muted);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--accent-text)}
+.chip{border:1px solid var(--border);background:var(--bg-subtle);color:var(--text);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.85rem}
+.chip:hover{border-color:var(--solid)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:64px 0 40px}
+.avatar{width:132px;height:132px;border-radius:50%;background:linear-gradient(135deg,var(--solid),#5c2d91);color:#fff;display:grid;place-items:center;font:700 2.4rem Sora,sans-serif;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.hero h1{font-size:clamp(2rem,5.5vw,3rem)}
+.hero .role{font-family:Sora,sans-serif;font-size:clamp(1.1rem,3vw,1.4rem);color:var(--accent-text);margin:6px 0 12px}
+.hero p{margin:0 0 20px;color:var(--text-muted);max-width:560px}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
-.btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-section{padding:40px 0}
-h2{font-size:1.6rem;margin:0 0 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
-.card h3{margin:0 0 4px;font-size:1.15rem}
-.meta{color:var(--muted);font-size:.9rem;margin:0 0 10px}
-.card ul{padding-left:18px;margin:8px 0}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.tag{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:600}
-.featured{grid-column:1/-1;border-color:var(--accent)}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0}
-.shots img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
-.skills .card h3{font-size:1rem}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.9rem}
+.btn{display:inline-block;padding:9px 16px;border-radius:10px;background:var(--solid);color:var(--on-solid);text-decoration:none;font-weight:600;border:1px solid var(--solid)}
+.btn:hover{background:var(--solid-hover)}
+.btn.alt{background:transparent;color:var(--accent-text);border-color:var(--border)}
+.btn.alt:hover{border-color:var(--solid);background:var(--bg-subtle)}
+
+section{padding:44px 0}
+h2{font-size:1.5rem;margin-bottom:6px}
+.sub{color:var(--text-muted);margin:0 0 22px}
+
+/* Compétences minimalistes */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.skill{background:var(--bg-subtle);border:1px solid var(--border-soft);border-radius:12px;padding:14px 16px}
+.skill b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);font-weight:600;margin-bottom:4px}
+.skill span{font-weight:600}
+
+/* Projets */
+.projects{display:grid;gap:20px}
+.card{background:var(--bg-subtle);border:1px solid var(--border-soft);border-radius:16px;padding:22px}
+.card:hover{border-color:var(--border)}
+.card.main{border-color:var(--border);background:var(--card)}
+.badge{display:inline-block;font-size:.75rem;font-weight:600;background:var(--solid);color:#fff;border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.card h3{font-size:1.3rem}
+.meta{color:var(--text-muted);font-size:.9rem;margin:4px 0 12px}
+.card p{margin:0 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.tag{background:var(--tag-bg);color:var(--tag-text);border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:14px 0}
+.shots img,.cover{width:100%;display:block;border-radius:10px;border:1px solid var(--border-soft)}
+.cover{max-width:560px}
+.shots a:hover img{transform:translateY(-2px);border-color:var(--solid)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:20px}
+.more .card{padding:16px}
+.more h3{font-size:1rem}
+.more p{font-size:.92rem;color:var(--text-muted);margin:4px 0 8px}
+
+/* Parcours */
+.timeline{border-left:2px solid var(--border);margin-left:6px;padding-left:20px;display:grid;gap:18px}
+.timeline div b{display:block}
+.timeline small{color:var(--text-muted)}
+.timeline p{margin:2px 0 0;color:var(--text-muted);font-size:.95rem}
+
+footer{border-top:1px solid var(--border-soft);padding:24px 0;color:var(--text-muted);font-size:.9rem}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr;padding-top:40px}
+  .avatar{width:96px;height:96px;font-size:1.8rem}
+  .cols{grid-template-columns:1fr}
+  nav a.hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <nav><a href="#projects" data-i="nav_projects"></a><a href="#about" data-i="nav_about"></a><a href="#skills" data-i="nav_skills"></a><a href="#contact" data-i="nav_contact"></a></nav>
-  <button class="lang" id="lang" aria-label="Language">EN</button>
+  <a class="logo" href="#top">Rania Dridi</a>
+  <nav>
+    <a class="hide-sm" href="#projects" data-i="nav_projects"></a>
+    <a class="hide-sm" href="#about" data-i="nav_about"></a>
+    <a href="#contact" data-i="nav_contact"></a>
+    <button class="chip" id="lang" aria-label="Language">EN</button>
+  </nav>
 </div></header>
 
-<main class="wrap">
-<div class="hero">
-  <h1><span>Rania Dridi</span><br><span style="color:var(--ink)" data-i="role"></span></h1>
-  <p data-i="intro"></p>
-  <div class="btns" id="cta"></div>
-</div>
+<main class="wrap" id="top">
+  <div class="hero">
+    <div class="avatar" id="avatar" aria-hidden="true">RD</div>
+    <div>
+      <h1>Rania Dridi</h1>
+      <div class="role" data-i="role"></div>
+      <p data-i="intro"></p>
+      <div class="btns" id="heroBtns"></div>
+    </div>
+  </div>
 
-<section id="projects">
-  <h2 data-i="nav_projects"></h2>
-  <div class="grid" id="projectGrid"></div>
-</section>
+  <section id="skills">
+    <h2 data-i="skills_t"></h2>
+    <div class="skills" id="skillGrid"></div>
+  </section>
 
-<section id="about">
-  <h2 data-i="nav_about"></h2>
-  <div class="grid" id="aboutGrid"></div>
-</section>
+  <section id="projects">
+    <h2 data-i="nav_projects"></h2>
+    <p class="sub" data-i="projects_sub"></p>
+    <div class="projects" id="projectList"></div>
+    <div class="more" id="moreList"></div>
+  </section>
 
-<section id="skills" class="skills">
-  <h2 data-i="nav_skills"></h2>
-  <div class="grid" id="skillGrid"></div>
-</section>
+  <section id="about">
+    <h2 data-i="nav_about"></h2>
+    <div class="timeline" id="timeline"></div>
+  </section>
 
-<section id="contact">
-  <h2 data-i="nav_contact"></h2>
-  <p data-i="contact_text"></p>
-  <div class="btns" id="contactBtns"></div>
-</section>
+  <section id="contact">
+    <h2 data-i="nav_contact"></h2>
+    <p class="sub" data-i="contact_text"></p>
+    <div class="btns" id="contactBtns"></div>
+  </section>
 </main>
 
 <footer><div class="wrap">© <span id="yr"></span> Rania Dridi</div></footer>
 
 <script>
-// ===== À REMPLIR : laisser vide pour masquer le bouton =====
-const LINKS = {
-  github: "https://github.com/Rania-Dridi",
-  linkedin: "https://www.linkedin.com/in/rania-dridi-a5a733397/",
-  email: "randridi131117@gmail.com",
-  cv: "cv-rania-dridi.pdf"
+// ===== Liens (laisser vide pour masquer le bouton) =====
+const L = {
+  github:"https://github.com/Rania-Dridi",
+  linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
+  email:"randridi131117@gmail.com",
+  cv:"cv-rania-dridi.pdf",
+  photo:""   // ex: "assets/photo.jpg" pour afficher ta photo à la place des initiales
 };
+const GH = "https://github.com/Rania-Dridi/";
 
 const T = {
-  fr:{
-    nav_projects:"Projets", nav_about:"Parcours", nav_skills:"Compétences", nav_contact:"Contact",
-    role:"Développement full-stack, tests et data",
-    intro:"Diplômée en Informatique de Gestion (Business Information System, Esprit School of Business, 2026). J'ai conçu et livré une plateforme e-learning complète (React, Go, PostgreSQL) lors de mon PFE chez Audasoft Technology, avec intégrations de paiement, e-mail et IA, et une chaîne de tests automatisés.",
-    contact_text:"Je recherche un poste en développement, tests logiciels ou analyse de données.",
-    cv:"Télécharger mon CV", gh:"GitHub", li:"LinkedIn", mail:"M'écrire", seeCode:"Code sur GitHub",
-    projects:[
-      {t:"Wledi Academy / Wledi Parent", m:"PFE · Audasoft Technology · fév. – juin 2026", featured:true,
-       d:"Digitalisation de la gestion pédagogique : modules e-learning de la plateforme SaaS Wledi, du parcours d'inscription aux évaluations et aux paiements.",
-       b:["Frontend React 18 + TypeScript (Vite, Tailwind CSS), interfaces multi-rôles.",
-          "Backend Go / Gin en couches Router → Handler → Service → Repository, API REST, PostgreSQL (Neon) en SQL natif.",
-          "Intégrations : paiement iPay.tn, e-mails transactionnels Brevo, médias Cloudinary, assistant IA conversationnel via Groq.",
-          "Qualité : tests d'intégration Go, tests d'API Postman/Newman, tests de bout en bout Playwright."],
-       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"],
-       shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
-       code:"https://github.com/Rania-Dridi/wledi-academy-frontend", codeLabel:"Code du frontend (React, TypeScript)",
-       code2:"https://github.com/Rania-Dridi/wledi-academy-backend", code2Label:"Code du backend (Go, PostgreSQL)",
-       code3:"https://github.com/Rania-Dridi/layered-api-go", code3Label:"Démo de l'architecture en couches (extrait indépendant)"},
-      {t:"Plateforme freelances / clients (FreelancePro)", m:"Projet académique · Esprit School of Business",
-       d:"Application web de gestion de missions freelance avec trois rôles : administrateur, client et freelance.",
-       b:["Authentification avec Laravel Breeze et accès selon le rôle.","Base MySQL, modèles, contrôleurs et vues Laravel.","Une première version en PHP natif (HTML5, CSS3, MySQL) a précédé la version Laravel."],
-       tags:["PHP","Laravel","MySQL","HTML/CSS"]},
-      {t:"Analyse des revenus (CRISP-DM)", m:"Projet d'analyse de données",
-       d:"Analyse de données clients et ventes pour comprendre les revenus et construire des indicateurs d'aide à la décision.",
-       b:["Démarche CRISP-DM : compréhension métier, préparation des données, analyse, évaluation.","Visualisation des KPI et recommandations."],
-       tags:["CRISP-DM","KPI","Data"],
-       img:"assets/monthly_revenue.png", code:"https://github.com/Rania-Dridi/revenue-analysis-crispdm", codeLabel:"Code et méthode sur GitHub (données synthétiques)"},
-      {t:"DemoQA Test Project", m:"Automatisation de tests web",
-       d:"Scénarios de tests automatisés d'une application web de démonstration avec Selenium.",
-       b:["Simulation des parcours utilisateur dans le navigateur.","Code versionné sur GitHub."],
-       tags:["Selenium","Git","QA"],
-       code:"https://github.com/Rania-Dridi/DemoQA_TestProject", code2:"https://github.com/Rania-Dridi/selenium-pytest-demo", code2Label:"Démo Selenium + pytest, Page Object (6 tests)"}
-    ],
-    about:[
-      {t:"Stagiaire PFE · Audasoft Technology", m:"Fév. – juin 2026 · Tunis", v:"Digitalisation de la gestion pédagogique (plateforme SaaS Wledi) : développement front et back, intégrations tierces, tests automatisés."},
-      {t:"Licence Informatique de Gestion", m:"Esprit School of Business · 2023 – 2026", v:"Spécialité Business Information System."},
-      {t:"Conseillère client · Téléperformance", m:"2020 – présent", v:"Opérateurs télécoms et e-commerce : suivi des demandes, résolution de problèmes techniques, travail en équipe multi-environnements."},
-      {t:"Licence en Protection de l'Environnement", m:"ISSBAT Tunis · 2015 – 2019", v:"Management qualité des systèmes environnementaux. Secrétaire générale de la junior entreprise Clipeum ISSBAT (2019)."}
-    ],
-    skills:[
-      {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
-      {t:"Backend", v:"Go (Gin), PHP (Laravel), Java (Spring Boot), API REST"},
-      {t:"Données", v:"PostgreSQL, MySQL, SQL, Python, pandas, Power BI"},
-      {t:"Tests & qualité", v:"Playwright, Selenium, Postman / Newman, tests d'intégration"},
-      {t:"Conception", v:"UML, BPMN, MVC, architecture en couches"},
-      {t:"Outils", v:"Git, GitHub, Vite, Cloudinary, intégration de services tiers"},
-      {t:"Certifications HackerRank", v:"Frontend Developer (React), REST API (Intermediate), SQL (Basic, Intermediate, Advanced), Software Engineer Intern, Angular (Basic)"},
-      {t:"Langues", v:"Arabe (langue maternelle), français (bilingue), anglais (bilingue)"}
-    ]
-  },
-  en:{
-    nav_projects:"Projects", nav_about:"Background", nav_skills:"Skills", nav_contact:"Contact",
-    role:"Full-stack development, testing and data",
-    intro:"Business Information Systems graduate (Esprit School of Business, 2026). For my final-year project at Audasoft Technology I built and shipped a complete e-learning platform (React, Go, PostgreSQL) with payment, email and AI integrations and an automated test pipeline.",
-    contact_text:"I'm looking for a role in software development, QA or data analysis.",
-    cv:"Download my CV", gh:"GitHub", li:"LinkedIn", mail:"Email me", seeCode:"Code on GitHub",
-    projects:[
-      {t:"Wledi Academy / Wledi Parent", m:"Final-year project · Audasoft Technology · Feb – Jun 2026", featured:true,
-       d:"Digitalising academic management: e-learning modules of the Wledi SaaS platform, from enrolment to assessments and payments.",
-       b:["React 18 + TypeScript frontend (Vite, Tailwind CSS), multi-role interfaces.",
-          "Go / Gin backend in layers Router → Handler → Service → Repository, REST API, PostgreSQL (Neon) with plain SQL.",
-          "Integrations: iPay.tn payments, Brevo transactional email, Cloudinary media, Groq-powered AI assistant.",
-          "Quality: Go integration tests, Postman/Newman API tests, Playwright end-to-end tests."],
-       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"],
-       shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
-       code:"https://github.com/Rania-Dridi/wledi-academy-frontend", codeLabel:"Frontend code (React, TypeScript)",
-       code2:"https://github.com/Rania-Dridi/wledi-academy-backend", code2Label:"Backend code (Go, PostgreSQL)",
-       code3:"https://github.com/Rania-Dridi/layered-api-go", code3Label:"Layered architecture demo (standalone excerpt)"},
-      {t:"Freelancer / client platform (FreelancePro)", m:"Academic project · Esprit School of Business",
-       d:"Web app managing freelance missions with three roles: admin, client and freelancer.",
-       b:["Authentication with Laravel Breeze and role-based access.","MySQL database, Laravel models, controllers and views.","A first plain-PHP version (HTML5, CSS3, MySQL) preceded the Laravel one."],
-       tags:["PHP","Laravel","MySQL","HTML/CSS"]},
-      {t:"Revenue analysis (CRISP-DM)", m:"Data analysis project",
-       d:"Analysis of customer and sales data to understand revenue and build decision-support indicators.",
-       b:["CRISP-DM approach: business understanding, data preparation, analysis, evaluation.","KPI visualisation and recommendations."],
-       tags:["CRISP-DM","KPI","Data"],
-       img:"assets/monthly_revenue.png", code:"https://github.com/Rania-Dridi/revenue-analysis-crispdm", codeLabel:"Code and method on GitHub (synthetic data)"},
-      {t:"DemoQA Test Project", m:"Web test automation",
-       d:"Automated test scenarios for a demo web application using Selenium.",
-       b:["Simulates user journeys in the browser.","Versioned on GitHub."],
-       tags:["Selenium","Git","QA"],
-       code:"https://github.com/Rania-Dridi/DemoQA_TestProject", code2:"https://github.com/Rania-Dridi/selenium-pytest-demo", code2Label:"Selenium + pytest demo, Page Object (6 tests)"}
-    ],
-    about:[
-      {t:"Final-year intern · Audasoft Technology", m:"Feb – Jun 2026 · Tunis", v:"Digitalising academic management (Wledi SaaS platform): frontend and backend development, third-party integrations, automated testing."},
-      {t:"BSc Business Information Systems", m:"Esprit School of Business · 2023 – 2026", v:"Specialisation: Business Information System."},
-      {t:"Customer advisor · Teleperformance", m:"2020 – present", v:"Telecom and e-commerce accounts: request handling, technical problem solving, teamwork across environments."},
-      {t:"BSc Environmental Protection", m:"ISSBAT Tunis · 2015 – 2019", v:"Quality management of environmental systems. General Secretary of the Clipeum ISSBAT junior enterprise (2019)."}
-    ],
-    skills:[
-      {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
-      {t:"Backend", v:"Go (Gin), PHP (Laravel), Java (Spring Boot), REST APIs"},
-      {t:"Data", v:"PostgreSQL, MySQL, SQL, Python, pandas, Power BI"},
-      {t:"Testing & quality", v:"Playwright, Selenium, Postman / Newman, integration tests"},
-      {t:"Design", v:"UML, BPMN, MVC, layered architecture"},
-      {t:"Tools", v:"Git, GitHub, Vite, Cloudinary, third-party service integration"},
-      {t:"HackerRank certifications", v:"Frontend Developer (React), REST API (Intermediate), SQL (Basic, Intermediate, Advanced), Software Engineer Intern, Angular (Basic)"},
-      {t:"Languages", v:"Arabic (native), French (bilingual), English (bilingual)"}
-    ]
-  }
-};
+fr:{
+  nav_projects:"Projets", nav_about:"Parcours", nav_contact:"Contact",
+  role:"Développeuse full-stack · Tests automatisés",
+  intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). J'ai livré une plateforme e-learning complète pendant mon PFE chez Audasoft Technology : interfaces React, API Go, paiement, e-mail, IA et tests de bout en bout.",
+  skills_t:"Compétences",
+  skills:[["Langages","TypeScript · Go · Python"],["Framework","React"],["Base de données","PostgreSQL"],["Tests","Playwright · Selenium"]],
+  projects_sub:"Trois projets à la une. Chacun a son code sur GitHub.",
+  cv:"Mon CV", gh:"GitHub", li:"LinkedIn", mail:"M'écrire",
+  contact_text:"Je recherche un poste en développement full-stack ou en automatisation de tests. Écris-moi, je réponds vite.",
+  featured:"Projet de fin d'études", other:"Autres projets",
+  p:[
+   {badge:"PFE · Audasoft Technology", t:"Wledi Academy et Wledi Parent", main:true,
+    m:"Plateforme e-learning SaaS · février à juin 2026",
+    d:"Digitalisation de la gestion pédagogique : de l'inscription aux évaluations et aux paiements, pour les élèves, parents, professeurs, écoles et administrateurs.",
+    b:["Frontend React 18 et TypeScript, interfaces par rôle (élève, parent, professeur, école, admin).","Backend Go et Gin en couches Router, Handler, Service, Repository, sur PostgreSQL.","Paiement iPay.tn, e-mails Brevo, médias Cloudinary et assistant IA via Groq.","Tests d'intégration Go, tests d'API Newman et tests de bout en bout Playwright."],
+    tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"],
+    shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+    links:[["Code du frontend",GH+"wledi-academy-frontend"],["Code du backend",GH+"wledi-academy-backend"],["Extrait d'architecture",GH+"layered-api-go"]]},
+   {t:"Analyse des revenus avec CRISP-DM", m:"Analyse de données · Python",
+    d:"Nettoyage de données de ventes, calcul des KPI (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",
+    tags:["Python","pandas","matplotlib","CRISP-DM"], img:"assets/monthly_revenue.png",
+    links:[["Voir le code",GH+"revenue-analysis-crispdm"]]},
+   {t:"Automatisation de tests web", m:"Tests · Selenium et pytest",
+    d:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",
+    tags:["Python","Selenium","pytest"],
+    links:[["Démo pytest",GH+"selenium-pytest-demo"],["Projet DemoQA",GH+"DemoQA_TestProject"]]}
+  ],
+  more_t:"Autres projets",
+  more:[
+   {t:"Gestion de bibliothèque", d:"Application Java en POO avec diagrammes UML (classes, séquences, activités).", link:["Code",GH+"library-management-java"]},
+   {t:"Plateforme freelances / clients", d:"Application web Laravel et MySQL avec trois rôles : admin, client et freelance."},
+   {t:"API REST en couches (Go)", d:"Extrait autonome d'architecture avec règles métier et tests.", link:["Code",GH+"layered-api-go"]}
+  ],
+  about:[
+   ["2026","Stagiaire PFE · Audasoft Technology","Développement front et back de la plateforme Wledi, intégrations et tests."],
+   ["2023 – 2026","Licence Informatique de Gestion · Esprit School of Business","Spécialité Business Information System."],
+   ["2020 – aujourd'hui","Conseillère client · Téléperformance","Télécoms et e-commerce : gestion des demandes et résolution de problèmes techniques."],
+   ["2015 – 2019","Licence en Protection de l'Environnement · ISSBAT Tunis","Management qualité des systèmes environnementaux."]
+  ]
+},
+en:{
+  nav_projects:"Projects", nav_about:"Background", nav_contact:"Contact",
+  role:"Full-stack developer · Test automation",
+  intro:"Business Information Systems graduate (Esprit School of Business, 2026). I delivered a complete e-learning platform during my final-year project at Audasoft Technology: React interfaces, Go APIs, payments, email, AI and end-to-end tests.",
+  skills_t:"Skills",
+  skills:[["Languages","TypeScript · Go · Python"],["Framework","React"],["Database","PostgreSQL"],["Testing","Playwright · Selenium"]],
+  projects_sub:"Three featured projects. Each one has its code on GitHub.",
+  cv:"My CV", gh:"GitHub", li:"LinkedIn", mail:"Email me",
+  contact_text:"I'm looking for a full-stack development or test automation role. Write to me, I reply fast.",
+  p:[
+   {badge:"Final-year project · Audasoft Technology", t:"Wledi Academy and Wledi Parent", main:true,
+    m:"SaaS e-learning platform · February to June 2026",
+    d:"Digitalising academic management: from enrolment to assessments and payments, for students, parents, teachers, schools and administrators.",
+    b:["React 18 and TypeScript frontend with role-based interfaces (student, parent, teacher, school, admin).","Go and Gin backend in layers Router, Handler, Service, Repository, on PostgreSQL.","iPay.tn payments, Brevo email, Cloudinary media and an AI assistant through Groq.","Go integration tests, Newman API tests and Playwright end-to-end tests."],
+    tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"],
+    shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+    links:[["Frontend code",GH+"wledi-academy-frontend"],["Backend code",GH+"wledi-academy-backend"],["Architecture excerpt",GH+"layered-api-go"]]},
+   {t:"Revenue analysis with CRISP-DM", m:"Data analysis · Python",
+    d:"Cleaning sales data, computing KPIs (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases.",
+    tags:["Python","pandas","matplotlib","CRISP-DM"], img:"assets/monthly_revenue.png",
+    links:[["View code",GH+"revenue-analysis-crispdm"]]},
+   {t:"Web test automation", m:"Testing · Selenium and pytest",
+    d:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain.",
+    tags:["Python","Selenium","pytest"],
+    links:[["pytest demo",GH+"selenium-pytest-demo"],["DemoQA project",GH+"DemoQA_TestProject"]]}
+  ],
+  more_t:"More projects",
+  more:[
+   {t:"Library management", d:"Object-oriented Java application with UML diagrams (class, sequence, activity).", link:["Code",GH+"library-management-java"]},
+   {t:"Freelancer / client platform", d:"Laravel and MySQL web app with three roles: admin, client and freelancer."},
+   {t:"Layered REST API (Go)", d:"Standalone architecture excerpt with business rules and tests.", link:["Code",GH+"layered-api-go"]}
+  ],
+  about:[
+   ["2026","Final-year intern · Audasoft Technology","Frontend and backend development of the Wledi platform, integrations and tests."],
+   ["2023 – 2026","BSc Business Information Systems · Esprit School of Business","Specialisation: Business Information System."],
+   ["2020 – present","Customer advisor · Teleperformance","Telecom and e-commerce: request handling and technical problem solving."],
+   ["2015 – 2019","BSc Environmental Protection · ISSBAT Tunis","Quality management of environmental systems."]
+  ]
+}};
 
-const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let lang = 'fr';
-try { const s = localStorage.getItem('lang'); if (s === 'en' || s === 'fr') lang = s; } catch(e){}
+try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') lang = s; } catch(e){}
+
+function btn(href, label, alt){ return href ? `<a class="btn${alt?' alt':''}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>` : ''; }
 
 function render(){
   const t = T[lang];
@@ -203,30 +258,32 @@ function render(){
   document.querySelectorAll('[data-i]').forEach(e => e.textContent = t[e.dataset.i]);
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
 
-  const btn = (href, label, alt) => href ? `<a class="btn${alt?' alt':''}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>` : '';
-  const mail = LINKS.email ? 'mailto:' + LINKS.email : '';
-  const row = btn(LINKS.cv, t.cv) + btn(LINKS.linkedin, t.li, true) + btn(LINKS.github, t.gh, true) + btn(mail, t.mail, true);
-  document.getElementById('cta').innerHTML = row;
+  const av = document.getElementById('avatar');
+  av.innerHTML = L.photo ? `<img src="${esc(L.photo)}" alt="Rania Dridi">` : 'RD';
+
+  const mail = L.email ? 'mailto:' + L.email : '';
+  const row = btn(mail, t.mail) + btn(L.cv, t.cv, true) + btn(L.linkedin, t.li, true) + btn(L.github, t.gh, true);
+  document.getElementById('heroBtns').innerHTML = row;
   document.getElementById('contactBtns').innerHTML = row;
 
-  document.getElementById('projectGrid').innerHTML = t.projects.map((p, i) => `
-    <article class="card${p.featured?' featured':''}">
+  document.getElementById('skillGrid').innerHTML = t.skills.map(s => `<div class="skill"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
+
+  document.getElementById('projectList').innerHTML = t.p.map(p => `
+    <article class="card${p.main?' main':''}">
+      ${p.badge?`<span class="badge">${esc(p.badge)}</span>`:''}
       <h3>${esc(p.t)}</h3><p class="meta">${esc(p.m)}</p>
       <p>${esc(p.d)}</p>
-      <ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+      ${p.b?`<ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+      ${p.shots?`<div class="shots">${p.shots.map(n=>`<a href="assets/${esc(n)}.png" target="_blank" rel="noopener"><img src="assets/${esc(n)}.png" alt="${esc(p.t)}" loading="lazy"></a>`).join('')}</div>`:''}
+      ${p.img?`<img class="cover" src="${esc(p.img)}" alt="${esc(p.t)}" loading="lazy">`:''}
       <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
-      ${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy" style="width:100%;border-radius:10px;margin-top:8px">`:''}
-      ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(p.codeLabel||t.seeCode)} →</a></p>`:''}
-      ${p.shots?`<div class="shots">${p.shots.map(n=>`<a href="assets/${esc(n)}.png" target="_blank" rel="noopener"><img src="assets/${esc(n)}.png" alt="${esc(p.t)} — ${esc(n.replace('wledi-',''))}" loading="lazy"></a>`).join('')}</div>`:''}
-      ${p.code2?`<p><a href="${esc(p.code2)}" target="_blank" rel="noopener">${esc(p.code2Label)} →</a></p>`:''}
-      ${p.code3?`<p><a href="${esc(p.code3)}" target="_blank" rel="noopener">${esc(p.code3Label)} →</a></p>`:''}
+      <div class="links">${p.links.map((l,i)=>btn(l[1], l[0], i>0)).join('')}</div>
     </article>`).join('');
 
-  document.getElementById('aboutGrid').innerHTML = t.about.map(a =>
-    `<div class="card"><h3>${esc(a.t)}</h3><p class="meta">${esc(a.m)}</p><p style="margin:0">${esc(a.v)}</p></div>`).join('');
+  document.getElementById('moreList').innerHTML = t.more.map(m => `
+    <div class="card"><h3>${esc(m.t)}</h3><p>${esc(m.d)}</p>${m.link?`<a href="${esc(m.link[1])}" target="_blank" rel="noopener">${esc(m.link[0])} →</a>`:''}</div>`).join('');
 
-  document.getElementById('skillGrid').innerHTML = t.skills.map(s =>
-    `<div class="card"><h3>${esc(s.t)}</h3><p class="meta" style="margin:0">${esc(s.v)}</p></div>`).join('');
+  document.getElementById('timeline').innerHTML = t.about.map(a => `<div><small>${esc(a[0])}</small><b>${esc(a[1])}</b><p>${esc(a[2])}</p></div>`).join('');
 }
 document.getElementById('lang').onclick = () => {
   lang = lang === 'fr' ? 'en' : 'fr';
