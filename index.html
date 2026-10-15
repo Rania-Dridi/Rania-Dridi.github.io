@@ -95,6 +95,7 @@ dialog::backdrop{background:rgba(0,0,0,.8)}
 .dbody li{margin-bottom:6px;color:var(--soft)}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
 .shots img,.dbody .one{width:100%;display:block;border:1px solid var(--line)}
+.shots img{aspect-ratio:16/10;object-fit:cover;object-position:top}
 .dbody .one{max-width:640px}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
 .pill{border:1px solid var(--line);padding:3px 14px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
@@ -246,10 +247,12 @@ const P = [
   t:{fr:"Automatisation de tests web",en:"Web test automation"}, cat:{fr:"Tests logiciels",en:"Software testing"},
   d:{fr:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",en:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain."},
   tech:["Python","Selenium","pytest","Git"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"freelance", bg:"linear-gradient(150deg,#ff9db8,#7a3a4c)", roles:["Administrateur","Client","Freelance"],
-  t:{fr:"Plateforme freelances et clients",en:"Freelancer and client platform"}, cat:{fr:"Application web",en:"Web application"},
-  d:{fr:"Application de mise en relation avec trois rôles (administrateur, client, freelance), authentification Laravel Breeze et base MySQL. Une première version en PHP natif a précédé la version Laravel.",en:"Matching application with three roles (admin, client, freelancer), Laravel Breeze authentication and a MySQL database. A first plain-PHP version preceded the Laravel one."},
-  tech:["PHP","Laravel","MySQL","HTML5","CSS3"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+ {id:"freelance", img:"assets/fl-missions.png", shots:["fl-home","fl-missions","fl-apply","fl-freelance","fl-proposals","fl-client","fl-admin"],
+  t:{fr:"FreelancePro, freelances et clients",en:"FreelancePro, freelancers and clients"}, cat:{fr:"Application web · Laravel",en:"Web application · Laravel"},
+  d:{fr:"Plateforme de mise en relation : les clients publient des missions, les freelances candidatent, le client accepte une candidature et l'administrateur supervise. Application fonctionnelle avec trois rôles.",en:"Matching platform: clients publish missions, freelancers apply, the client accepts one proposal and an administrator supervises. Working application with three roles."},
+  b:{fr:["Accès par rôle (client, freelance, administrateur) vérifié côté serveur.","Une seule candidature par freelance et par mission, contrainte en base.","Acceptation d'une candidature en transaction : les autres sont refusées et la mission passe en cours.","Recherche, filtre par catégorie, pagination et tableaux de bord par rôle."],
+     en:["Role-based access (client, freelancer, administrator) enforced on the server.","One proposal per freelancer and mission, enforced in the database.","Accepting a proposal runs in a transaction: the others are rejected and the mission moves to in progress.","Search, category filter, pagination and a dashboard per role."]},
+  tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
  {id:"library", term:'<span class="m">Choisir une fonctionnalité :</span>\n<span class="k">1</span> - Gestion des livres\n<span class="k">2</span> - Gestion des utilisateurs\n<span class="k">3</span> - Gestion des emprunts\n<span class="k">4</span> - Quitter\n<span class="m">Votre choix:</span> _',
   t:{fr:"Gestion de bibliothèque",en:"Library management"}, cat:{fr:"Application Java",en:"Java application"},
   d:{fr:"Application console en programmation orientée objet : livres, utilisateurs standard et premium, emprunts et pénalités, accompagnée de ses diagrammes UML.",en:"Object-oriented console application: books, standard and premium users, loans and penalties, with its UML diagrams."},
