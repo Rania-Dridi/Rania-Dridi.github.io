@@ -3,120 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL) et tests automatisés. Projets et contact.">
+<meta property="og:title" content="Rania Dridi — Développeuse full-stack">
+<meta property="og:description" content="Interfaces, API, paiement, IA et tests automatisés. Découvrez mes projets.">
+<meta property="og:type" content="website">
 <title>Rania Dridi — Développeuse full-stack</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Concept : agence digitale. Fond encre, titres XXL, un seul accent corail, cartes projets à vignette */
+/* Concept : agence éditoriale monochrome. Charbon et blanc, Bebas Neue géant, tuiles carrées, un seul accent rose */
 :root{
   color-scheme:dark;
-  --bg:#0d0d12; --bg-2:#14141b; --card:#191922; --line:#2a2a36;
-  --text:#f4f1ea; --muted:#a3a3b3; --accent:#ff5b3a; --accent-2:#ff7d62; --on-accent:#16110f;
+  --bg:#1b1b1b; --bg-2:#232323; --line:#3b3b3b; --text:#ffffff; --soft:#cccccc; --muted:#909090; --accent:#ff9db8;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.65 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
-h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.08;margin:0;text-wrap:balance}
-a{color:var(--accent-2)}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-a,button,.proj{transition:background-color .15s,border-color .15s,transform .15s,color .15s}
+body{margin:0;background:var(--bg);color:var(--text);font:300 17px/1.7 Roboto,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.06em;line-height:1.02;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a,button,.tile,.tile *{transition:background-color .15s,border-color .15s,color .15s,opacity .15s,transform .15s}
 
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(13,13,18,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font:800 1.05rem "Bricolage Grotesque",sans-serif}
-.logo i{font-style:normal;display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accent);color:var(--on-accent);font-size:.85rem}
-nav{display:flex;align-items:center;gap:22px}
-nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
-nav a:hover{color:var(--text)}
-.chip{border:1px solid var(--line);background:var(--bg-2);color:var(--text);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:.85rem}
-.chip:hover{border-color:var(--accent)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font:400 1.9rem "Bebas Neue",sans-serif;letter-spacing:.08em;color:var(--text);text-decoration:none}
+.logo b{color:var(--accent);font-weight:400}
+nav{display:flex;align-items:center;gap:26px}
+nav a{color:var(--soft);text-decoration:none;font-size:.82rem;text-transform:uppercase;letter-spacing:.16em}
+nav a:hover{color:var(--accent)}
+.chip{border:1px solid var(--line);background:transparent;color:var(--soft);padding:4px 12px;cursor:pointer;font:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
 
-.btn{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:600;border:1px solid var(--accent);cursor:pointer;font-family:inherit;font-size:1rem}
-.btn:hover{background:var(--accent-2);border-color:var(--accent-2)}
-.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
-.btn.ghost:hover{border-color:var(--accent);color:var(--accent-2)}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:14px 30px;border:1px solid #fff;color:#fff;background:transparent;text-decoration:none;text-transform:uppercase;letter-spacing:.18em;font:400 .82rem Roboto,sans-serif;cursor:pointer}
+.btn:hover{background:#fff;color:var(--bg)}
+.btn.fill{background:#fff;color:var(--bg)}
+.btn.fill:hover{background:var(--accent);border-color:var(--accent)}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
 
-/* Hero */
-.hero{padding-block:84px 64px;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center}
-.eyebrow{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:.85rem;color:var(--muted);margin-bottom:20px}
-.eyebrow b{color:var(--accent-2);font-weight:600}
-.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:800;letter-spacing:-.02em;margin-bottom:20px}
+/* Hero plein cadre */
+.hero{background:
+  radial-gradient(circle at 18% 28%,rgba(255,157,184,.42),transparent 42%),
+  radial-gradient(circle at 82% 70%,rgba(255,210,225,.26),transparent 38%),
+  radial-gradient(circle at 55% 10%,rgba(255,157,184,.18),transparent 30%),
+  #1f1b1c;
+  border-bottom:1px solid var(--line)}
+.hero .wrap{padding-block:clamp(64px,11vw,140px) clamp(56px,8vw,100px)}
+.eyebrow{display:block;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:18px}
+.hero h1{font-size:clamp(3.4rem,11vw,9rem);letter-spacing:.07em;max-width:15ch;margin-bottom:26px}
 .hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{color:var(--muted);max-width:540px;margin:0 0 28px;font-size:1.08rem}
-.portrait{aspect-ratio:1;max-width:340px;width:100%;margin-inline:auto;border-radius:36px;background:linear-gradient(150deg,#ff5b3a 0%,#b53a22 100%);display:grid;place-items:center;font:800 5.5rem "Bricolage Grotesque",sans-serif;color:var(--on-accent);overflow:hidden;position:relative}
-.portrait img{width:100%;height:100%;object-fit:cover}
+.hero p{max-width:560px;color:var(--soft);margin:0 0 34px;font-size:1.08rem}
 
-section{padding-block:60px}
-.head{margin-bottom:28px}
-.head h2{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.01em}
-.head p{color:var(--muted);margin:8px 0 0;max-width:560px}
-.kicker{color:var(--accent-2);font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:block}
+section{padding-block:clamp(56px,8vw,104px)}
+.head{margin-bottom:38px}
+.head h2{font-size:clamp(2.8rem,8vw,6.2rem);letter-spacing:.07em;color:#eaeaea}
+.head p{color:var(--muted);margin:8px 0 0}
 
-/* Services */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.svc div{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:24px}
-.svc div:hover{border-color:var(--accent)}
-.svc b{display:block;font:700 1.15rem "Bricolage Grotesque",sans-serif;margin-bottom:8px}
-.svc span{color:var(--muted);font-size:.97rem}
+/* À votre service */
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid var(--line)}
+.svc div{padding:28px 26px 30px 0;border-bottom:1px solid var(--line)}
+.svc b{display:block;font:400 1.7rem "Bebas Neue",sans-serif;letter-spacing:.08em;margin-bottom:8px;text-transform:uppercase}
+.svc span{color:var(--muted);font-size:.98rem}
 
-/* Grille de projets */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.proj{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;padding:0;text-align:left;color:inherit;font:inherit;display:flex;flex-direction:column}
-.proj:hover{border-color:var(--accent);transform:translateY(-3px)}
-.thumb{aspect-ratio:16/10;width:100%;display:grid;place-items:center;overflow:hidden;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:#fff}
-.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
-.proj .body{padding:18px 20px 22px;display:grid;gap:4px}
-.proj .type{color:var(--accent-2);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
-.proj h3{font-size:1.25rem}
-.proj .sub{color:var(--muted);font-size:.93rem}
-.proj.big{grid-column:1/-1;flex-direction:row}
-.proj.big .thumb{aspect-ratio:auto;width:56%;min-height:300px}
-.proj.big .body{align-content:center;padding:28px;gap:10px}
-.proj.big h3{font-size:clamp(1.6rem,3vw,2.2rem)}
+/* Tuiles carrées */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{position:relative;aspect-ratio:1;border:0;padding:0;margin:0;background:var(--bg-2);overflow:hidden;cursor:pointer;color:inherit;font:inherit;text-align:left;display:block}
+.tile.big{grid-column:span 2;aspect-ratio:auto}
+.tile .art{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.tile .art img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.tile:hover .art{transform:scale(1.04)}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:44px 20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.tile .cap small{display:block;color:var(--accent);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.tile .cap h3{font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:.07em}
+.tile.big .cap h3{font-size:clamp(2rem,4vw,3.2rem)}
+.tile:hover .cap h3{color:var(--accent)}
+.term{width:100%;height:100%;background:#101010;font:400 .74rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#c9c9c9;padding:22px 20px 90px;overflow:hidden;white-space:pre;display:block;text-align:left}
+.term .k{color:var(--accent)}.term .g{color:#8fd9a8}.term .m{color:#7d7d7d}
+.roles{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:20px 20px 80px}
+.roles span{border:1px solid rgba(255,255,255,.45);padding:6px 16px;font:400 1.2rem "Bebas Neue",sans-serif;letter-spacing:.1em;color:#fff;text-transform:uppercase}
 
-/* Détail projet */
-dialog{border:1px solid var(--line);background:var(--bg-2);color:var(--text);border-radius:24px;padding:0;width:min(860px,calc(100% - 24px));max-height:92vh;overflow:auto}
-dialog::backdrop{background:rgba(0,0,0,.72)}
-.dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:24px 28px 0}
-.dhead h3{font-size:1.8rem}
-.x{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:1.1rem;flex:none}
-.x:hover{border-color:var(--accent)}
-.dbody{padding:14px 28px 30px;display:grid;gap:16px}
-.dbody p{margin:0;color:var(--muted)}
-.dbody ul{margin:0;padding-left:20px;color:var(--text)}
-.dbody li{margin-bottom:6px}
+/* Détail */
+dialog{border:1px solid var(--line);background:var(--bg-2);color:var(--text);padding:0;width:min(900px,calc(100% - 24px));max-height:92vh;overflow:auto}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+.dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:26px 30px 0}
+.dhead h3{font-size:clamp(2rem,5vw,3rem)}
+.x{border:1px solid var(--line);background:transparent;color:#fff;width:40px;height:40px;cursor:pointer;font-size:1.1rem;flex:none}
+.x:hover{border-color:var(--accent);color:var(--accent)}
+.dbody{padding:16px 30px 34px;display:grid;gap:18px}
+.dbody p{margin:0;color:var(--soft)}
+.dbody ul{margin:0;padding-left:20px}
+.dbody li{margin-bottom:6px;color:var(--soft)}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.shots img,.dbody .one{width:100%;display:block;border-radius:12px;border:1px solid var(--line)}
+.shots img,.dbody .one{width:100%;display:block;border:1px solid var(--line)}
 .dbody .one{max-width:640px}
-.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;border-top:1px solid var(--line);padding-top:16px}
-.meta div small{display:block;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
-.meta div span{font-weight:600}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1px solid var(--line);padding:3px 14px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.meta small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.meta span{font-weight:400}
 
 /* Compétences */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.skills>div{border:1px solid var(--line);background:var(--bg-2);border-radius:20px;padding:20px}
-.skills b{display:block;color:var(--accent-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
-.pills{display:flex;flex-wrap:wrap;gap:7px}
-.pill{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;background:var(--card)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
+.skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
+.skills ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.skills li{padding:7px 0;border-bottom:1px solid var(--line);color:var(--soft)}
 
 /* Contact */
-.contact{border:1px solid var(--line);background:linear-gradient(160deg,#1b1b25,#15151d);border-radius:32px;padding:clamp(28px,6vw,60px);text-align:center}
-.contact h2{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;margin-bottom:12px}
-.contact p{color:var(--muted);margin:0 auto 24px;max-width:520px}
-.contact .btns{justify-content:center}
-.mailline{margin:22px 0 0!important;color:var(--text)!important;font-weight:600}
+.contact h2{font-size:clamp(3rem,10vw,8rem);letter-spacing:.07em;margin-bottom:16px}
+.contact p{color:var(--soft);max-width:520px;margin:0 0 30px}
+.mailline{margin-top:26px!important;color:#fff!important;font-size:1.05rem}
 .mailline #mailText{user-select:all}
-footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding-block:30px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justify-content:space-between;color:var(--muted);font-size:.85rem}
+footer .logo{font-size:1.5rem}
 
-@media (max-width:760px){
-  .hero{grid-template-columns:1fr;padding-block:48px 36px}
-  .portrait{max-width:220px;font-size:3.6rem;border-radius:28px;margin-inline:0}
+@media (max-width:860px){
+  .grid{grid-template-columns:1fr 1fr}
+  .tile.big{aspect-ratio:2/1}
   nav a.hide-sm{display:none}
-  .proj.big{flex-direction:column}
-  .proj.big .thumb{width:100%;min-height:0;aspect-ratio:16/10}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .tile.big{grid-column:auto;aspect-ratio:1}
   .dhead,.dbody{padding-left:18px;padding-right:18px}
+  .svc div{padding-right:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -124,7 +134,7 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="logo" href="#top"><i>RD</i>Rania Dridi</a>
+  <a class="logo" href="#top">Rania <b>Dridi</b></a>
   <nav>
     <a class="hide-sm" href="#services" data-i="n_services"></a>
     <a class="hide-sm" href="#portfolio" data-i="n_portfolio"></a>
@@ -135,42 +145,41 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 </div></header>
 
 <main id="top">
-  <div class="wrap hero">
-    <div>
-      <span class="eyebrow" data-i="eyebrow"></span>
-      <h1 id="h1"></h1>
-      <p data-i="intro"></p>
-      <div class="btns" id="heroBtns"></div>
-    </div>
-    <div class="portrait" id="portrait" aria-hidden="true">RD</div>
-  </div>
+  <div class="hero"><div class="wrap">
+    <span class="eyebrow" data-i="eyebrow"></span>
+    <h1 id="h1"></h1>
+    <p data-i="intro"></p>
+    <div class="btns" id="heroBtns"></div>
+  </div></div>
 
   <section id="services"><div class="wrap">
-    <div class="head"><span class="kicker" data-i="n_services"></span><h2 data-i="svc_t"></h2></div>
+    <div class="head"><h2 data-i="svc_t"></h2></div>
     <div class="svc" id="svc"></div>
   </div></section>
 
   <section id="portfolio"><div class="wrap">
-    <div class="head"><span class="kicker" data-i="n_portfolio"></span><h2 data-i="port_t"></h2><p data-i="port_p"></p></div>
+    <div class="head"><h2 data-i="port_t"></h2><p data-i="port_p"></p></div>
     <div class="grid" id="grid"></div>
   </div></section>
 
   <section id="skills"><div class="wrap">
-    <div class="head"><span class="kicker" data-i="n_skills"></span><h2 data-i="skills_t"></h2></div>
+    <div class="head"><h2 data-i="skills_t"></h2></div>
     <div class="skills" id="skillGrid"></div>
   </div></section>
 
-  <section id="contact"><div class="wrap">
-    <div class="contact">
-      <h2 data-i="c_t"></h2>
-      <p data-i="c_p"></p>
-      <div class="btns" id="contactBtns"></div>
-      <p class="mailline"><span id="mailText"></span> <button class="chip" id="copyMail" type="button"></button></p>
-    </div>
+  <section id="contact"><div class="wrap contact">
+    <h2 data-i="c_t"></h2>
+    <p data-i="c_p"></p>
+    <div class="btns" id="contactBtns"></div>
+    <p class="mailline"><span id="mailText"></span> <button class="chip" id="copyMail" type="button"></button></p>
   </div></section>
 </main>
 
-<footer><div class="wrap">© <span id="yr"></span> Rania Dridi</div></footer>
+<footer><div class="wrap">
+  <a class="logo" href="#top">Rania <b>Dridi</b></a>
+  <span>© <span id="yr"></span> Rania Dridi</span>
+  <a class="btn" href="#contact" id="hire"></a>
+</div></footer>
 
 <dialog id="dlg" aria-labelledby="dTitle">
   <div class="dhead"><h3 id="dTitle"></h3><button class="x" id="dClose" type="button" aria-label="Fermer">✕</button></div>
@@ -181,36 +190,35 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 const L = {
   linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
   email:"randridi131117@gmail.com",
-  cv:"cv-rania-dridi.pdf",
-  photo:""   // ex: "assets/photo.jpg"
+  cv:""
 };
 
 const UI = {
 fr:{
-  n_services:"Services", n_portfolio:"Portfolio", n_skills:"Compétences", n_contact:"Contact",
-  eyebrow:"Disponible pour un poste",
+  n_services:"Services", n_portfolio:"Projets", n_skills:"Compétences", n_contact:"Contact",
+  eyebrow:"Développeuse full-stack · Tests automatisés",
   h1:'Vous recherchez une <em>développeuse</em> full-stack ?',
   intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). Je conçois des applications web complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
-  see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV",
-  svc_t:"À votre service !",
+  see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV", hire:"Me recruter",
+  svc_t:"Ce que je fais",
   svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
-  port_t:"Mes réalisations", port_p:"Cliquez sur un projet pour voir les détails.",
-  skills_t:"Ce que je maîtrise",
-  c_t:"Travaillons ensemble", c_p:"Un poste en développement full-stack ou en automatisation de tests ? Écrivez-moi, je réponds vite.",
-  copy:"Copier", copied:"Copié", close:"Fermer", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
+  port_t:"Projets", port_p:"Cliquez sur un projet pour voir les détails.",
+  skills_t:"Compétences",
+  c_t:"Un nouveau projet ?", c_p:"Un poste en développement full-stack ou en automatisation de tests ? Écrivez-moi, je réponds vite.",
+  copy:"Copier", copied:"Copié", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
-  n_services:"Services", n_portfolio:"Portfolio", n_skills:"Skills", n_contact:"Contact",
-  eyebrow:"Open to work",
+  n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact",
+  eyebrow:"Full-stack developer · Test automation",
   h1:'Looking for a full-stack <em>developer</em>?',
   intro:"Business Information Systems graduate (Esprit School of Business, 2026). I build complete web applications: interfaces, APIs, payments, email, AI and automated tests.",
-  see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV",
-  svc_t:"At your service!",
+  see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV", hire:"Hire me",
+  svc_t:"What I do",
   svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
-  port_t:"My work", port_p:"Click a project to see the details.",
-  skills_t:"What I work with",
-  c_t:"Let's work together", c_p:"A full-stack development or test automation role? Write to me, I reply fast.",
-  copy:"Copy", copied:"Copied", close:"Close", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
+  port_t:"Projects", port_p:"Click a project to see the details.",
+  skills_t:"Skills",
+  c_t:"Have a new project?", c_p:"A full-stack development or test automation role? Write to me, I reply fast.",
+  copy:"Copy", copied:"Copied", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
 
 const SKILLS = [
@@ -223,48 +231,40 @@ const SKILLS = [
 ];
 
 const P = [
- {id:"wledi", big:true, color:"linear-gradient(150deg,#ff5b3a,#8a2d1c)", img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+ {id:"wledi", big:true, img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
   t:{fr:"Wledi Academy et Wledi Parent",en:"Wledi Academy and Wledi Parent"},
   cat:{fr:"Plateforme e-learning · PFE",en:"E-learning platform · Final-year project"},
-  sub:{fr:"Gestion pédagogique : inscriptions, évaluations, paiements.",en:"Academic management: enrolment, assessments, payments."},
   d:{fr:"Digitalisation de la gestion pédagogique pour les élèves, parents, professeurs, écoles et administrateurs, réalisée pendant mon PFE chez Audasoft Technology.",en:"Digitalisation of academic management for students, parents, teachers, schools and administrators, built during my final-year project at Audasoft Technology."},
   b:{fr:["Interfaces React 18 et TypeScript par rôle (élève, parent, professeur, école, admin).","API Go et Gin en couches Router, Handler, Service, Repository, sur PostgreSQL.","Paiement iPay.tn, e-mails Brevo, médias Cloudinary et assistant IA via Groq.","Tests d'intégration Go, tests d'API Newman et tests de bout en bout Playwright."],
      en:["React 18 and TypeScript interfaces per role (student, parent, teacher, school, admin).","Go and Gin API in layers Router, Handler, Service, Repository, on PostgreSQL.","iPay.tn payments, Brevo email, Cloudinary media and an AI assistant through Groq.","Go integration tests, Newman API tests and Playwright end-to-end tests."]},
   tech:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"], date:{fr:"Février à juin 2026",en:"February to June 2026"}, client:"Audasoft Technology"},
- {id:"crisp", color:"linear-gradient(150deg,#2b2b3a,#14141b)", img:"assets/monthly_revenue.png",
+ {id:"crisp", img:"assets/monthly_revenue.png",
   t:{fr:"Analyse des revenus",en:"Revenue analysis"}, cat:{fr:"Analyse de données",en:"Data analysis"},
-  sub:{fr:"KPI et tendances selon CRISP-DM.",en:"KPIs and trends following CRISP-DM."},
   d:{fr:"Nettoyage de données de ventes, calcul des indicateurs (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",en:"Cleaning of sales data, computation of indicators (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases."},
   tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"tests", color:"linear-gradient(150deg,#ff7d62,#c2432a)", label:"E2E",
+ {id:"tests", term:'<span class="m">test_shop.py</span>\n\n<span class="k">def</span> test_login_success_shows_catalog\n<span class="k">def</span> test_login_errors\n<span class="k">def</span> test_add_to_cart_updates_badge\n<span class="k">def</span> test_sort_price_low_to_high\n\n<span class="m">pages.py · conftest.py</span>',
   t:{fr:"Automatisation de tests web",en:"Web test automation"}, cat:{fr:"Tests logiciels",en:"Software testing"},
-  sub:{fr:"Selenium, pytest et Page Object.",en:"Selenium, pytest and Page Object."},
   d:{fr:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",en:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain."},
   tech:["Python","Selenium","pytest","Git"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"freelance", color:"linear-gradient(150deg,#3a3a4d,#1c1c27)", label:"PHP",
+ {id:"freelance", bg:"linear-gradient(150deg,#ff9db8,#7a3a4c)", roles:["Administrateur","Client","Freelance"],
   t:{fr:"Plateforme freelances et clients",en:"Freelancer and client platform"}, cat:{fr:"Application web",en:"Web application"},
-  sub:{fr:"Laravel, MySQL, trois rôles.",en:"Laravel, MySQL, three roles."},
   d:{fr:"Application de mise en relation avec trois rôles (administrateur, client, freelance), authentification Laravel Breeze et base MySQL. Une première version en PHP natif a précédé la version Laravel.",en:"Matching application with three roles (admin, client, freelancer), Laravel Breeze authentication and a MySQL database. A first plain-PHP version preceded the Laravel one."},
   tech:["PHP","Laravel","MySQL","HTML5","CSS3"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"library", color:"linear-gradient(150deg,#ff5b3a,#e0452a)", label:"Java",
+ {id:"library", term:'<span class="m">Choisir une fonctionnalité :</span>\n<span class="k">1</span> - Gestion des livres\n<span class="k">2</span> - Gestion des utilisateurs\n<span class="k">3</span> - Gestion des emprunts\n<span class="k">4</span> - Quitter\n<span class="m">Votre choix:</span> _',
   t:{fr:"Gestion de bibliothèque",en:"Library management"}, cat:{fr:"Application Java",en:"Java application"},
-  sub:{fr:"POO et diagrammes UML.",en:"OOP and UML diagrams."},
   d:{fr:"Application console en programmation orientée objet : livres, utilisateurs standard et premium, emprunts et pénalités, accompagnée de ses diagrammes UML.",en:"Object-oriented console application: books, standard and premium users, loans and penalties, with its UML diagrams."},
-  tech:["Java","POO","UML"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"api", color:"linear-gradient(150deg,#262633,#14141b)", label:"Go",
-  t:{fr:"API REST en couches",en:"Layered REST API"}, cat:{fr:"Back-end",en:"Back-end"},
-  sub:{fr:"Règles métier et tests.",en:"Business rules and tests."},
-  d:{fr:"API d'inscription à des cours en Go : séparation Router, Handler, Service, Repository, règles métier (capacité, doublons, notes de 0 à 20) et tests HTTP.",en:"Course enrolment API in Go: Router, Handler, Service, Repository separation, business rules (capacity, duplicates, grades from 0 to 20) and HTTP tests."},
-  tech:["Go","REST","PostgreSQL"], date:{fr:"2026",en:"2026"}, client:"Projet personnel"}
+  tech:["Java","POO","UML"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"}
+
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let lang = 'fr';
 try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') lang = s; } catch(e){}
 
-function thumb(p){
-  const inner = p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy">` : esc(p.label||'');
-  return `<div class="thumb" style="background:${p.color}">${inner}</div>`;
+function art(p){
+  if (p.term) return `<span class="term">${p.term}</span>`;
+  if (p.roles) return `<div class="roles">${p.roles.map(r=>`<span>${r}</span>`).join('')}</div>`;
+  return `<img src="${esc(p.img)}" alt="" loading="lazy">`;
 }
 
 function render(){
@@ -272,25 +272,24 @@ function render(){
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i]').forEach(e => e.textContent = u[e.dataset.i]);
   document.getElementById('h1').innerHTML = u.h1;
+  document.getElementById('hire').textContent = u.hire;
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
-  document.getElementById('portrait').innerHTML = L.photo ? `<img src="${esc(L.photo)}" alt="Rania Dridi">` : 'RD';
 
-  const hero = `<a class="btn" href="#portfolio">${esc(u.see)}</a><a class="btn ghost" href="#contact">${esc(u.write)}</a>`;
-  document.getElementById('heroBtns').innerHTML = hero;
-  const cv = L.cv ? `<a class="btn ghost" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : '';
-  document.getElementById('contactBtns').innerHTML = `<a class="btn" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.linkedin)}</a>${cv}`;
+  document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a><a class="btn" href="#contact">${esc(u.write)}</a>`;
+  const cv = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : '';
+  document.getElementById('contactBtns').innerHTML = `<a class="btn fill" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.linkedin)}</a>${cv}`;
   document.getElementById('mailText').textContent = L.email;
   document.getElementById('copyMail').textContent = u.copy;
 
   document.getElementById('svc').innerHTML = u.svc.map(s => `<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
 
   document.getElementById('grid').innerHTML = P.map(p => `
-    <button class="proj${p.big?' big':''}" type="button" data-id="${p.id}">
-      ${thumb(p)}
-      <span class="body"><span class="type">${esc(p.cat[lang])}</span><h3>${esc(p.t[lang])}</h3><span class="sub">${esc(p.sub[lang])}</span></span>
+    <button class="tile${p.big?' big':''}" type="button" data-id="${p.id}">
+      <span class="art" ${p.bg?`style="background:${p.bg}"`:''}>${art(p)}</span>
+      <span class="cap"><small>${esc(p.cat[lang])}</small><h3>${esc(p.t[lang])}</h3></span>
     </button>`).join('');
 
-  document.getElementById('skillGrid').innerHTML = SKILLS.map(s => `<div><b>${esc(lang==='fr'?s[0]:s[1])}</b><div class="pills">${s[2].map(x=>`<span class="pill">${esc(x)}</span>`).join('')}</div></div>`).join('');
+  document.getElementById('skillGrid').innerHTML = SKILLS.map(s => `<div><h3>${esc(lang==='fr'?s[0]:s[1])}</h3><ul>${s[2].map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('');
 }
 
 function openProject(id){
@@ -309,17 +308,16 @@ function openProject(id){
       <div><small>${esc(u.date)}</small><span>${esc(p.date[lang])}</span></div>
       <div><small>${esc(u.ctx)}</small><span>${esc(p.client)}</span></div>
     </div>`;
-  const dlg = document.getElementById('dlg');
-  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  const d = document.getElementById('dlg');
+  if (d.showModal) d.showModal(); else d.setAttribute('open','');
 }
 
 document.getElementById('grid').addEventListener('click', e => {
-  const b = e.target.closest('.proj'); if (b) openProject(b.dataset.id);
+  const b = e.target.closest('.tile'); if (b) openProject(b.dataset.id);
 });
 const dlg = document.getElementById('dlg');
 document.getElementById('dClose').onclick = () => dlg.close();
 dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-
 document.getElementById('lang').onclick = () => {
   lang = lang === 'fr' ? 'en' : 'fr';
   try { localStorage.setItem('lang', lang); } catch(e){}
