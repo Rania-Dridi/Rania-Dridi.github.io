@@ -4,326 +4,335 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rania Dridi — Développeuse full-stack</title>
-<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL) et tests automatisés. Projets, code et contact.">
-<meta property="og:title" content="Rania Dridi — Développeuse full-stack">
-<meta property="og:description" content="React, Go, PostgreSQL et tests automatisés. Découvrez mes projets.">
-<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Palette : échelle violette et neutre de Radix Colors, clair et sombre */
+/* Concept : agence digitale. Fond encre, titres XXL, un seul accent corail, cartes projets à vignette */
 :root{
-  --bg:#fefcfe; --bg-subtle:#fbf7fe; --card:#f7f1fd; --border:#e2cbf5; --border-soft:#ebdcf9;
-  --solid:#8e4ec6; --solid-hover:#8347b9; --accent-text:#8145b5; --on-solid:#fff;
-  --text:#211f26; --text-muted:#6f6e77; --tag-bg:#f2e9fb; --tag-text:#8145b5;
+  color-scheme:dark;
+  --bg:#0d0d12; --bg-2:#14141b; --card:#191922; --line:#2a2a36;
+  --text:#f4f1ea; --muted:#a3a3b3; --accent:#ff5b3a; --accent-2:#ff7d62; --on-accent:#16110f;
 }
-@media (prefers-color-scheme:dark){:root{
-  --bg:#18111b; --bg-subtle:#1e1523; --card:#301c3b; --border:#54346b; --border-soft:#48295c;
-  --solid:#8e4ec6; --solid-hover:#9a5cd0; --accent-text:#d19dff; --on-solid:#fff;
-  --text:#ecd9fa; --text-muted:#b4b0bd; --tag-bg:#3d224e; --tag-text:#d19dff;
-}}
-:root[data-theme="light"]{--bg:#fefcfe;--bg-subtle:#fbf7fe;--card:#f7f1fd;--border:#e2cbf5;--border-soft:#ebdcf9;--solid:#8e4ec6;--solid-hover:#8347b9;--accent-text:#8145b5;--text:#211f26;--text-muted:#6f6e77;--tag-bg:#f2e9fb;--tag-text:#8145b5}
-:root[data-theme="dark"]{--bg:#18111b;--bg-subtle:#1e1523;--card:#301c3b;--border:#54346b;--border-soft:#48295c;--solid:#8e4ec6;--solid-hover:#9a5cd0;--accent-text:#d19dff;--text:#ecd9fa;--text-muted:#b4b0bd;--tag-bg:#3d224e;--tag-text:#d19dff}
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
-h1,h2,h3{font-family:Sora,Inter,system-ui,sans-serif;line-height:1.2;margin:0}
-a{color:var(--accent-text)}
-.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-/* animations courtes et discrètes */
-a,button,.card,.shot img{transition:background-color .15s,border-color .15s,transform .15s,color .15s}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.65 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.08;margin:0;text-wrap:balance}
+a{color:var(--accent-2)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a,button,.proj{transition:background-color .15s,border-color .15s,transform .15s,color .15s}
 
-header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-soft)}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
-.logo{font-family:Sora,sans-serif;font-weight:700;text-decoration:none;color:var(--text)}
-nav{display:flex;align-items:center;gap:18px}
-nav a{color:var(--text-muted);text-decoration:none;font-size:.95rem}
-nav a:hover{color:var(--accent-text)}
-.chip{border:1px solid var(--border);background:var(--bg-subtle);color:var(--text);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.85rem}
-.chip:hover{border-color:var(--solid)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(13,13,18,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font:800 1.05rem "Bricolage Grotesque",sans-serif}
+.logo i{font-style:normal;display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--accent);color:var(--on-accent);font-size:.85rem}
+nav{display:flex;align-items:center;gap:22px}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--text)}
+.chip{border:1px solid var(--line);background:var(--bg-2);color:var(--text);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+.chip:hover{border-color:var(--accent)}
+
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:600;border:1px solid var(--accent);cursor:pointer;font-family:inherit;font-size:1rem}
+.btn:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent-2)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
 
 /* Hero */
-.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:64px 0 40px}
-.avatar{width:132px;height:132px;border-radius:50%;background:linear-gradient(135deg,var(--solid),#5c2d91);color:#fff;display:grid;place-items:center;font:700 2.4rem Sora,sans-serif;overflow:hidden}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.hero h1{font-size:clamp(2rem,5.5vw,3rem)}
-.hero .role{font-family:Sora,sans-serif;font-size:clamp(1.1rem,3vw,1.4rem);color:var(--accent-text);margin:6px 0 12px}
-.hero p{margin:0 0 20px;color:var(--text-muted);max-width:560px}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:9px 16px;border-radius:10px;background:var(--solid);color:var(--on-solid);text-decoration:none;font-weight:600;border:1px solid var(--solid)}
-.btn:hover{background:var(--solid-hover)}
-.btn.alt{background:transparent;color:var(--accent-text);border-color:var(--border)}
-.btn.alt:hover{border-color:var(--solid);background:var(--bg-subtle)}
+.hero{padding-block:84px 64px;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center}
+.eyebrow{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:.85rem;color:var(--muted);margin-bottom:20px}
+.eyebrow b{color:var(--accent-2);font-weight:600}
+.hero h1{font-size:clamp(2.4rem,7vw,4.6rem);font-weight:800;letter-spacing:-.02em;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);max-width:540px;margin:0 0 28px;font-size:1.08rem}
+.portrait{aspect-ratio:1;max-width:340px;width:100%;margin-inline:auto;border-radius:36px;background:linear-gradient(150deg,#ff5b3a 0%,#b53a22 100%);display:grid;place-items:center;font:800 5.5rem "Bricolage Grotesque",sans-serif;color:var(--on-accent);overflow:hidden;position:relative}
+.portrait img{width:100%;height:100%;object-fit:cover}
 
-section{padding:44px 0}
-h2{font-size:1.5rem;margin-bottom:6px}
-.sub{color:var(--text-muted);margin:0 0 22px}
+section{padding-block:60px}
+.head{margin-bottom:28px}
+.head h2{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.01em}
+.head p{color:var(--muted);margin:8px 0 0;max-width:560px}
+.kicker{color:var(--accent-2);font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:block}
 
-/* Compétences minimalistes */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.skill{background:var(--bg-subtle);border:1px solid var(--border-soft);border-radius:12px;padding:14px 16px}
-.skill b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);font-weight:600;margin-bottom:4px}
-.skill span{font-weight:600}
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.svc div{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:24px}
+.svc div:hover{border-color:var(--accent)}
+.svc b{display:block;font:700 1.15rem "Bricolage Grotesque",sans-serif;margin-bottom:8px}
+.svc span{color:var(--muted);font-size:.97rem}
 
-/* Projets */
-.projects{display:grid;gap:20px}
-.card{background:var(--bg-subtle);border:1px solid var(--border-soft);border-radius:16px;padding:22px}
-.card:hover{border-color:var(--border)}
-.card.main{border-color:var(--border);background:var(--card)}
-.badge{display:inline-block;font-size:.75rem;font-weight:600;background:var(--solid);color:#fff;border-radius:999px;padding:2px 10px;margin-bottom:10px}
-.card h3{font-size:1.3rem}
-.meta{color:var(--text-muted);font-size:.9rem;margin:4px 0 12px}
-.card p{margin:0 0 12px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
-.tag{background:var(--tag-bg);color:var(--tag-text);border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:600}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:14px 0}
-.shots img,.cover{width:100%;display:block;border-radius:10px;border:1px solid var(--border-soft)}
-.cover{max-width:560px}
-.shots a:hover img{transform:translateY(-2px);border-color:var(--solid)}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:20px}
-.more .card{padding:16px}
-.more h3{font-size:1rem}
-.more p{font-size:.92rem;color:var(--text-muted);margin:4px 0 8px}
+/* Grille de projets */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;padding:0;text-align:left;color:inherit;font:inherit;display:flex;flex-direction:column}
+.proj:hover{border-color:var(--accent);transform:translateY(-3px)}
+.thumb{aspect-ratio:16/10;width:100%;display:grid;place-items:center;overflow:hidden;font:800 2.2rem "Bricolage Grotesque",sans-serif;color:#fff}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.proj .body{padding:18px 20px 22px;display:grid;gap:4px}
+.proj .type{color:var(--accent-2);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.proj h3{font-size:1.25rem}
+.proj .sub{color:var(--muted);font-size:.93rem}
+.proj.big{grid-column:1/-1;flex-direction:row}
+.proj.big .thumb{aspect-ratio:auto;width:56%;min-height:300px}
+.proj.big .body{align-content:center;padding:28px;gap:10px}
+.proj.big h3{font-size:clamp(1.6rem,3vw,2.2rem)}
 
-/* Parcours */
-.timeline{border-left:2px solid var(--border);margin-left:6px;padding-left:20px;display:grid;gap:18px}
-.timeline div b{display:block}
-.timeline small{color:var(--text-muted)}
-.timeline p{margin:2px 0 0;color:var(--text-muted);font-size:.95rem}
+/* Détail projet */
+dialog{border:1px solid var(--line);background:var(--bg-2);color:var(--text);border-radius:24px;padding:0;width:min(860px,calc(100% - 24px));max-height:92vh;overflow:auto}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+.dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:24px 28px 0}
+.dhead h3{font-size:1.8rem}
+.x{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:1.1rem;flex:none}
+.x:hover{border-color:var(--accent)}
+.dbody{padding:14px 28px 30px;display:grid;gap:16px}
+.dbody p{margin:0;color:var(--muted)}
+.dbody ul{margin:0;padding-left:20px;color:var(--text)}
+.dbody li{margin-bottom:6px}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.shots img,.dbody .one{width:100%;display:block;border-radius:12px;border:1px solid var(--line)}
+.dbody .one{max-width:640px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;border-top:1px solid var(--line);padding-top:16px}
+.meta div small{display:block;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.meta div span{font-weight:600}
 
-.form{display:grid;gap:10px;max-width:560px;margin-bottom:18px}
-.form input,.form textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg-subtle);color:var(--text);font:inherit}
-.form input:focus,.form textarea:focus{outline:2px solid var(--solid);border-color:var(--solid)}
-.form .btn{justify-self:start;cursor:pointer}
-footer{border-top:1px solid var(--border-soft);padding:24px 0;color:var(--text-muted);font-size:.9rem}
+/* Compétences */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.skills>div{border:1px solid var(--line);background:var(--bg-2);border-radius:20px;padding:20px}
+.skills b{display:block;color:var(--accent-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem;background:var(--card)}
 
-@media (max-width:720px){
-  .hero{grid-template-columns:1fr;padding-top:40px}
-  .avatar{width:96px;height:96px;font-size:1.8rem}
-  .cols{grid-template-columns:1fr}
+/* Contact */
+.contact{border:1px solid var(--line);background:linear-gradient(160deg,#1b1b25,#15151d);border-radius:32px;padding:clamp(28px,6vw,60px);text-align:center}
+.contact h2{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;margin-bottom:12px}
+.contact p{color:var(--muted);margin:0 auto 24px;max-width:520px}
+.contact .btns{justify-content:center}
+.mailline{margin:22px 0 0!important;color:var(--text)!important;font-weight:600}
+.mailline #mailText{user-select:all}
+footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.9rem}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-block:48px 36px}
+  .portrait{max-width:220px;font-size:3.6rem;border-radius:28px;margin-inline:0}
   nav a.hide-sm{display:none}
+  .proj.big{flex-direction:column}
+  .proj.big .thumb{width:100%;min-height:0;aspect-ratio:16/10}
+  .dhead,.dbody{padding-left:18px;padding-right:18px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
+
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="logo" href="#top">Rania Dridi</a>
+  <a class="logo" href="#top"><i>RD</i>Rania Dridi</a>
   <nav>
-    <a class="hide-sm" href="#projects" data-i="nav_projects"></a>
-    <a class="hide-sm" href="#about" data-i="nav_about"></a>
-    <a href="#contact" data-i="nav_contact"></a>
-    <button class="chip" id="lang" aria-label="Language">EN</button>
+    <a class="hide-sm" href="#services" data-i="n_services"></a>
+    <a class="hide-sm" href="#portfolio" data-i="n_portfolio"></a>
+    <a class="hide-sm" href="#skills" data-i="n_skills"></a>
+    <a href="#contact" data-i="n_contact"></a>
+    <button class="chip" id="lang" type="button" aria-label="Language">EN</button>
   </nav>
 </div></header>
 
-<main class="wrap" id="top">
-  <div class="hero">
-    <div class="avatar" id="avatar" aria-hidden="true">RD</div>
+<main id="top">
+  <div class="wrap hero">
     <div>
-      <h1>Rania Dridi</h1>
-      <div class="role" data-i="role"></div>
+      <span class="eyebrow" data-i="eyebrow"></span>
+      <h1 id="h1"></h1>
       <p data-i="intro"></p>
       <div class="btns" id="heroBtns"></div>
     </div>
+    <div class="portrait" id="portrait" aria-hidden="true">RD</div>
   </div>
 
-  <section id="skills">
-    <h2 data-i="skills_t"></h2>
+  <section id="services"><div class="wrap">
+    <div class="head"><span class="kicker" data-i="n_services"></span><h2 data-i="svc_t"></h2></div>
+    <div class="svc" id="svc"></div>
+  </div></section>
+
+  <section id="portfolio"><div class="wrap">
+    <div class="head"><span class="kicker" data-i="n_portfolio"></span><h2 data-i="port_t"></h2><p data-i="port_p"></p></div>
+    <div class="grid" id="grid"></div>
+  </div></section>
+
+  <section id="skills"><div class="wrap">
+    <div class="head"><span class="kicker" data-i="n_skills"></span><h2 data-i="skills_t"></h2></div>
     <div class="skills" id="skillGrid"></div>
-  </section>
+  </div></section>
 
-  <section id="services">
-    <h2 data-i="svc_t"></h2>
-    <div class="skills" id="svcGrid"></div>
-  </section>
-
-  <section id="projects">
-    <h2 data-i="nav_projects"></h2>
-    <p class="sub" data-i="projects_sub"></p>
-    <div class="projects" id="projectList"></div>
-    <div class="more" id="moreList"></div>
-  </section>
-
-  <section id="about">
-    <h2 data-i="nav_about"></h2>
-    <div class="timeline" id="timeline"></div>
-  </section>
-
-  <section id="contact">
-    <h2 data-i="nav_contact"></h2>
-    <p class="sub" data-i="contact_text"></p>
-    <form id="contactForm" class="form">
-      <input id="fName" required autocomplete="name">
-      <input id="fEmail" type="email" required autocomplete="email">
-      <textarea id="fMsg" rows="4" required></textarea>
-      <button class="btn" type="submit" id="fSend"></button>
-    </form>
-    <div class="btns" id="contactBtns"></div>
-  </section>
+  <section id="contact"><div class="wrap">
+    <div class="contact">
+      <h2 data-i="c_t"></h2>
+      <p data-i="c_p"></p>
+      <div class="btns" id="contactBtns"></div>
+      <p class="mailline"><span id="mailText"></span> <button class="chip" id="copyMail" type="button"></button></p>
+    </div>
+  </div></section>
 </main>
 
 <footer><div class="wrap">© <span id="yr"></span> Rania Dridi</div></footer>
 
+<dialog id="dlg" aria-labelledby="dTitle">
+  <div class="dhead"><h3 id="dTitle"></h3><button class="x" id="dClose" type="button" aria-label="Fermer">✕</button></div>
+  <div class="dbody" id="dBody"></div>
+</dialog>
+
 <script>
-// ===== Liens (laisser vide pour masquer le bouton) =====
 const L = {
-  github:"https://github.com/Rania-Dridi",
   linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
   email:"randridi131117@gmail.com",
   cv:"cv-rania-dridi.pdf",
-  photo:""   // ex: "assets/photo.jpg" pour afficher ta photo à la place des initiales
+  photo:""   // ex: "assets/photo.jpg"
 };
-const GH = "https://github.com/Rania-Dridi/";
 
-const T = {
+const UI = {
 fr:{
-  nav_projects:"Projets", nav_about:"Parcours", nav_contact:"Contact",
-  role:"Développeuse full-stack · Tests automatisés",
-  intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). J'ai livré une plateforme e-learning complète pendant mon PFE chez Audasoft Technology : interfaces React, API Go, paiement, e-mail, IA et tests de bout en bout.",
-  svc_t:"À votre service",
-  svc:[["Développement full-stack","Interfaces React et API Go ou Laravel, de la maquette à la mise en production."],["API et intégrations","Paiement, e-mail, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'intégration, d'API et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, KPI et tableaux de bord pour aider à décider."]],
-  f_name:"Votre nom", f_email:"Votre e-mail", f_msg:"Votre message", f_send:"Envoyer",
-  skills_t:"Compétences",
-  skills:[["Langages","TypeScript · Go · Python"],["Framework","React"],["Base de données","PostgreSQL"],["Tests","Playwright · Selenium"]],
-  projects_sub:"Trois projets à la une. Chacun a son code sur GitHub.",
-  cv:"Mon CV", gh:"GitHub", li:"LinkedIn", mail:"M'écrire",
-  contact_text:"Je recherche un poste en développement full-stack ou en automatisation de tests. Écris-moi, je réponds vite.",
-  featured:"Projet de fin d'études", other:"Autres projets",
-  p:[
-   {badge:"PFE · Audasoft Technology", t:"Wledi Academy et Wledi Parent", main:true,
-    m:"Plateforme e-learning SaaS · février à juin 2026",
-    d:"Digitalisation de la gestion pédagogique : de l'inscription aux évaluations et aux paiements, pour les élèves, parents, professeurs, écoles et administrateurs.",
-    b:["Frontend React 18 et TypeScript, interfaces par rôle (élève, parent, professeur, école, admin).","Backend Go et Gin en couches Router, Handler, Service, Repository, sur PostgreSQL.","Paiement iPay.tn, e-mails Brevo, médias Cloudinary et assistant IA via Groq.","Tests d'intégration Go, tests d'API Newman et tests de bout en bout Playwright."],
-    tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"],
-    shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
-    links:[["Code du frontend",GH+"wledi-academy-frontend"],["Code du backend",GH+"wledi-academy-backend"],["Extrait d'architecture",GH+"layered-api-go"]]},
-   {t:"Analyse des revenus avec CRISP-DM", m:"Analyse de données · Python",
-    d:"Nettoyage de données de ventes, calcul des KPI (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",
-    tags:["Python","pandas","matplotlib","CRISP-DM"], img:"assets/monthly_revenue.png",
-    links:[["Voir le code",GH+"revenue-analysis-crispdm"]]},
-   {t:"Automatisation de tests web", m:"Tests · Selenium et pytest",
-    d:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",
-    tags:["Python","Selenium","pytest"],
-    links:[["Démo pytest",GH+"selenium-pytest-demo"],["Projet DemoQA",GH+"DemoQA_TestProject"]]}
-  ],
-  more_t:"Autres projets",
-  more:[
-   {t:"Gestion de bibliothèque", d:"Application Java en POO avec diagrammes UML (classes, séquences, activités).", link:["Code",GH+"library-management-java"]},
-   {t:"Plateforme freelances / clients", d:"Application web Laravel et MySQL avec trois rôles : admin, client et freelance."},
-   {t:"API REST en couches (Go)", d:"Extrait autonome d'architecture avec règles métier et tests.", link:["Code",GH+"layered-api-go"]}
-  ],
-  about:[
-   ["2026","Stagiaire PFE · Audasoft Technology","Développement front et back de la plateforme Wledi, intégrations et tests."],
-   ["2023 – 2026","Licence Informatique de Gestion · Esprit School of Business","Spécialité Business Information System."],
-   ["2020 – aujourd'hui","Conseillère client · Téléperformance","Télécoms et e-commerce : gestion des demandes et résolution de problèmes techniques."],
-   ["2015 – 2019","Licence en Protection de l'Environnement · ISSBAT Tunis","Management qualité des systèmes environnementaux."]
-  ]
+  n_services:"Services", n_portfolio:"Portfolio", n_skills:"Compétences", n_contact:"Contact",
+  eyebrow:"Disponible pour un poste",
+  h1:'Vous recherchez une <em>développeuse</em> full-stack ?',
+  intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). Je conçois des applications web complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
+  see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV",
+  svc_t:"À votre service !",
+  svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
+  port_t:"Mes réalisations", port_p:"Cliquez sur un projet pour voir les détails.",
+  skills_t:"Ce que je maîtrise",
+  c_t:"Travaillons ensemble", c_p:"Un poste en développement full-stack ou en automatisation de tests ? Écrivez-moi, je réponds vite.",
+  copy:"Copier", copied:"Copié", close:"Fermer", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
-  nav_projects:"Projects", nav_about:"Background", nav_contact:"Contact",
-  role:"Full-stack developer · Test automation",
-  intro:"Business Information Systems graduate (Esprit School of Business, 2026). I delivered a complete e-learning platform during my final-year project at Audasoft Technology: React interfaces, Go APIs, payments, email, AI and end-to-end tests.",
-  svc_t:"What I can do for you",
-  svc:[["Full-stack development","React interfaces and Go or Laravel APIs, from mock-up to production."],["APIs and integrations","Payments, email, media and AI plugged cleanly into your application."],["Test automation","Integration, API and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, KPIs and dashboards to support decisions."]],
-  f_name:"Your name", f_email:"Your email", f_msg:"Your message", f_send:"Send",
-  skills_t:"Skills",
-  skills:[["Languages","TypeScript · Go · Python"],["Framework","React"],["Database","PostgreSQL"],["Testing","Playwright · Selenium"]],
-  projects_sub:"Three featured projects. Each one has its code on GitHub.",
-  cv:"My CV", gh:"GitHub", li:"LinkedIn", mail:"Email me",
-  contact_text:"I'm looking for a full-stack development or test automation role. Write to me, I reply fast.",
-  p:[
-   {badge:"Final-year project · Audasoft Technology", t:"Wledi Academy and Wledi Parent", main:true,
-    m:"SaaS e-learning platform · February to June 2026",
-    d:"Digitalising academic management: from enrolment to assessments and payments, for students, parents, teachers, schools and administrators.",
-    b:["React 18 and TypeScript frontend with role-based interfaces (student, parent, teacher, school, admin).","Go and Gin backend in layers Router, Handler, Service, Repository, on PostgreSQL.","iPay.tn payments, Brevo email, Cloudinary media and an AI assistant through Groq.","Go integration tests, Newman API tests and Playwright end-to-end tests."],
-    tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"],
-    shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
-    links:[["Frontend code",GH+"wledi-academy-frontend"],["Backend code",GH+"wledi-academy-backend"],["Architecture excerpt",GH+"layered-api-go"]]},
-   {t:"Revenue analysis with CRISP-DM", m:"Data analysis · Python",
-    d:"Cleaning sales data, computing KPIs (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases.",
-    tags:["Python","pandas","matplotlib","CRISP-DM"], img:"assets/monthly_revenue.png",
-    links:[["View code",GH+"revenue-analysis-crispdm"]]},
-   {t:"Web test automation", m:"Testing · Selenium and pytest",
-    d:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain.",
-    tags:["Python","Selenium","pytest"],
-    links:[["pytest demo",GH+"selenium-pytest-demo"],["DemoQA project",GH+"DemoQA_TestProject"]]}
-  ],
-  more_t:"More projects",
-  more:[
-   {t:"Library management", d:"Object-oriented Java application with UML diagrams (class, sequence, activity).", link:["Code",GH+"library-management-java"]},
-   {t:"Freelancer / client platform", d:"Laravel and MySQL web app with three roles: admin, client and freelancer."},
-   {t:"Layered REST API (Go)", d:"Standalone architecture excerpt with business rules and tests.", link:["Code",GH+"layered-api-go"]}
-  ],
-  about:[
-   ["2026","Final-year intern · Audasoft Technology","Frontend and backend development of the Wledi platform, integrations and tests."],
-   ["2023 – 2026","BSc Business Information Systems · Esprit School of Business","Specialisation: Business Information System."],
-   ["2020 – present","Customer advisor · Teleperformance","Telecom and e-commerce: request handling and technical problem solving."],
-   ["2015 – 2019","BSc Environmental Protection · ISSBAT Tunis","Quality management of environmental systems."]
-  ]
+  n_services:"Services", n_portfolio:"Portfolio", n_skills:"Skills", n_contact:"Contact",
+  eyebrow:"Open to work",
+  h1:'Looking for a full-stack <em>developer</em>?',
+  intro:"Business Information Systems graduate (Esprit School of Business, 2026). I build complete web applications: interfaces, APIs, payments, email, AI and automated tests.",
+  see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV",
+  svc_t:"At your service!",
+  svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
+  port_t:"My work", port_p:"Click a project to see the details.",
+  skills_t:"What I work with",
+  c_t:"Let's work together", c_p:"A full-stack development or test automation role? Write to me, I reply fast.",
+  copy:"Copy", copied:"Copied", close:"Close", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
+
+const SKILLS = [
+  ["Langages","Languages",["TypeScript","JavaScript","Go","Java","PHP","Python","SQL","C#"]],
+  ["Frameworks","Frameworks",["React","Angular","Gin","Spring Boot","Laravel","Tailwind CSS",".NET"]],
+  ["Bases de données","Databases",["PostgreSQL","MySQL","Neon"]],
+  ["Tests et qualité","Testing & quality",["Playwright","Selenium","pytest","Postman","Newman"]],
+  ["Données et BI","Data & BI",["pandas","scikit-learn","Power BI","CRISP-DM"]],
+  ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]]
+];
+
+const P = [
+ {id:"wledi", big:true, color:"linear-gradient(150deg,#ff5b3a,#8a2d1c)", img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+  t:{fr:"Wledi Academy et Wledi Parent",en:"Wledi Academy and Wledi Parent"},
+  cat:{fr:"Plateforme e-learning · PFE",en:"E-learning platform · Final-year project"},
+  sub:{fr:"Gestion pédagogique : inscriptions, évaluations, paiements.",en:"Academic management: enrolment, assessments, payments."},
+  d:{fr:"Digitalisation de la gestion pédagogique pour les élèves, parents, professeurs, écoles et administrateurs, réalisée pendant mon PFE chez Audasoft Technology.",en:"Digitalisation of academic management for students, parents, teachers, schools and administrators, built during my final-year project at Audasoft Technology."},
+  b:{fr:["Interfaces React 18 et TypeScript par rôle (élève, parent, professeur, école, admin).","API Go et Gin en couches Router, Handler, Service, Repository, sur PostgreSQL.","Paiement iPay.tn, e-mails Brevo, médias Cloudinary et assistant IA via Groq.","Tests d'intégration Go, tests d'API Newman et tests de bout en bout Playwright."],
+     en:["React 18 and TypeScript interfaces per role (student, parent, teacher, school, admin).","Go and Gin API in layers Router, Handler, Service, Repository, on PostgreSQL.","iPay.tn payments, Brevo email, Cloudinary media and an AI assistant through Groq.","Go integration tests, Newman API tests and Playwright end-to-end tests."]},
+  tech:["React","TypeScript","Go","Gin","PostgreSQL","Playwright"], date:{fr:"Février à juin 2026",en:"February to June 2026"}, client:"Audasoft Technology"},
+ {id:"crisp", color:"linear-gradient(150deg,#2b2b3a,#14141b)", img:"assets/monthly_revenue.png",
+  t:{fr:"Analyse des revenus",en:"Revenue analysis"}, cat:{fr:"Analyse de données",en:"Data analysis"},
+  sub:{fr:"KPI et tendances selon CRISP-DM.",en:"KPIs and trends following CRISP-DM."},
+  d:{fr:"Nettoyage de données de ventes, calcul des indicateurs (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",en:"Cleaning of sales data, computation of indicators (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases."},
+  tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+ {id:"tests", color:"linear-gradient(150deg,#ff7d62,#c2432a)", label:"E2E",
+  t:{fr:"Automatisation de tests web",en:"Web test automation"}, cat:{fr:"Tests logiciels",en:"Software testing"},
+  sub:{fr:"Selenium, pytest et Page Object.",en:"Selenium, pytest and Page Object."},
+  d:{fr:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",en:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain."},
+  tech:["Python","Selenium","pytest","Git"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+ {id:"freelance", color:"linear-gradient(150deg,#3a3a4d,#1c1c27)", label:"PHP",
+  t:{fr:"Plateforme freelances et clients",en:"Freelancer and client platform"}, cat:{fr:"Application web",en:"Web application"},
+  sub:{fr:"Laravel, MySQL, trois rôles.",en:"Laravel, MySQL, three roles."},
+  d:{fr:"Application de mise en relation avec trois rôles (administrateur, client, freelance), authentification Laravel Breeze et base MySQL. Une première version en PHP natif a précédé la version Laravel.",en:"Matching application with three roles (admin, client, freelancer), Laravel Breeze authentication and a MySQL database. A first plain-PHP version preceded the Laravel one."},
+  tech:["PHP","Laravel","MySQL","HTML5","CSS3"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+ {id:"library", color:"linear-gradient(150deg,#ff5b3a,#e0452a)", label:"Java",
+  t:{fr:"Gestion de bibliothèque",en:"Library management"}, cat:{fr:"Application Java",en:"Java application"},
+  sub:{fr:"POO et diagrammes UML.",en:"OOP and UML diagrams."},
+  d:{fr:"Application console en programmation orientée objet : livres, utilisateurs standard et premium, emprunts et pénalités, accompagnée de ses diagrammes UML.",en:"Object-oriented console application: books, standard and premium users, loans and penalties, with its UML diagrams."},
+  tech:["Java","POO","UML"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+ {id:"api", color:"linear-gradient(150deg,#262633,#14141b)", label:"Go",
+  t:{fr:"API REST en couches",en:"Layered REST API"}, cat:{fr:"Back-end",en:"Back-end"},
+  sub:{fr:"Règles métier et tests.",en:"Business rules and tests."},
+  d:{fr:"API d'inscription à des cours en Go : séparation Router, Handler, Service, Repository, règles métier (capacité, doublons, notes de 0 à 20) et tests HTTP.",en:"Course enrolment API in Go: Router, Handler, Service, Repository separation, business rules (capacity, duplicates, grades from 0 to 20) and HTTP tests."},
+  tech:["Go","REST","PostgreSQL"], date:{fr:"2026",en:"2026"}, client:"Projet personnel"}
+];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let lang = 'fr';
 try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') lang = s; } catch(e){}
 
-function btn(href, label, alt){ return href ? `<a class="btn${alt?' alt':''}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>` : ''; }
+function thumb(p){
+  const inner = p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy">` : esc(p.label||'');
+  return `<div class="thumb" style="background:${p.color}">${inner}</div>`;
+}
 
 function render(){
-  const t = T[lang];
+  const u = UI[lang];
   document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i]').forEach(e => e.textContent = t[e.dataset.i]);
+  document.querySelectorAll('[data-i]').forEach(e => e.textContent = u[e.dataset.i]);
+  document.getElementById('h1').innerHTML = u.h1;
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
+  document.getElementById('portrait').innerHTML = L.photo ? `<img src="${esc(L.photo)}" alt="Rania Dridi">` : 'RD';
 
-  const av = document.getElementById('avatar');
-  av.innerHTML = L.photo ? `<img src="${esc(L.photo)}" alt="Rania Dridi">` : 'RD';
+  const hero = `<a class="btn" href="#portfolio">${esc(u.see)}</a><a class="btn ghost" href="#contact">${esc(u.write)}</a>`;
+  document.getElementById('heroBtns').innerHTML = hero;
+  const cv = L.cv ? `<a class="btn ghost" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : '';
+  document.getElementById('contactBtns').innerHTML = `<a class="btn" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.linkedin)}</a>${cv}`;
+  document.getElementById('mailText').textContent = L.email;
+  document.getElementById('copyMail').textContent = u.copy;
 
-  const mail = L.email ? 'mailto:' + L.email : '';
-  const row = btn(mail, t.mail) + btn(L.cv, t.cv, true) + btn(L.linkedin, t.li, true) + btn(L.github, t.gh, true);
-  document.getElementById('heroBtns').innerHTML = row;
-  document.getElementById('contactBtns').innerHTML = row;
+  document.getElementById('svc').innerHTML = u.svc.map(s => `<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
 
-  document.getElementById('svcGrid').innerHTML = t.svc.map(s => `<div class="skill"><b>${esc(s[0])}</b><span style="font-weight:400;color:var(--text-muted)">${esc(s[1])}</span></div>`).join('');
-  document.getElementById('fName').placeholder = t.f_name;
-  document.getElementById('fEmail').placeholder = t.f_email;
-  document.getElementById('fMsg').placeholder = t.f_msg;
-  document.getElementById('fSend').textContent = t.f_send;
+  document.getElementById('grid').innerHTML = P.map(p => `
+    <button class="proj${p.big?' big':''}" type="button" data-id="${p.id}">
+      ${thumb(p)}
+      <span class="body"><span class="type">${esc(p.cat[lang])}</span><h3>${esc(p.t[lang])}</h3><span class="sub">${esc(p.sub[lang])}</span></span>
+    </button>`).join('');
 
-  document.getElementById('skillGrid').innerHTML = t.skills.map(s => `<div class="skill"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
-
-  document.getElementById('projectList').innerHTML = t.p.map(p => `
-    <article class="card${p.main?' main':''}">
-      ${p.badge?`<span class="badge">${esc(p.badge)}</span>`:''}
-      <h3>${esc(p.t)}</h3><p class="meta">${esc(p.m)}</p>
-      <p>${esc(p.d)}</p>
-      ${p.b?`<ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
-      ${p.shots?`<div class="shots">${p.shots.map(n=>`<a href="assets/${esc(n)}.png" target="_blank" rel="noopener"><img src="assets/${esc(n)}.png" alt="${esc(p.t)}" loading="lazy"></a>`).join('')}</div>`:''}
-      ${p.img?`<img class="cover" src="${esc(p.img)}" alt="${esc(p.t)}" loading="lazy">`:''}
-      <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
-      <div class="links">${p.links.map((l,i)=>btn(l[1], l[0], i>0)).join('')}</div>
-    </article>`).join('');
-
-  document.getElementById('moreList').innerHTML = t.more.map(m => `
-    <div class="card"><h3>${esc(m.t)}</h3><p>${esc(m.d)}</p>${m.link?`<a href="${esc(m.link[1])}" target="_blank" rel="noopener">${esc(m.link[0])} →</a>`:''}</div>`).join('');
-
-  document.getElementById('timeline').innerHTML = t.about.map(a => `<div><small>${esc(a[0])}</small><b>${esc(a[1])}</b><p>${esc(a[2])}</p></div>`).join('');
+  document.getElementById('skillGrid').innerHTML = SKILLS.map(s => `<div><b>${esc(lang==='fr'?s[0]:s[1])}</b><div class="pills">${s[2].map(x=>`<span class="pill">${esc(x)}</span>`).join('')}</div></div>`).join('');
 }
+
+function openProject(id){
+  const p = P.find(x => x.id === id), u = UI[lang];
+  document.getElementById('dTitle').textContent = p.t[lang];
+  const media = p.shots
+    ? `<div class="shots">${p.shots.map(n=>`<a href="assets/${esc(n)}.png" target="_blank" rel="noopener"><img src="assets/${esc(n)}.png" alt="${esc(p.t[lang])}" loading="lazy"></a>`).join('')}</div>`
+    : (p.img ? `<img class="one" src="${esc(p.img)}" alt="${esc(p.t[lang])}">` : '');
+  document.getElementById('dBody').innerHTML = `
+    ${media}
+    <p>${esc(p.d[lang])}</p>
+    ${p.b ? `<ul>${p.b[lang].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    <div class="pills">${p.tech.map(x=>`<span class="pill">${esc(x)}</span>`).join('')}</div>
+    <div class="meta">
+      <div><small>${esc(u.cat)}</small><span>${esc(p.cat[lang])}</span></div>
+      <div><small>${esc(u.date)}</small><span>${esc(p.date[lang])}</span></div>
+      <div><small>${esc(u.ctx)}</small><span>${esc(p.client)}</span></div>
+    </div>`;
+  const dlg = document.getElementById('dlg');
+  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+}
+
+document.getElementById('grid').addEventListener('click', e => {
+  const b = e.target.closest('.proj'); if (b) openProject(b.dataset.id);
+});
+const dlg = document.getElementById('dlg');
+document.getElementById('dClose').onclick = () => dlg.close();
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+
 document.getElementById('lang').onclick = () => {
   lang = lang === 'fr' ? 'en' : 'fr';
   try { localStorage.setItem('lang', lang); } catch(e){}
   render();
 };
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const n = document.getElementById('fName').value, em = document.getElementById('fEmail').value, m = document.getElementById('fMsg').value;
-  location.href = 'mailto:' + L.email + '?subject=' + encodeURIComponent('Portfolio — ' + n) + '&body=' + encodeURIComponent(m + '\n\n' + n + ' <' + em + '>');
+document.getElementById('copyMail').addEventListener('click', async () => {
+  const el = document.getElementById('copyMail');
+  try { await navigator.clipboard.writeText(L.email); el.textContent = UI[lang].copied; }
+  catch(e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('mailText')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
 });
 document.getElementById('yr').textContent = new Date().getFullYear();
 render();
 </script>
+
 </body>
 </html>
