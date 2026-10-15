@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rania Dridi — Portfolio</title>
+<meta name="description" content="Rania Dridi, Business Computing (ESPRIT). Développement full-stack, tests logiciels et analyse de données. Projets et contact.">
+<meta property="og:title" content="Rania Dridi — Portfolio">
+<meta property="og:description" content="Développement full-stack (React, Go, Laravel), tests automatisés et analyse de données.">
+<meta property="og:type" content="website">
+<style>
+:root{--bg:#faf8fd;--card:#fff;--ink:#1d1730;--muted:#5f5877;--accent:#6d3fc0;--accent-soft:#efe8fb;--line:#e4dcf2}
+@media (prefers-color-scheme:dark){:root{--bg:#14101f;--card:#1d1830;--ink:#f1ecfb;--muted:#a79fc0;--accent:#a88af0;--accent-soft:#2a2145;--line:#332a52}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+nav a{margin-right:16px;text-decoration:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--accent)}
+button.lang{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit;font-size:.85rem}
+.hero{padding:72px 0 48px}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 12px}
+.hero h1 span{color:var(--accent)}
+.hero p{max-width:620px;color:var(--muted);font-size:1.1rem;margin:0 0 24px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+.btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+section{padding:40px 0}
+h2{font-size:1.6rem;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{margin:0 0 4px;font-size:1.15rem}
+.meta{color:var(--muted);font-size:.9rem;margin:0 0 10px}
+.card ul{padding-left:18px;margin:8px 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:600}
+.featured{grid-column:1/-1;border-color:var(--accent)}
+.skills .card h3{font-size:1rem}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <nav><a href="#projects" data-i="nav_projects"></a><a href="#skills" data-i="nav_skills"></a><a href="#contact" data-i="nav_contact"></a></nav>
+  <button class="lang" id="lang" aria-label="Language">EN</button>
+</div></header>
+
+<main class="wrap">
+<div class="hero">
+  <h1><span>Rania Dridi</span><br><span style="color:var(--ink)" data-i="role"></span></h1>
+  <p data-i="intro"></p>
+  <div class="btns" id="cta"></div>
+</div>
+
+<section id="projects">
+  <h2 data-i="nav_projects"></h2>
+  <div class="grid" id="projectGrid"></div>
+</section>
+
+<section id="skills" class="skills">
+  <h2 data-i="nav_skills"></h2>
+  <div class="grid" id="skillGrid"></div>
+</section>
+
+<section id="contact">
+  <h2 data-i="nav_contact"></h2>
+  <p data-i="contact_text"></p>
+  <div class="btns" id="contactBtns"></div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> Rania Dridi</div></footer>
+
+<script>
+// ===== À REMPLIR : laisser vide pour masquer le bouton =====
+const LINKS = {
+  github: "https://github.com/Rania-Dridi",
+  linkedin: "",
+  email: "randridi131117@gmail.com",
+  cv: "cv-rania-dridi.pdf"
+};
+
+const T = {
+  fr:{
+    nav_projects:"Projets", nav_skills:"Compétences", nav_contact:"Contact",
+    role:"Développement full-stack, tests et data",
+    intro:"Diplômée en Informatique de Gestion (Business Information System, Esprit School of Business, 2026). J'ai conçu et livré une plateforme e-learning complète (React, Go, PostgreSQL) lors de mon PFE chez Audasoft Technology, avec intégrations de paiement, e-mail et IA, et une chaîne de tests automatisés.",
+    contact_text:"Je recherche un poste en développement, tests logiciels ou analyse de données.",
+    cv:"Télécharger mon CV", gh:"GitHub", li:"LinkedIn", mail:"M'écrire", seeCode:"Code sur GitHub",
+    projects:[
+      {t:"Wledi Academy / Wledi Parent", m:"PFE · Audasoft Technology · fév. – juin 2026", featured:true,
+       d:"Digitalisation de la gestion pédagogique : modules e-learning de la plateforme SaaS Wledi, du parcours d'inscription aux évaluations et aux paiements.",
+       b:["Frontend React 18 + TypeScript (Vite, Tailwind CSS), interfaces multi-rôles.",
+          "Backend Go / Gin en couches Router → Handler → Service → Repository, API REST, PostgreSQL (Neon) en SQL natif.",
+          "Intégrations : paiement iPay.tn, e-mails transactionnels Brevo, médias Cloudinary, assistant IA conversationnel via Groq.",
+          "Qualité : tests d'intégration Go, tests d'API Postman/Newman, tests de bout en bout Playwright."],
+       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"]},
+      {t:"Plateforme freelances / clients (FreelancePro)", m:"Projet académique · Esprit School of Business",
+       d:"Application web de gestion de missions freelance avec trois rôles : administrateur, client et freelance.",
+       b:["Authentification avec Laravel Breeze et accès selon le rôle.","Base MySQL, modèles, contrôleurs et vues Laravel.","Une première version en PHP natif (HTML5, CSS3, MySQL) a précédé la version Laravel."],
+       tags:["PHP","Laravel","MySQL","HTML/CSS"]},
+      {t:"Analyse des revenus (CRISP-DM)", m:"Projet d'analyse de données",
+       d:"Analyse de données clients et ventes pour comprendre les revenus et construire des indicateurs d'aide à la décision.",
+       b:["Démarche CRISP-DM : compréhension métier, préparation des données, analyse, évaluation.","Visualisation des KPI et recommandations."],
+       tags:["CRISP-DM","KPI","Data"]},
+      {t:"DemoQA Test Project", m:"Automatisation de tests web",
+       d:"Scénarios de tests automatisés d'une application web de démonstration avec Selenium.",
+       b:["Simulation des parcours utilisateur dans le navigateur.","Code versionné sur GitHub."],
+       tags:["Selenium","Git","QA"],
+       code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+    ],
+    skills:[
+      {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
+      {t:"Backend", v:"Go (Gin), PHP (Laravel), Java (Spring Boot), API REST"},
+      {t:"Données", v:"PostgreSQL, MySQL, SQL, Python, pandas, Power BI"},
+      {t:"Tests & qualité", v:"Playwright, Selenium, Postman / Newman, tests d'intégration"},
+      {t:"Conception", v:"UML, BPMN, MVC, architecture en couches"},
+      {t:"Outils", v:"Git, GitHub, Vite, Cloudinary, intégration de services tiers"},
+      {t:"Certifications HackerRank", v:"Frontend Developer (React), REST API (Intermediate), SQL (Basic, Intermediate, Advanced), Software Engineer Intern, Angular (Basic)"},
+      {t:"Langues", v:"Arabe (langue maternelle), français (bilingue), anglais (bilingue)"}
+    ]
+  },
+  en:{
+    nav_projects:"Projects", nav_skills:"Skills", nav_contact:"Contact",
+    role:"Full-stack development, testing and data",
+    intro:"Business Information Systems graduate (Esprit School of Business, 2026). For my final-year project at Audasoft Technology I built and shipped a complete e-learning platform (React, Go, PostgreSQL) with payment, email and AI integrations and an automated test pipeline.",
+    contact_text:"I'm looking for a role in software development, QA or data analysis.",
+    cv:"Download my CV", gh:"GitHub", li:"LinkedIn", mail:"Email me", seeCode:"Code on GitHub",
+    projects:[
+      {t:"Wledi Academy / Wledi Parent", m:"Final-year project · Audasoft Technology · Feb – Jun 2026", featured:true,
+       d:"Digitalising academic management: e-learning modules of the Wledi SaaS platform, from enrolment to assessments and payments.",
+       b:["React 18 + TypeScript frontend (Vite, Tailwind CSS), multi-role interfaces.",
+          "Go / Gin backend in layers Router → Handler → Service → Repository, REST API, PostgreSQL (Neon) with plain SQL.",
+          "Integrations: iPay.tn payments, Brevo transactional email, Cloudinary media, Groq-powered AI assistant.",
+          "Quality: Go integration tests, Postman/Newman API tests, Playwright end-to-end tests."],
+       tags:["React","TypeScript","Go","Gin","PostgreSQL","Playwright","Newman"]},
+      {t:"Freelancer / client platform (FreelancePro)", m:"Academic project · Esprit School of Business",
+       d:"Web app managing freelance missions with three roles: admin, client and freelancer.",
+       b:["Authentication with Laravel Breeze and role-based access.","MySQL database, Laravel models, controllers and views.","A first plain-PHP version (HTML5, CSS3, MySQL) preceded the Laravel one."],
+       tags:["PHP","Laravel","MySQL","HTML/CSS"]},
+      {t:"Revenue analysis (CRISP-DM)", m:"Data analysis project",
+       d:"Analysis of customer and sales data to understand revenue and build decision-support indicators.",
+       b:["CRISP-DM approach: business understanding, data preparation, analysis, evaluation.","KPI visualisation and recommendations."],
+       tags:["CRISP-DM","KPI","Data"]},
+      {t:"DemoQA Test Project", m:"Web test automation",
+       d:"Automated test scenarios for a demo web application using Selenium.",
+       b:["Simulates user journeys in the browser.","Versioned on GitHub."],
+       tags:["Selenium","Git","QA"],
+       code:"https://github.com/Rania-Dridi/DemoQA_TestProject"}
+    ],
+    skills:[
+      {t:"Frontend", v:"React, TypeScript, Angular, HTML5, CSS3, Tailwind CSS"},
+      {t:"Backend", v:"Go (Gin), PHP (Laravel), Java (Spring Boot), REST APIs"},
+      {t:"Data", v:"PostgreSQL, MySQL, SQL, Python, pandas, Power BI"},
+      {t:"Testing & quality", v:"Playwright, Selenium, Postman / Newman, integration tests"},
+      {t:"Design", v:"UML, BPMN, MVC, layered architecture"},
+      {t:"Tools", v:"Git, GitHub, Vite, Cloudinary, third-party service integration"},
+      {t:"HackerRank certifications", v:"Frontend Developer (React), REST API (Intermediate), SQL (Basic, Intermediate, Advanced), Software Engineer Intern, Angular (Basic)"},
+      {t:"Languages", v:"Arabic (native), French (bilingual), English (bilingual)"}
+    ]
+  }
+};
+
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let lang = 'fr';
+try { const s = localStorage.getItem('lang'); if (s === 'en' || s === 'fr') lang = s; } catch(e){}
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(e => e.textContent = t[e.dataset.i]);
+  document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
+
+  const btn = (href, label, alt) => href ? `<a class="btn${alt?' alt':''}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>` : '';
+  const mail = LINKS.email ? 'mailto:' + LINKS.email : '';
+  const row = btn(LINKS.cv, t.cv) + btn(LINKS.linkedin, t.li, true) + btn(LINKS.github, t.gh, true) + btn(mail, t.mail, true);
+  document.getElementById('cta').innerHTML = row;
+  document.getElementById('contactBtns').innerHTML = row;
+
+  document.getElementById('projectGrid').innerHTML = t.projects.map(p => `
+    <article class="card${p.featured?' featured':''}">
+      <h3>${esc(p.t)}</h3><p class="meta">${esc(p.m)}</p>
+      <p>${esc(p.d)}</p>
+      <ul>${p.b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+      <div class="tags">${p.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
+      ${p.code?`<p><a href="${esc(p.code)}" target="_blank" rel="noopener">${esc(t.seeCode)} →</a></p>`:''}
+    </article>`).join('');
+
+  document.getElementById('skillGrid').innerHTML = t.skills.map(s =>
+    `<div class="card"><h3>${esc(s.t)}</h3><p class="meta" style="margin:0">${esc(s.v)}</p></div>`).join('');
+}
+document.getElementById('lang').onclick = () => {
+  lang = lang === 'fr' ? 'en' : 'fr';
+  try { localStorage.setItem('lang', lang); } catch(e){}
+  render();
+};
+document.getElementById('yr').textContent = new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
