@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CV · Rania Dridi</title>
-<meta name="description" content="CV de Rania Dridi, développeuse full-stack.">
+<meta name="description" content="CV de Rania Dridi, développeuse full-stack. Resume of Rania Dridi, full-stack developer.">
 <meta name="theme-color" content="#1b1b1b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231b1b1b'/%3E%3Ctext x='32' y='44' font-family='Impact,Arial Narrow,sans-serif' font-size='34' text-anchor='middle' fill='%23ff9db8'%3ERD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,11 +20,14 @@ header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px so
 .logo{display:flex;align-items:center;text-decoration:none;font:400 2rem/1 "Bebas Neue",sans-serif;letter-spacing:.1em}
 .logo b{color:var(--accent);font-weight:400}
 .logo span{font-size:1.1rem;letter-spacing:.14em;margin-left:12px;padding-left:12px;border-left:1px solid var(--line)}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-block;padding:10px 20px;border:1px solid #fff;color:#fff;background:transparent;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font:400 .76rem Roboto,sans-serif}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;padding:10px 20px;border:1px solid #fff;color:#fff;background:transparent;text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font:400 .76rem Roboto,sans-serif;cursor:pointer}
 .btn:hover{background:#fff;color:var(--bg)}
 .btn.fill{background:#fff;color:var(--bg)}
 .btn.fill:hover{background:var(--accent);border-color:var(--accent)}
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{background:transparent;border:0;color:var(--soft);padding:9px 14px;font:400 .76rem Roboto,sans-serif;letter-spacing:.14em;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--accent);color:#1b1b1b}
 main{max-width:980px;margin:0 auto;padding:26px 16px 60px}
 h1{font:400 clamp(2.2rem,6vw,3.6rem)/1 "Bebas Neue",sans-serif;letter-spacing:.07em;margin:0 0 6px}
 .sub{color:var(--soft);margin:0 0 22px}
@@ -35,17 +38,47 @@ h1{font:400 clamp(2.2rem,6vw,3.6rem)/1 "Bebas Neue",sans-serif;letter-spacing:.0
 </head>
 <body>
 <header><div class="bar">
-  <a class="logo" href="./" aria-label="Retour au portfolio">R<b>D</b><span>Rania Dridi</span></a>
+  <a class="logo" href="./" aria-label="Rania Dridi">R<b>D</b><span>Rania Dridi</span></a>
   <div class="actions">
-    <a class="btn" href="./">← Portfolio</a>
-    <a class="btn fill" href="cv-rania-dridi.pdf" download="CV-Rania-Dridi.pdf">Télécharger le PDF</a>
+    <div class="seg" role="group" aria-label="Langue du CV"><button type="button" id="bFr" aria-pressed="true">FR</button><button type="button" id="bEn" aria-pressed="false">EN</button></div>
+    <a class="btn" href="./" id="back">← Portfolio</a>
+    <a class="btn fill" id="dl" href="cv-rania-dridi.pdf" download="CV-Rania-Dridi.pdf">Télécharger le PDF</a>
   </div>
 </div></header>
 <main>
-  <h1>Curriculum vitae</h1>
-  <p class="sub">Rania Dridi · Développeuse full-stack, web et mobile</p>
-  <img class="page" src="assets/cv-1.png" alt="CV de Rania Dridi : présentation, compétences, formation, expérience, langues">
-  <p class="note">Le téléchargement ne démarre pas ? <a href="cv-rania-dridi.pdf" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet</a>.</p>
+  <h1 id="h">Curriculum vitae</h1>
+  <p class="sub" id="sub">Rania Dridi · Développeuse full-stack, web et mobile</p>
+  <img class="page" id="img" src="assets/cv-1.png" alt="CV de Rania Dridi : présentation, compétences, formation, expérience, langues">
+  <p class="note" id="note">Le téléchargement ne démarre pas ? <a id="open" href="cv-rania-dridi.pdf" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet</a>.</p>
 </main>
+<script>
+(function () {
+  var T = {
+    fr: { h: 'Curriculum vitae', sub: 'Rania Dridi · Développeuse full-stack, web et mobile', dl: 'Télécharger le PDF', file: 'CV-Rania-Dridi-FR.pdf', pdf: 'cv-rania-dridi.pdf', img: 'assets/cv-1.png',
+          alt: 'CV de Rania Dridi : présentation, compétences, formation, expérience, langues', note: 'Le téléchargement ne démarre pas ? <a id="open" href="cv-rania-dridi.pdf" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet</a>.', back: '← Portfolio', title: 'CV · Rania Dridi' },
+    en: { h: 'Resume', sub: 'Rania Dridi · Full-stack developer, web and mobile', dl: 'Download PDF', file: 'CV-Rania-Dridi-EN.pdf', pdf: 'cv-rania-dridi-en.pdf', img: 'assets/cv-en-1.png',
+          alt: 'Resume of Rania Dridi: profile, skills, education, experience, languages', note: 'Download not starting? <a id="open" href="cv-rania-dridi-en.pdf" target="_blank" rel="noopener">Open the PDF in a new tab</a>.', back: '← Portfolio', title: 'Resume · Rania Dridi' }
+  };
+  var q = (location.search.match(/[?&]lang=(fr|en)/) || [])[1];
+  var saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var lang = q || (saved === 'en' ? 'en' : 'fr');
+  function apply(l) {
+    var t = T[l]; lang = l;
+    document.documentElement.lang = l;
+    document.title = t.title;
+    document.getElementById('h').textContent = t.h;
+    document.getElementById('sub').textContent = t.sub;
+    var img = document.getElementById('img'); img.src = t.img; img.alt = t.alt;
+    var dl = document.getElementById('dl'); dl.href = t.pdf; dl.setAttribute('download', t.file); dl.textContent = t.dl;
+    document.getElementById('note').innerHTML = t.note;
+    document.getElementById('back').textContent = t.back;
+    document.getElementById('bFr').setAttribute('aria-pressed', l === 'fr');
+    document.getElementById('bEn').setAttribute('aria-pressed', l === 'en');
+  }
+  document.getElementById('bFr').onclick = function () { apply('fr'); };
+  document.getElementById('bEn').onclick = function () { apply('en'); };
+  apply(lang);
+})();
+</script>
 </body>
 </html>
