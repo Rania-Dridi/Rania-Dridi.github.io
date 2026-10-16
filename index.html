@@ -148,6 +148,28 @@ dialog.lightbox[open]{display:block}
 .iconbtn.ok{border-color:#58e08a;color:#58e08a}
 .iconbtn svg{display:block}
 #why .svc b{color:#fff}
+/* v4: panneau de contact, icones de copie, finitions */
+html{scroll-padding-top:76px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.who{display:block;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.crow{display:grid;grid-template-columns:44px 1fr auto 38px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.crow:first-child{border-top:1px solid var(--line)}
+.cic{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);color:var(--accent)}
+.ctxt{min-width:0}
+.ctxt small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.ctxt span{display:block;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.clist{margin:6px 0 20px}
+.iconbtn{position:relative}
+.iconbtn.ok::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);right:0;background:#58e08a;color:#10130a;font-size:.72rem;font-weight:500;letter-spacing:.06em;padding:3px 9px;white-space:nowrap}
+dialog.cdlg{width:min(620px,calc(100% - 24px))}
+.contactwrap{max-width:720px}
+.flinks{display:flex;gap:18px;flex-wrap:wrap}
+.flinks a{color:var(--soft);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+.flinks a:hover{color:var(--accent)}
+@media (max-width:560px){
+  .crow{grid-template-columns:44px 1fr 38px}
+  .crow .btn{grid-column:1 / -1;text-align:center}
+}
 /* Compétences */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
 .skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
@@ -193,13 +215,14 @@ footer .logo{font-size:1.5rem}
     <a class="hide-sm" href="#skills" data-i="n_skills"></a>
     <a class="hide-sm" href="#contact" data-i="n_contact"></a>
     <button class="chip" id="lang" type="button" aria-label="Language">EN</button>
-    <a class="btn fill sm" id="hireTop" data-i="hire" href="#contact"></a>
+    <button class="btn fill sm" id="hireTop" type="button" data-i="hire"></button>
   </nav>
 </div></header>
 
 <main id="top">
   <div class="hero"><div class="wrap herogrid">
     <div>
+      <span class="who" data-i="who"></span>
       <span class="avail"><i></i><span data-i="avail"></span></span>
       <h1 id="h1"></h1>
       <p data-i="intro"></p>
@@ -236,20 +259,26 @@ footer .logo{font-size:1.5rem}
   <section id="contact"><div class="wrap contact">
     <h2 data-i="c_t"></h2>
     <p data-i="c_p"></p>
+    <div class="contactwrap"><div class="clist" id="contactRows"></div></div>
     <div class="btns" id="contactBtns"></div>
-    <div class="mailrow"><span id="mailText"></span><button class="iconbtn" id="copyMail" type="button"></button></div>
   </div></section>
 </main>
 
 <footer><div class="wrap">
   <a class="logo" href="#top">Rania <b>Dridi</b></a>
   <span>© <span id="yr"></span> Rania Dridi</span>
-  <a class="btn sm" id="hire" data-i="hire" href="#contact"></a>
+  <div class="flinks" id="flinks"></div>
+  <button class="btn sm" id="hire" type="button" data-i="hire"></button>
 </div></footer>
 
 <dialog id="dlg" aria-labelledby="dTitle">
   <div class="dhead"><h3 id="dTitle"></h3><button class="x" id="dClose" type="button" aria-label="Fermer">✕</button></div>
   <div class="dbody" id="dBody"></div>
+</dialog>
+
+<dialog id="cdlg" class="cdlg" aria-labelledby="cTitle">
+  <div class="dhead"><h3 id="cTitle"></h3><button class="x" id="cClose" type="button" aria-label="Fermer">✕</button></div>
+  <div class="dbody"><p id="cIntro" style="margin:0"></p><div class="clist" id="dialogRows"></div><div class="btns" id="dialogBtns"></div></div>
 </dialog>
 
 <dialog id="lb" class="lightbox" aria-label="Capture">
@@ -262,7 +291,8 @@ footer .logo{font-size:1.5rem}
 const L = {
   linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
   email:"randridi131117@gmail.com",
-  cv:""
+  phone:"+21650956856", phoneLabel:"+216 50 95 68 56",
+  cv:"cv-rania-dridi.pdf"
 };
 
 const UI = {
@@ -274,14 +304,16 @@ fr:{
   why:[["Je livre de bout en bout","Interface, API, base de données, intégrations et tests : une plateforme complète livrée pendant mon PFE chez Audasoft Technology."],["Je teste ce que je construis","Tests d'intégration, d'API et de bout en bout. Mes projets personnels totalisent 42 tests automatisés."],["À l'aise avec les clients","Conseillère client depuis 2020 chez Téléperformance (télécoms et e-commerce) : écoute, clarté et résolution de problèmes."],["Trilingue","Arabe (langue maternelle), français et anglais bilingues, pour travailler avec des équipes et des clients internationaux."]],
   proof:[["4","démos jouables en ligne"],["42","tests automatisés (projets perso)"],["5","espaces par rôle sur Wledi"],["3","langues : AR, FR, EN"]],
   h1:'Vous recherchez une <em>développeuse</em> full-stack ?',
-  intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). Je conçois des applications web complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
-  see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV", hire:"Me recruter",
+  intro:"Diplômée en Informatique de Gestion. Je conçois des applications web et mobiles complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
+  who:"Rania Dridi · Développeuse full-stack, web et mobile",
+  cTitle:"Me contacter", cIntro:"Choisissez le moyen qui vous convient. Je réponds rapidement.", cEmail:"E-mail", cWrite:"Écrire", cOpen:"Ouvrir", cCall:"Appeler", cPhone:"Téléphone", cvDl:"Télécharger mon CV",
+  see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV", hire:"Me recruter", live:"Démo en direct",
   svc_t:"Ce que je fais",
   svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
   port_t:"Projets", port_p:"Cliquez sur un projet pour voir les détails.",
   skills_t:"Compétences",
   c_t:"Un poste ou un projet ?", c_p:"Je suis disponible immédiatement pour un poste en développement full-stack ou en automatisation de tests. Écrivez-moi, je réponds rapidement.",
-  copy:"Copier l'adresse e-mail", copied:"Adresse copiée", demo:"Ouvrir la démo en direct", live:"Démo", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
+  copy:"Copier l'adresse e-mail", copyLink:"Copier le lien LinkedIn", copyPhone:"Copier le numéro", copied:"Copié", demo:"Ouvrir la démo en direct", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
   n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact", n_why:"Why me",
@@ -291,14 +323,16 @@ en:{
   why:[["I deliver end to end","Interface, API, database, integrations and tests: a complete platform delivered during my final-year project at Audasoft Technology."],["I test what I build","Integration, API and end-to-end tests. My personal projects add up to 42 automated tests."],["Comfortable with clients","Customer advisor since 2020 at Teleperformance (telecom and e-commerce): listening, clarity and problem solving."],["Trilingual","Arabic (native), French and English (bilingual), to work with international teams and clients."]],
   proof:[["4","live playable demos"],["42","automated tests (personal projects)"],["5","role-based spaces on Wledi"],["3","languages: AR, FR, EN"]],
   h1:'Looking for a full-stack <em>developer</em>?',
-  intro:"Business Information Systems graduate (Esprit School of Business, 2026). I build complete web applications: interfaces, APIs, payments, email, AI and automated tests.",
-  see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV", hire:"Hire me",
+  intro:"Business Information Systems graduate. I design complete web and mobile applications: interfaces, APIs, payments, email, AI and automated tests.",
+  who:"Rania Dridi · Full-stack developer, web and mobile",
+  cTitle:"Contact me", cIntro:"Choose the way that suits you. I reply quickly.", cEmail:"Email", cWrite:"Write", cOpen:"Open", cCall:"Call", cPhone:"Phone", cvDl:"Download my CV",
+  see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV", hire:"Hire me", live:"Live demo",
   svc_t:"What I do",
   svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
   port_t:"Projects", port_p:"Click a project to see the details.",
   skills_t:"Skills",
   c_t:"A role or a project?", c_p:"I am available immediately for a full-stack development or test automation role. Write to me, I reply quickly.",
-  copy:"Copy email address", copied:"Address copied", demo:"Open the live demo", live:"Demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
+  copy:"Copy email address", copyLink:"Copy LinkedIn link", copyPhone:"Copy phone number", copied:"Copied", demo:"Open the live demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
 
 const SKILLS = [
@@ -322,13 +356,13 @@ const P = [
  {id:"crisp", img:"assets/monthly_revenue.png",
   t:{fr:"Analyse des revenus",en:"Revenue analysis"}, cat:{fr:"Analyse de données",en:"Data analysis"},
   d:{fr:"Nettoyage de données de ventes, calcul des indicateurs (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",en:"Cleaning of sales data, computation of indicators (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases."},
-  tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+  tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Projet académique",en:"Academic project"}, client:"Formation en Informatique de Gestion"},
  {id:"freelance", demo:"https://rania-dridi.github.io/demo/freelancepro/", demoHint:{fr:"Connexion en un clic avec les comptes de test, ou création d'un compte.",en:"One-click login with the test accounts, or create an account."}, img:"assets/fl-missions.png", shots:["fl-home","fl-missions","fl-apply","fl-freelance","fl-proposals","fl-client","fl-admin"],
   t:{fr:"FreelancePro, freelances et clients",en:"FreelancePro, freelancers and clients"}, cat:{fr:"Application web · Laravel",en:"Web application · Laravel"},
   d:{fr:"Plateforme de mise en relation : les clients publient des missions, les freelances candidatent, le client accepte une candidature et l'administrateur supervise. Application fonctionnelle avec trois rôles.",en:"Matching platform: clients publish missions, freelancers apply, the client accepts one proposal and an administrator supervises. Working application with three roles."},
   b:{fr:["Accès par rôle (client, freelance, administrateur) vérifié côté serveur.","Une seule candidature par freelance et par mission, contrainte en base.","Acceptation d'une candidature en transaction : les autres sont refusées et la mission passe en cours.","Recherche, filtre par catégorie, pagination et tableaux de bord par rôle."],
      en:["Role-based access (client, freelancer, administrator) enforced on the server.","One proposal per freelancer and mission, enforced in the database.","Accepting a proposal runs in a transaction: the others are rejected and the mission moves to in progress.","Search, category filter, pagination and a dashboard per role."]},
-  tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
+  tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Projet académique",en:"Academic project"}, client:"Formation en Informatique de Gestion"},
  {id:"talentflow", demo:"https://rania-dridi.github.io/demo/talentflow/", demoHint:{fr:"Glissez les cartes entre les colonnes : les règles métier sont appliquées comme sur la vraie API.",en:"Drag cards between columns: business rules apply as on the real API."}, img:"assets/tf-dashboard.png", shots:["tf-dashboard","tf-pipeline","tf-jobs"],
   t:{fr:"TalentFlow, pipeline de recrutement",en:"TalentFlow, hiring pipeline"}, cat:{fr:"Projet personnel · Python",en:"Personal project · Python"},
   d:{fr:"Application de recrutement pour équipes IT : offres, candidats, tableau kanban en glisser-déposer, score explicable et entonnoir de conversion. Application fonctionnelle de démonstration avec des données fictives.",en:"Recruitment app for IT teams: jobs, candidates, a drag-and-drop kanban board, an explainable score and a conversion funnel. Working demo application with fictional data."},
@@ -345,6 +379,9 @@ const P = [
 
 const ICON_COPY = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
 const ICON_OK = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>';
+const ICON_MAIL = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+const ICON_IN = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M6.9 8.8H3.6V20h3.3V8.8zM5.3 3.5a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8zM20.4 13.4c0-3-1.6-4.8-4.1-4.8-1.4 0-2.4.7-2.9 1.5V8.8h-3.2V20h3.3v-6.1c0-1.6.8-2.6 2.1-2.6 1.2 0 1.8.9 1.8 2.5V20h3.3l-.3-6.6z"/></svg>';
+const ICON_TEL = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let lang = 'fr';
 try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') lang = s; } catch(e){}
@@ -362,14 +399,21 @@ function render(){
   document.getElementById('h1').innerHTML = u.h1;
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
 
-  document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a><a class="btn" href="#contact">${esc(u.write)}</a>`;
-  const cv = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : '';
-  document.getElementById('contactBtns').innerHTML = `<a class="btn fill" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.linkedin)}</a>${cv}`;
-  document.getElementById('mailText').textContent = L.email;
+  document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a>${L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<button class="btn" type="button" data-open-contact>${esc(u.write)}</button>`;
+  const cvSec = L.cv ? `<a class="btn fill" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cvDl)}</a>` : '';
+  document.getElementById('contactBtns').innerHTML = cvSec;
   const mailto = `mailto:${L.email}?subject=${encodeURIComponent(u.mailSubject)}&body=${encodeURIComponent(u.mailBody)}`;
-  ['hireTop', 'hire'].forEach((id) => { document.getElementById(id).href = mailto; });
-  const cb = document.getElementById('copyMail');
-  cb.innerHTML = ICON_COPY; cb.classList.remove('ok'); cb.setAttribute('aria-label', u.copy); cb.title = u.copy;
+  const rows = `
+    <div class="crow"><span class="cic">${ICON_MAIL}</span><div class="ctxt"><small>${esc(u.cEmail)}</small><span>${esc(L.email)}</span></div><a class="btn sm" href="${mailto}">${esc(u.cWrite)}</a><button class="iconbtn" type="button" data-copy="${esc(L.email)}" aria-label="${esc(u.copy)}" title="${esc(u.copy)}">${ICON_COPY}</button></div>
+    <div class="crow"><span class="cic">${ICON_IN}</span><div class="ctxt"><small>LinkedIn</small><span>linkedin.com/in/rania-dridi</span></div><a class="btn sm" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.cOpen)}</a><button class="iconbtn" type="button" data-copy="${esc(L.linkedin)}" aria-label="${esc(u.copyLink)}" title="${esc(u.copyLink)}">${ICON_COPY}</button></div>
+    <div class="crow"><span class="cic">${ICON_TEL}</span><div class="ctxt"><small>${esc(u.cPhone)}</small><span>${esc(L.phoneLabel)}</span></div><a class="btn sm" href="tel:${esc(L.phone)}">${esc(u.cCall)}</a><button class="iconbtn" type="button" data-copy="${esc(L.phoneLabel)}" aria-label="${esc(u.copyPhone)}" title="${esc(u.copyPhone)}">${ICON_COPY}</button></div>`;
+  document.getElementById('contactRows').innerHTML = rows;
+  document.getElementById('dialogRows').innerHTML = rows;
+  const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cvDl)}</a>` : '';
+  document.getElementById('dialogBtns').innerHTML = cvBtn;
+  document.getElementById('cTitle').textContent = u.cTitle;
+  document.getElementById('cIntro').textContent = u.cIntro;
+  document.getElementById('flinks').innerHTML = `<a href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>${L.cv ? `<a href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<a href="#portfolio">${esc(u.n_portfolio)}</a>`;
   document.getElementById('proof').innerHTML = u.proof.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
   document.getElementById('whyList').innerHTML = u.why.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
@@ -433,12 +477,30 @@ document.getElementById('lang').onclick = () => {
   try { localStorage.setItem('lang', lang); } catch(e){}
   render();
 };
-document.getElementById('copyMail').addEventListener('click', async () => {
-  const el = document.getElementById('copyMail');
-  const done = () => { el.innerHTML = ICON_OK; el.classList.add('ok'); el.title = UI[lang].copied; setTimeout(() => { el.innerHTML = ICON_COPY; el.classList.remove('ok'); el.title = UI[lang].copy; }, 1800); };
-  try { await navigator.clipboard.writeText(L.email); done(); }
-  catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('mailText')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* fall back below */ }
+  try {
+    const t = document.createElement('textarea');
+    t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select(); const ok = document.execCommand('copy'); t.remove(); return ok;
+  } catch (e) { return false; }
+}
+document.addEventListener('click', async (e) => {
+  const btn = e.target.closest('[data-copy]');
+  if (btn) {
+    if (await copyText(btn.dataset.copy)) {
+      btn.innerHTML = ICON_OK; btn.classList.add('ok'); btn.dataset.tip = UI[lang].copied;
+      setTimeout(() => { btn.innerHTML = ICON_COPY; btn.classList.remove('ok'); }, 1600);
+    }
+    return;
+  }
+  if (e.target.closest('#hireTop, #hire, [data-open-contact]')) {
+    const c = document.getElementById('cdlg');
+    if (c.showModal) c.showModal(); else c.setAttribute('open', '');
+  }
 });
+document.getElementById('cClose').onclick = () => document.getElementById('cdlg').close();
+document.getElementById('cdlg').addEventListener('click', (e) => { if (e.target.id === 'cdlg') e.currentTarget.close(); });
 document.getElementById('yr').textContent = new Date().getFullYear();
 render();
 </script>
