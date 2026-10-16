@@ -3,10 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, Python, TypeScript, Laravel). Projets avec démos en direct, et contact.">
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, Python, TypeScript, Laravel) et tests automatisés. Quatre démos en direct. Disponible immédiatement.">
+<meta name="theme-color" content="#1b1b1b">
+<link rel="canonical" href="https://rania-dridi.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231b1b1b'/%3E%3Ctext x='32' y='44' font-family='Impact,Arial Narrow,sans-serif' font-size='34' text-anchor='middle' fill='%23ff9db8'%3ERD%3C/text%3E%3C/svg%3E">
 <meta property="og:title" content="Rania Dridi — Développeuse full-stack">
-<meta property="og:description" content="Démos en direct : Wledi Academy, FreelancePro, TalentFlow et BookingKit.">
+<meta property="og:description" content="Démos en direct : Wledi Academy, FreelancePro, TalentFlow et BookingKit. Disponible immédiatement.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://rania-dridi.github.io/">
+<meta property="og:image" content="https://rania-dridi.github.io/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Rania Dridi", "jobTitle": "Développeuse full-stack", "url": "https://rania-dridi.github.io/", "email": "mailto:randridi131117@gmail.com", "sameAs": ["https://www.linkedin.com/in/rania-dridi-a5a733397/", "https://github.com/Rania-Dridi"], "alumniOf": {"@type": "CollegeOrUniversity", "name": "Esprit School of Business"}, "knowsAbout": ["React", "TypeScript", "Go", "Python", "Laravel", "PostgreSQL", "Test automation"]}</script>
 <title>Rania Dridi — Développeuse full-stack</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +122,32 @@ dialog.lightbox[open]{display:block}
 .lightbox .x{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6)}
 .lbbar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;color:var(--soft)}
 .lbbar .x{position:static}
+/* Hero v3: maquettes, preuves, pourquoi moi */
+.herogrid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,5.6vw,5.4rem);max-width:16ch}
+.avail{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:5px 14px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-bottom:18px;background:rgba(0,0,0,.25)}
+.avail i{width:8px;height:8px;border-radius:50%;background:#58e08a;box-shadow:0 0 0 4px rgba(88,224,138,.18)}
+.mock{position:relative;min-height:430px}
+.frame{position:absolute;border:1px solid var(--line);background:#0b0b0b;box-shadow:0 30px 70px rgba(0,0,0,.55);overflow:hidden}
+.frame .bar{height:26px;background:#141414;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 10px;font-size:.66rem;color:var(--muted);letter-spacing:.04em}
+.frame .bar i{width:8px;height:8px;border-radius:50%;background:#3a3a3a}
+.frame .bar i:first-child{background:var(--accent)}
+.frame img{display:block;width:100%}
+.f1{width:80%;top:0;left:0;transform:rotate(-2deg)}
+.f2{width:66%;top:140px;right:0;transform:rotate(2deg)}
+.f3{width:56%;bottom:0;left:8%;transform:rotate(-1deg)}
+.proof{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.proof div{padding:22px 20px 24px 0}
+.proof b{display:block;font:400 clamp(2.4rem,5vw,3.6rem)/1 "Bebas Neue",sans-serif;letter-spacing:.05em;color:var(--accent)}
+.proof span{color:var(--soft);font-size:.92rem}
+.btn.sm{padding:9px 18px;font-size:.72rem}
+.mailrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;font-size:1.05rem}
+.mailrow #mailText{user-select:all;font-weight:400;color:#fff}
+.iconbtn{display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);background:transparent;color:var(--soft);cursor:pointer;padding:0}
+.iconbtn:hover{border-color:var(--accent);color:var(--accent)}
+.iconbtn.ok{border-color:#58e08a;color:#58e08a}
+.iconbtn svg{display:block}
+#why .svc b{color:#fff}
 /* Compétences */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
 .skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
@@ -122,7 +155,7 @@ dialog.lightbox[open]{display:block}
 .skills li{padding:7px 0;border-bottom:1px solid var(--line);color:var(--soft)}
 
 /* Contact */
-.contact h2{font-size:clamp(3rem,10vw,8rem);letter-spacing:.07em;margin-bottom:16px}
+.contact h2{font-size:clamp(2.6rem,7vw,6rem);letter-spacing:.07em;margin-bottom:16px}
 .contact p{color:var(--soft);max-width:520px;margin:0 0 30px}
 .mailline{margin-top:26px!important;color:#fff!important;font-size:1.05rem}
 .mailline #mailText{user-select:all}
@@ -131,6 +164,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justif
 footer .logo{font-size:1.5rem}
 
 @media (max-width:860px){
+  .herogrid{grid-template-columns:1fr}
+  .mock{min-height:0}
+  .frame.f2,.frame.f3{display:none}
+  .frame.f1{position:relative;width:100%;transform:none}
+  .proof{grid-template-columns:1fr 1fr}
   .grid{grid-template-columns:1fr}
   .tile{aspect-ratio:16/10}
   .tile.big{grid-column:auto;aspect-ratio:16/10}
@@ -150,30 +188,44 @@ footer .logo{font-size:1.5rem}
 <header class="top"><div class="wrap">
   <a class="logo" href="#top">Rania <b>Dridi</b></a>
   <nav>
-    <a class="hide-sm" href="#services" data-i="n_services"></a>
     <a class="hide-sm" href="#portfolio" data-i="n_portfolio"></a>
+    <a class="hide-sm" href="#why" data-i="n_why"></a>
     <a class="hide-sm" href="#skills" data-i="n_skills"></a>
-    <a href="#contact" data-i="n_contact"></a>
+    <a class="hide-sm" href="#contact" data-i="n_contact"></a>
     <button class="chip" id="lang" type="button" aria-label="Language">EN</button>
+    <a class="btn fill sm" id="hireTop" data-i="hire" href="#contact"></a>
   </nav>
 </div></header>
 
 <main id="top">
-  <div class="hero"><div class="wrap">
-    <span class="eyebrow" data-i="eyebrow"></span>
-    <h1 id="h1"></h1>
-    <p data-i="intro"></p>
-    <div class="btns" id="heroBtns"></div>
-  </div></div>
-
-  <section id="services"><div class="wrap">
-    <div class="head"><h2 data-i="svc_t"></h2></div>
-    <div class="svc" id="svc"></div>
-  </div></section>
+  <div class="hero"><div class="wrap herogrid">
+    <div>
+      <span class="avail"><i></i><span data-i="avail"></span></span>
+      <h1 id="h1"></h1>
+      <p data-i="intro"></p>
+      <div class="btns" id="heroBtns"></div>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="frame f1"><div class="bar"><i></i><i></i><i></i>demo/wledi</div><img src="assets/wledi-student.png" alt=""></div>
+      <div class="frame f2"><div class="bar"><i></i><i></i><i></i>demo/talentflow</div><img src="assets/tf-pipeline.png" alt=""></div>
+      <div class="frame f3"><div class="bar"><i></i><i></i><i></i>demo/bookingkit</div><img src="assets/bk-slots.png" alt=""></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="proof" id="proof"></div></div></div>
 
   <section id="portfolio"><div class="wrap">
     <div class="head"><h2 data-i="port_t"></h2><p data-i="port_p"></p></div>
     <div class="grid" id="grid"></div>
+  </div></section>
+
+  <section id="why"><div class="wrap">
+    <div class="head"><h2 data-i="why_t"></h2></div>
+    <div class="svc" id="whyList"></div>
+  </div></section>
+
+  <section id="services"><div class="wrap">
+    <div class="head"><h2 data-i="svc_t"></h2></div>
+    <div class="svc" id="svc"></div>
   </div></section>
 
   <section id="skills"><div class="wrap">
@@ -185,14 +237,14 @@ footer .logo{font-size:1.5rem}
     <h2 data-i="c_t"></h2>
     <p data-i="c_p"></p>
     <div class="btns" id="contactBtns"></div>
-    <p class="mailline"><span id="mailText"></span> <button class="chip" id="copyMail" type="button"></button></p>
+    <div class="mailrow"><span id="mailText"></span><button class="iconbtn" id="copyMail" type="button"></button></div>
   </div></section>
 </main>
 
 <footer><div class="wrap">
   <a class="logo" href="#top">Rania <b>Dridi</b></a>
   <span>© <span id="yr"></span> Rania Dridi</span>
-  <a class="btn" href="#contact" id="hire"></a>
+  <a class="btn sm" id="hire" data-i="hire" href="#contact"></a>
 </div></footer>
 
 <dialog id="dlg" aria-labelledby="dTitle">
@@ -215,8 +267,12 @@ const L = {
 
 const UI = {
 fr:{
-  n_services:"Services", n_portfolio:"Projets", n_skills:"Compétences", n_contact:"Contact",
-  eyebrow:"Développeuse full-stack · Tests automatisés",
+  n_services:"Services", n_portfolio:"Projets", n_skills:"Compétences", n_contact:"Contact", n_why:"Pourquoi moi",
+  avail:"Disponible immédiatement",
+  mailSubject:"Opportunité professionnelle", mailBody:"Bonjour Rania,\n\nJe vous contacte au sujet d'une opportunité.\n\nCordialement,",
+  why_t:"Pourquoi me recruter",
+  why:[["Je livre de bout en bout","Interface, API, base de données, intégrations et tests : une plateforme complète livrée pendant mon PFE chez Audasoft Technology."],["Je teste ce que je construis","Tests d'intégration, d'API et de bout en bout. Mes projets personnels totalisent 42 tests automatisés."],["À l'aise avec les clients","Conseillère client depuis 2020 chez Téléperformance (télécoms et e-commerce) : écoute, clarté et résolution de problèmes."],["Trilingue","Arabe (langue maternelle), français et anglais bilingues, pour travailler avec des équipes et des clients internationaux."]],
+  proof:[["4","démos jouables en ligne"],["42","tests automatisés (projets perso)"],["5","espaces par rôle sur Wledi"],["3","langues : AR, FR, EN"]],
   h1:'Vous recherchez une <em>développeuse</em> full-stack ?',
   intro:"Diplômée en Informatique de Gestion (Esprit School of Business, 2026). Je conçois des applications web complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
   see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV", hire:"Me recruter",
@@ -224,12 +280,16 @@ fr:{
   svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
   port_t:"Projets", port_p:"Cliquez sur un projet pour voir les détails.",
   skills_t:"Compétences",
-  c_t:"Un nouveau projet ?", c_p:"Un poste en développement full-stack ou en automatisation de tests ? Écrivez-moi, je réponds vite.",
-  copy:"Copier", copied:"Copié", demo:"Ouvrir la démo en direct", live:"Démo", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
+  c_t:"Un poste ou un projet ?", c_p:"Je suis disponible immédiatement pour un poste en développement full-stack ou en automatisation de tests. Écrivez-moi, je réponds rapidement.",
+  copy:"Copier l'adresse e-mail", copied:"Adresse copiée", demo:"Ouvrir la démo en direct", live:"Démo", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
-  n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact",
-  eyebrow:"Full-stack developer · Test automation",
+  n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact", n_why:"Why me",
+  avail:"Available immediately",
+  mailSubject:"Job opportunity", mailBody:"Hello Rania,\n\nI'm contacting you about an opportunity.\n\nBest regards,",
+  why_t:"Why hire me",
+  why:[["I deliver end to end","Interface, API, database, integrations and tests: a complete platform delivered during my final-year project at Audasoft Technology."],["I test what I build","Integration, API and end-to-end tests. My personal projects add up to 42 automated tests."],["Comfortable with clients","Customer advisor since 2020 at Teleperformance (telecom and e-commerce): listening, clarity and problem solving."],["Trilingual","Arabic (native), French and English (bilingual), to work with international teams and clients."]],
+  proof:[["4","live playable demos"],["42","automated tests (personal projects)"],["5","role-based spaces on Wledi"],["3","languages: AR, FR, EN"]],
   h1:'Looking for a full-stack <em>developer</em>?',
   intro:"Business Information Systems graduate (Esprit School of Business, 2026). I build complete web applications: interfaces, APIs, payments, email, AI and automated tests.",
   see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV", hire:"Hire me",
@@ -237,8 +297,8 @@ en:{
   svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
   port_t:"Projects", port_p:"Click a project to see the details.",
   skills_t:"Skills",
-  c_t:"Have a new project?", c_p:"A full-stack development or test automation role? Write to me, I reply fast.",
-  copy:"Copy", copied:"Copied", demo:"Open the live demo", live:"Demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
+  c_t:"A role or a project?", c_p:"I am available immediately for a full-stack development or test automation role. Write to me, I reply quickly.",
+  copy:"Copy email address", copied:"Address copied", demo:"Open the live demo", live:"Demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
 
 const SKILLS = [
@@ -247,7 +307,8 @@ const SKILLS = [
   ["Bases de données","Databases",["PostgreSQL","MySQL","SQLite","Neon"]],
   ["Tests et qualité","Testing & quality",["Playwright","Selenium","pytest","Vitest","Postman","Newman"]],
   ["Données et BI","Data & BI",["pandas","scikit-learn","Power BI","CRISP-DM"]],
-  ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]]
+  ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]],
+  ["Certifications HackerRank","HackerRank certifications",["Frontend Developer (React)","REST API (Intermediate)","SQL (Advanced)","Software Engineer Intern","Angular (Basic)"]]
 ];
 
 const P = [
@@ -282,6 +343,8 @@ const P = [
   tech:["TypeScript","Node.js","Express","SQLite","Vitest"], date:{fr:"2026 · projet de démonstration",en:"2026 · demo project"}, client:"Projet personnel"}
 ];
 
+const ICON_COPY = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+const ICON_OK = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let lang = 'fr';
 try { const s = localStorage.getItem('lang'); if (s === 'fr' || s === 'en') lang = s; } catch(e){}
@@ -297,14 +360,18 @@ function render(){
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i]').forEach(e => e.textContent = u[e.dataset.i]);
   document.getElementById('h1').innerHTML = u.h1;
-  document.getElementById('hire').textContent = u.hire;
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
 
   document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a><a class="btn" href="#contact">${esc(u.write)}</a>`;
   const cv = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : '';
   document.getElementById('contactBtns').innerHTML = `<a class="btn fill" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.linkedin)}</a>${cv}`;
   document.getElementById('mailText').textContent = L.email;
-  document.getElementById('copyMail').textContent = u.copy;
+  const mailto = `mailto:${L.email}?subject=${encodeURIComponent(u.mailSubject)}&body=${encodeURIComponent(u.mailBody)}`;
+  ['hireTop', 'hire'].forEach((id) => { document.getElementById(id).href = mailto; });
+  const cb = document.getElementById('copyMail');
+  cb.innerHTML = ICON_COPY; cb.classList.remove('ok'); cb.setAttribute('aria-label', u.copy); cb.title = u.copy;
+  document.getElementById('proof').innerHTML = u.proof.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
+  document.getElementById('whyList').innerHTML = u.why.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
   document.getElementById('svc').innerHTML = u.svc.map(s => `<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
 
@@ -368,8 +435,9 @@ document.getElementById('lang').onclick = () => {
 };
 document.getElementById('copyMail').addEventListener('click', async () => {
   const el = document.getElementById('copyMail');
-  try { await navigator.clipboard.writeText(L.email); el.textContent = UI[lang].copied; }
-  catch(e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('mailText')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  const done = () => { el.innerHTML = ICON_OK; el.classList.add('ok'); el.title = UI[lang].copied; setTimeout(() => { el.innerHTML = ICON_COPY; el.classList.remove('ok'); el.title = UI[lang].copy; }, 1800); };
+  try { await navigator.clipboard.writeText(L.email); done(); }
+  catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById('mailText')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
 });
 document.getElementById('yr').textContent = new Date().getFullYear();
 render();
