@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL) et tests automatisés. Projets et contact.">
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL, Laravel). Projets et contact.">
 <meta property="og:title" content="Rania Dridi — Développeuse full-stack">
 <meta property="og:description" content="Interfaces, API, paiement, IA et tests automatisés. Découvrez mes projets.">
 <meta property="og:type" content="website">
@@ -67,12 +67,12 @@ section{padding-block:clamp(56px,8vw,104px)}
 
 /* Tuiles carrées */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.tile{position:relative;aspect-ratio:1;border:0;padding:0;margin:0;background:var(--bg-2);overflow:hidden;cursor:pointer;color:inherit;font:inherit;text-align:left;display:block}
+.tile{position:relative;aspect-ratio:16/11;border:0;padding:0;margin:0;background:var(--bg-2);overflow:hidden;cursor:pointer;color:inherit;font:inherit;text-align:left;display:block}
 .tile.big{grid-column:span 2;aspect-ratio:auto}
 .tile .art{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
 .tile .art img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .tile:hover .art{transform:scale(1.04)}
-.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:44px 20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:80px 20px 16px;background:linear-gradient(transparent,rgba(0,0,0,.9) 70%)}
 .tile .cap small{display:block;color:var(--accent);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
 .tile .cap h3{font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:.07em}
 .tile.big .cap h3{font-size:clamp(2rem,4vw,3.2rem)}
@@ -119,8 +119,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justif
 footer .logo{font-size:1.5rem}
 
 @media (max-width:860px){
-  .grid{grid-template-columns:1fr 1fr}
-  .tile.big{aspect-ratio:2/1}
+  .grid{grid-template-columns:1fr}
+  .tile{aspect-ratio:16/10}
   nav a.hide-sm{display:none}
 }
 @media (max-width:560px){
@@ -232,7 +232,7 @@ const SKILLS = [
 ];
 
 const P = [
- {id:"wledi", big:true, img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+ {id:"wledi", img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
   t:{fr:"Wledi Academy et Wledi Parent",en:"Wledi Academy and Wledi Parent"},
   cat:{fr:"Plateforme e-learning · PFE",en:"E-learning platform · Final-year project"},
   d:{fr:"Digitalisation de la gestion pédagogique pour les élèves, parents, professeurs, écoles et administrateurs, réalisée pendant mon PFE chez Audasoft Technology.",en:"Digitalisation of academic management for students, parents, teachers, schools and administrators, built during my final-year project at Audasoft Technology."},
@@ -243,20 +243,12 @@ const P = [
   t:{fr:"Analyse des revenus",en:"Revenue analysis"}, cat:{fr:"Analyse de données",en:"Data analysis"},
   d:{fr:"Nettoyage de données de ventes, calcul des indicateurs (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",en:"Cleaning of sales data, computation of indicators (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases."},
   tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"tests", term:'<span class="m">test_shop.py</span>\n\n<span class="k">def</span> test_login_success_shows_catalog\n<span class="k">def</span> test_login_errors\n<span class="k">def</span> test_add_to_cart_updates_badge\n<span class="k">def</span> test_sort_price_low_to_high\n\n<span class="m">pages.py · conftest.py</span>',
-  t:{fr:"Automatisation de tests web",en:"Web test automation"}, cat:{fr:"Tests logiciels",en:"Software testing"},
-  d:{fr:"Tests de bout en bout d'un site de démonstration avec le motif Page Object : des scénarios lisibles, réutilisables et faciles à maintenir.",en:"End-to-end tests of a demo website using the Page Object pattern: readable, reusable scenarios that are easy to maintain."},
-  tech:["Python","Selenium","pytest","Git"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
  {id:"freelance", img:"assets/fl-missions.png", shots:["fl-home","fl-missions","fl-apply","fl-freelance","fl-proposals","fl-client","fl-admin"],
   t:{fr:"FreelancePro, freelances et clients",en:"FreelancePro, freelancers and clients"}, cat:{fr:"Application web · Laravel",en:"Web application · Laravel"},
   d:{fr:"Plateforme de mise en relation : les clients publient des missions, les freelances candidatent, le client accepte une candidature et l'administrateur supervise. Application fonctionnelle avec trois rôles.",en:"Matching platform: clients publish missions, freelancers apply, the client accepts one proposal and an administrator supervises. Working application with three roles."},
   b:{fr:["Accès par rôle (client, freelance, administrateur) vérifié côté serveur.","Une seule candidature par freelance et par mission, contrainte en base.","Acceptation d'une candidature en transaction : les autres sont refusées et la mission passe en cours.","Recherche, filtre par catégorie, pagination et tableaux de bord par rôle."],
      en:["Role-based access (client, freelancer, administrator) enforced on the server.","One proposal per freelancer and mission, enforced in the database.","Accepting a proposal runs in a transaction: the others are rejected and the mission moves to in progress.","Search, category filter, pagination and a dashboard per role."]},
   tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"library", term:'<span class="m">Choisir une fonctionnalité :</span>\n<span class="k">1</span> - Gestion des livres\n<span class="k">2</span> - Gestion des utilisateurs\n<span class="k">3</span> - Gestion des emprunts\n<span class="k">4</span> - Quitter\n<span class="m">Votre choix:</span> _',
-  t:{fr:"Gestion de bibliothèque",en:"Library management"}, cat:{fr:"Application Java",en:"Java application"},
-  d:{fr:"Application console en programmation orientée objet : livres, utilisateurs standard et premium, emprunts et pénalités, accompagnée de ses diagrammes UML.",en:"Object-oriented console application: books, standard and premium users, loans and penalties, with its UML diagrams."},
-  tech:["Java","POO","UML"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"}
 
 ];
 
