@@ -157,7 +157,7 @@ html{scroll-padding-top:76px}
 .cic{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);color:var(--accent)}
 .ctxt{min-width:0}
 .ctxt small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-.ctxt span{display:block;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctxt span{display:block;color:#fff;overflow-wrap:anywhere}
 .clist{margin:6px 0 20px}
 .iconbtn{position:relative}
 .iconbtn.ok::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);right:0;background:#58e08a;color:#10130a;font-size:.72rem;font-weight:500;letter-spacing:.06em;padding:3px 9px;white-space:nowrap}
@@ -170,6 +170,64 @@ dialog.cdlg{width:min(620px,calc(100% - 24px))}
   .crow{grid-template-columns:44px 1fr 38px}
   .crow .btn{grid-column:1 / -1;text-align:center}
 }
+/* v5: ecran d'intro RD et formulaire de contact */
+#splash{position:fixed;inset:0;z-index:200;background:#1b1b1b;display:grid;place-items:center;transition:transform .75s cubic-bezier(.77,0,.18,1)}
+#splash.out{transform:translateY(-100%)}
+#splash .mono{display:flex;gap:.04em;font:400 clamp(8rem,34vw,19rem)/.86 "Bebas Neue",sans-serif;letter-spacing:.04em;overflow:hidden;padding-top:.04em}
+#splash .mono span{display:block;transform:translateY(112%);animation:rise .75s cubic-bezier(.22,1,.36,1) forwards;color:#fff}
+#splash .mono span:nth-child(2){animation-delay:.14s;color:var(--accent)}
+#splash .bar{position:absolute;left:50%;bottom:24%;height:2px;width:0;background:var(--accent);transform:translateX(-50%);animation:grow .9s .55s cubic-bezier(.22,1,.36,1) forwards}
+#splash .tag{position:absolute;bottom:17%;left:0;right:0;text-align:center;font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft);opacity:0;animation:fadein .5s .85s forwards}
+@keyframes rise{to{transform:none}}
+@keyframes grow{to{width:min(260px,56vw)}}
+@keyframes fadein{to{opacity:1}}
+body.splashing{overflow:hidden}
+.cgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:start}
+.cform{border:1px solid var(--line);background:var(--bg-2);padding:clamp(20px,3vw,34px);position:relative}
+.cform h3{font-size:1.8rem;margin-bottom:4px}
+.cform .sub{color:var(--muted);margin:0 0 18px;font-size:.95rem}
+.fld{margin-bottom:16px;min-width:0}
+.fld label,.fld .lab{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.fld input,.fld select,.fld textarea{width:100%;background:#1b1b1b;color:#fff;border:1px solid var(--line);padding:12px 14px;font:inherit;border-radius:0}
+.fld textarea{min-height:150px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,157,184,.15)}
+.fld.bad input,.fld.bad textarea{border-color:#ff6b6b}
+.ferr{display:block;min-height:1.1em;color:#ff8f8f;font-size:.8rem;margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.reasons{display:flex;flex-wrap:wrap;gap:8px}
+.reasons label{position:relative;margin:0;cursor:pointer}
+.reasons input{position:absolute;opacity:0;pointer-events:none}
+.reasons span{display:inline-block;border:1px solid var(--line);padding:8px 14px;font-size:.88rem;color:var(--soft);transition:all .15s;letter-spacing:0;text-transform:none}
+.reasons input:checked+span{background:var(--accent);border-color:var(--accent);color:#1b1b1b;font-weight:500}
+.reasons input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.reasons label:hover span{border-color:var(--accent)}
+.cnt{float:right;color:var(--muted);font-size:.78rem;letter-spacing:.04em;text-transform:none}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.fnote{color:var(--muted);font-size:.8rem;margin:2px 0 18px}
+.fstat{margin-top:14px;font-size:.92rem}
+.fstat.err{color:#ff8f8f;border:1px solid #5a2a2a;background:rgba(255,107,107,.07);padding:12px 14px}
+.fstat.err .btn{margin-top:10px}
+.cform button[type=submit]{min-width:220px}
+.cform button[disabled]{opacity:.6;cursor:progress}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #1b1b1b;border-top-color:transparent;border-radius:50%;margin-right:10px;vertical-align:-2px;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.sent{text-align:center;padding:30px 10px}
+.sent .tick{width:84px;height:84px;margin:0 auto 18px;border:2px solid #58e08a;border-radius:50%;display:grid;place-items:center;color:#58e08a;animation:pop .5s cubic-bezier(.22,1,.36,1)}
+.sent .tick svg{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .5s .25s forwards}
+.sent h3{font-size:2.2rem;margin-bottom:8px}
+.sent p{color:var(--soft);max-width:420px;margin:0 auto 20px}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.cside{display:grid;gap:22px;align-content:start}
+.live{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.live i{width:8px;height:8px;border-radius:50%;background:#58e08a;box-shadow:0 0 0 4px rgba(88,224,138,.18)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:st;border-top:1px solid var(--line)}
+.steps li{counter-increment:st;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--soft);font-size:.94rem}
+.steps li::before{content:counter(st);font:400 1.5rem/1 "Bebas Neue",sans-serif;color:var(--accent)}
+.steps b{display:block;color:#fff;font-weight:400}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){#splash{display:none}}
 /* Compétences */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
 .skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
@@ -205,6 +263,8 @@ footer .logo{font-size:1.5rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
+<div id="splash" aria-hidden="true"><div class="mono"><span>R</span><span>D</span></div><i class="bar"></i><div class="tag">Rania Dridi</div></div>
+<noscript><style>#splash{display:none}body.splashing{overflow:auto}</style></noscript>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -256,11 +316,39 @@ footer .logo{font-size:1.5rem}
     <div class="skills" id="skillGrid"></div>
   </div></section>
 
-  <section id="contact"><div class="wrap contact">
-    <h2 data-i="c_t"></h2>
-    <p data-i="c_p"></p>
-    <div class="contactwrap"><div class="clist" id="contactRows"></div></div>
-    <div class="btns" id="contactBtns"></div>
+  <section id="contact"><div class="wrap">
+    <div class="head"><h2 data-i="c_t"></h2><p data-i="c_p"></p></div>
+    <div class="cgrid">
+      <form id="cform" class="cform" novalidate>
+        <h3 data-i="f_title"></h3><p class="sub" data-i="f_sub"></p>
+        <div class="two">
+          <div class="fld" data-f="name"><label for="cName" data-i="f_name"></label><input id="cName" name="name" autocomplete="name" maxlength="80"><span class="ferr"></span></div>
+          <div class="fld" data-f="email"><label for="cEmail" data-i="f_email"></label><input id="cEmail" name="email" type="email" autocomplete="email" maxlength="120"><span class="ferr"></span></div>
+        </div>
+        <div class="two">
+          <div class="fld"><label for="cCompany" data-i="f_company"></label><input id="cCompany" name="company" autocomplete="organization" maxlength="100"></div>
+          <div class="fld"><label for="cRole" data-i="f_role"></label><select id="cRole" name="role"><option value="recruiter" data-i="ro_rec"></option><option value="company" data-i="ro_com"></option><option value="agency" data-i="ro_age"></option><option value="other" data-i="ro_oth"></option></select></div>
+        </div>
+        <div class="fld"><span class="lab" data-i="f_reason"></span>
+          <div class="reasons" role="radiogroup">
+            <label><input type="radio" name="reason" value="job" checked><span data-i="r_job"></span></label>
+            <label><input type="radio" name="reason" value="freelance"><span data-i="r_free"></span></label>
+            <label><input type="radio" name="reason" value="collab"><span data-i="r_collab"></span></label>
+            <label><input type="radio" name="reason" value="other"><span data-i="r_other"></span></label>
+          </div></div>
+        <div class="fld" data-f="message"><label for="cMsg"><span data-i="f_msg"></span><span class="cnt" id="cnt">0 / 1000</span></label><textarea id="cMsg" name="message" maxlength="1000"></textarea><span class="ferr"></span></div>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="fnote" data-i="f_consent"></p>
+        <button class="btn fill" type="submit" id="cSend" data-i="f_send"></button>
+        <div class="fstat" id="cStatus" role="status" aria-live="polite"></div>
+      </form>
+      <aside class="cside">
+        <span class="live"><i></i><span data-i="f_resp"></span></span>
+        <div class="clist" id="contactRows"></div>
+        <ol class="steps" id="steps"></ol>
+        <div class="btns" id="contactBtns"></div>
+      </aside>
+    </div>
   </div></section>
 </main>
 
@@ -292,11 +380,22 @@ const L = {
   linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
   email:"randridi131117@gmail.com",
   phone:"+21650956856", phoneLabel:"+216 50 95 68 56",
+  form:"https://formsubmit.co/ajax/randridi131117@gmail.com",
   cv:"cv-rania-dridi.pdf"
 };
 
 const UI = {
 fr:{
+  f_title:"Envoyer un message", f_sub:"Décrivez votre besoin : je vous réponds personnellement.",
+  f_name:"Nom", f_email:"E-mail professionnel", f_company:"Entreprise (facultatif)", f_role:"Vous êtes",
+  ro_rec:"Recruteur ou RH", ro_com:"Entreprise ou client", ro_age:"Cabinet ou agence", ro_oth:"Autre",
+  f_reason:"Objet", r_job:"Offre d'emploi", r_free:"Mission freelance", r_collab:"Collaboration", r_other:"Autre",
+  f_msg:"Message", f_consent:"En envoyant ce message, vous acceptez que je vous réponde à l'adresse indiquée. Un service d'envoi de formulaires me transmet votre message par e-mail.",
+  f_send:"Envoyer le message", f_sending:"Envoi en cours", f_resp:"Réponse rapide",
+  e_name:"Indiquez votre nom.", e_email:"Indiquez une adresse e-mail valide.", e_msg:"Votre message doit contenir au moins 20 caractères.",
+  f_ok_t:"Message envoyé", f_ok_p:"Merci. Je lis votre message et je reviens vers vous très vite.", f_again:"Envoyer un autre message",
+  f_err:"L'envoi automatique n'a pas abouti. Vous pouvez m'écrire directement :", f_mailfb:"Écrire par e-mail", f_write:"Envoyer un message",
+  steps:[["Vous m'écrivez","Un message clair suffit : poste, mission ou question."],["Je réponds","Je reviens vers vous avec des disponibilités."],["On échange","Appel ou visio pour parler de votre besoin."]],
   n_services:"Services", n_portfolio:"Projets", n_skills:"Compétences", n_contact:"Contact", n_why:"Pourquoi moi",
   avail:"Disponible immédiatement",
   mailSubject:"Opportunité professionnelle", mailBody:"Bonjour Rania,\n\nJe vous contacte au sujet d'une opportunité.\n\nCordialement,",
@@ -312,10 +411,20 @@ fr:{
   svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
   port_t:"Projets", port_p:"Cliquez sur un projet pour voir les détails.",
   skills_t:"Compétences",
-  c_t:"Un poste ou un projet ?", c_p:"Je suis disponible immédiatement pour un poste en développement full-stack ou en automatisation de tests. Écrivez-moi, je réponds rapidement.",
+  c_t:"Travaillons ensemble", c_p:"Un poste, une mission ou une question ? Je suis disponible immédiatement pour du développement full-stack et de l'automatisation de tests.",
   copy:"Copier l'adresse e-mail", copyLink:"Copier le lien LinkedIn", copyPhone:"Copier le numéro", copied:"Copié", demo:"Ouvrir la démo en direct", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
+  f_title:"Send a message", f_sub:"Describe what you need: I reply personally.",
+  f_name:"Name", f_email:"Work email", f_company:"Company (optional)", f_role:"You are",
+  ro_rec:"Recruiter or HR", ro_com:"Company or client", ro_age:"Firm or agency", ro_oth:"Other",
+  f_reason:"Subject", r_job:"Job offer", r_free:"Freelance mission", r_collab:"Collaboration", r_other:"Other",
+  f_msg:"Message", f_consent:"By sending this message you agree that I reply to the address you provide. A form-delivery service forwards your message to me by email.",
+  f_send:"Send message", f_sending:"Sending", f_resp:"Quick reply",
+  e_name:"Please enter your name.", e_email:"Please enter a valid email address.", e_msg:"Your message must be at least 20 characters.",
+  f_ok_t:"Message sent", f_ok_p:"Thank you. I will read your message and get back to you very soon.", f_again:"Send another message",
+  f_err:"The automatic sending failed. You can write to me directly:", f_mailfb:"Write by email", f_write:"Send a message",
+  steps:[["You write to me","A clear message is enough: role, mission or question."],["I reply","I get back to you with availabilities."],["We talk","A call or video meeting about your needs."]],
   n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact", n_why:"Why me",
   avail:"Available immediately",
   mailSubject:"Job opportunity", mailBody:"Hello Rania,\n\nI'm contacting you about an opportunity.\n\nBest regards,",
@@ -331,7 +440,7 @@ en:{
   svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
   port_t:"Projects", port_p:"Click a project to see the details.",
   skills_t:"Skills",
-  c_t:"A role or a project?", c_p:"I am available immediately for a full-stack development or test automation role. Write to me, I reply quickly.",
+  c_t:"Let's work together", c_p:"A role, a mission or a question? I am available immediately for full-stack development and test automation.",
   copy:"Copy email address", copyLink:"Copy LinkedIn link", copyPhone:"Copy phone number", copied:"Copied", demo:"Open the live demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
 
@@ -410,7 +519,8 @@ function render(){
   document.getElementById('contactRows').innerHTML = rows;
   document.getElementById('dialogRows').innerHTML = rows;
   const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cvDl)}</a>` : '';
-  document.getElementById('dialogBtns').innerHTML = cvBtn;
+  document.getElementById('dialogBtns').innerHTML = `<a class="btn fill" href="#contact" data-close-contact>${esc(u.f_write)}</a>${cvBtn}`;
+  document.getElementById('steps').innerHTML = u.steps.map((x) => `<li><span><b>${esc(x[0])}</b>${esc(x[1])}</span></li>`).join('');
   document.getElementById('cTitle').textContent = u.cTitle;
   document.getElementById('cIntro').textContent = u.cIntro;
   document.getElementById('flinks').innerHTML = `<a href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>${L.cv ? `<a href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<a href="#portfolio">${esc(u.n_portfolio)}</a>`;
@@ -501,6 +611,94 @@ document.addEventListener('click', async (e) => {
 });
 document.getElementById('cClose').onclick = () => document.getElementById('cdlg').close();
 document.getElementById('cdlg').addEventListener('click', (e) => { if (e.target.id === 'cdlg') e.currentTarget.close(); });
+// ---- Contact form -------------------------------------------------------------------
+const form = document.getElementById('cform');
+const cMsg = document.getElementById('cMsg');
+cMsg.addEventListener('input', () => { document.getElementById('cnt').textContent = `${cMsg.value.length} / 1000`; });
+document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-close-contact]')) { document.getElementById('cdlg').close(); }
+});
+
+function fieldError(name, text) {
+  const box = form.querySelector(`[data-f="${name}"]`);
+  box.classList.toggle('bad', !!text);
+  box.querySelector('.ferr').textContent = text || '';
+}
+function validateForm() {
+  const u = UI[lang];
+  const name = form.name.value.trim(), email = form.email.value.trim(), msg = form.message.value.trim();
+  fieldError('name', name.length < 2 ? u.e_name : '');
+  fieldError('email', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? '' : u.e_email);
+  fieldError('message', msg.length < 20 ? u.e_msg : '');
+  const first = form.querySelector('.fld.bad input, .fld.bad textarea');
+  if (first) { first.focus(); return false; }
+  return true;
+}
+['name', 'email', 'message'].forEach((n) => form[n].addEventListener('input', () => { if (form.querySelector(`[data-f="${n}"].bad`)) validateForm(); }));
+
+function formPayload() {
+  const u = UI[lang];
+  const reasonEl = form.querySelector('input[name=reason]:checked');
+  const reason = reasonEl.nextElementSibling.textContent;
+  const role = form.role.options[form.role.selectedIndex].textContent;
+  return {
+    name: form.name.value.trim(), email: form.email.value.trim(), company: form.company.value.trim(), role, reason,
+    message: form.message.value.trim(), _subject: `Portfolio : ${reason} (${form.name.value.trim()})`,
+    _template: 'table', _captcha: 'false', _honey: form._honey.value,
+  };
+}
+
+function showSent() {
+  const u = UI[lang];
+  form.innerHTML = `<div class="sent"><div class="tick"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>
+    <h3>${esc(u.f_ok_t)}</h3><p>${esc(u.f_ok_p)}</p><button class="btn" type="button" id="again">${esc(u.f_again)}</button></div>`;
+  document.getElementById('again').onclick = () => location.reload();
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const u = UI[lang];
+  const status = document.getElementById('cStatus');
+  status.className = 'fstat'; status.textContent = '';
+  if (!validateForm()) return;
+  const data = formPayload();
+  if (data._honey) { showSent(); return; } // bots fill the hidden field: pretend success
+  const btn = document.getElementById('cSend');
+  btn.disabled = true; btn.innerHTML = `<span class="spin"></span>${esc(u.f_sending)}`;
+  try {
+    const res = await fetch(L.form, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || String(body.success) === 'false') throw new Error(body.message || 'failed');
+    showSent();
+  } catch (err) {
+    btn.disabled = false; btn.textContent = u.f_send;
+    const href = `mailto:${L.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n' + data.name + ' <' + data.email + '>')}`;
+    status.className = 'fstat err';
+    status.innerHTML = `${esc(u.f_err)}<br><a class="btn sm" href="${href}">${esc(u.f_mailfb)}</a>`;
+  }
+});
+
+// ---- Intro splash: RD monogram, then the page slides up ----------------------------------
+(function splash() {
+  const el = document.getElementById('splash');
+  if (!el) return;
+  let seen = false;
+  try { seen = sessionStorage.getItem('rd-splash') === '1'; } catch (e) { /* ignore */ }
+  const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (seen || reduced) { el.remove(); return; }
+  document.body.classList.add('splashing');
+  let done = false;
+  const finish = () => {
+    if (done) return; done = true;
+    try { sessionStorage.setItem('rd-splash', '1'); } catch (e) { /* ignore */ }
+    el.classList.add('out');
+    setTimeout(() => { el.remove(); document.body.classList.remove('splashing'); }, 800);
+  };
+  setTimeout(finish, 1700);
+  el.addEventListener('click', finish);
+  window.addEventListener('keydown', finish, { once: true });
+})();
+
 document.getElementById('yr').textContent = new Date().getFullYear();
 render();
 </script>
