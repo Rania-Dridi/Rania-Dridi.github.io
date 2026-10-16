@@ -36,6 +36,9 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;backgroun
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
 .logo{font:400 1.9rem "Bebas Neue",sans-serif;letter-spacing:.08em;color:var(--text);text-decoration:none}
 .logo b{color:var(--accent);font-weight:400}
+.logo .rd{font:400 2.2rem/1 "Bebas Neue",sans-serif;letter-spacing:.1em;margin-right:12px;padding-right:12px;border-right:1px solid var(--line)}
+.logo .nm{font-size:1.15rem;letter-spacing:.14em;vertical-align:.12em}
+@media (max-width:430px){.logo .nm{display:none}.logo .rd{border:0;margin:0;padding:0}}
 nav{display:flex;align-items:center;gap:26px}
 nav a{color:var(--soft);text-decoration:none;font-size:.82rem;text-transform:uppercase;letter-spacing:.16em}
 nav a:hover{color:var(--accent)}
@@ -171,16 +174,25 @@ dialog.cdlg{width:min(620px,calc(100% - 24px))}
   .crow .btn{grid-column:1 / -1;text-align:center}
 }
 /* v5: ecran d'intro RD et formulaire de contact */
-#splash{position:fixed;inset:0;z-index:200;background:#1b1b1b;display:grid;place-items:center;transition:transform .75s cubic-bezier(.77,0,.18,1)}
-#splash.out{transform:translateY(-100%)}
-#splash .mono{display:flex;gap:.04em;font:400 clamp(8rem,34vw,19rem)/.86 "Bebas Neue",sans-serif;letter-spacing:.04em;overflow:hidden;padding-top:.04em}
-#splash .mono span{display:block;transform:translateY(112%);animation:rise .75s cubic-bezier(.22,1,.36,1) forwards;color:#fff}
-#splash .mono span:nth-child(2){animation-delay:.14s;color:var(--accent)}
-#splash .bar{position:absolute;left:50%;bottom:24%;height:2px;width:0;background:var(--accent);transform:translateX(-50%);animation:grow .9s .55s cubic-bezier(.22,1,.36,1) forwards}
-#splash .tag{position:absolute;bottom:17%;left:0;right:0;text-align:center;font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft);opacity:0;animation:fadein .5s .85s forwards}
+#splash{position:fixed;inset:0;z-index:300;pointer-events:all;animation:splashfail 0s 4.5s forwards}
+#splash .pane{position:absolute;top:0;bottom:0;width:50%;background:#1b1b1b;display:flex;align-items:center;overflow:hidden;transition:transform .85s cubic-bezier(.77,0,.18,1),opacity .5s}
+#splash .pane.l{left:0;justify-content:flex-end}
+#splash .pane.r{right:0;justify-content:flex-start}
+#splash .pane span{display:block;font:400 clamp(9rem,36vw,20rem)/.86 "Bebas Neue",sans-serif;letter-spacing:.02em;transform:translateY(115%);animation:rise .75s cubic-bezier(.22,1,.36,1) forwards;padding:0 .02em}
+#splash .pane.l span{color:#fff}
+#splash .pane.r span{color:var(--accent);animation-delay:.14s}
+#splash .bar{position:absolute;left:50%;bottom:22%;height:2px;width:0;background:var(--accent);transform:translateX(-50%);animation:grow .9s .55s cubic-bezier(.22,1,.36,1) forwards;transition:opacity .3s}
+#splash .tag{position:absolute;bottom:15%;left:0;right:0;text-align:center;font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft);opacity:0;animation:fadein .5s .85s forwards;transition:opacity .3s}
+#splash.out .pane.l{transform:translateX(-101%)}
+#splash.out .pane.r{transform:translateX(101%)}
+#splash.out .bar,#splash.out .tag{opacity:0;animation:none}
+#splash.fade .pane{transition:opacity .5s}
+#splash.fade.out .pane{transform:none;opacity:0}
+#splash.fade .pane span{animation:fadein .4s forwards;transform:none;opacity:0}
 @keyframes rise{to{transform:none}}
 @keyframes grow{to{width:min(260px,56vw)}}
 @keyframes fadein{to{opacity:1}}
+@keyframes splashfail{to{visibility:hidden;pointer-events:none}}
 body.splashing{overflow:hidden}
 .cgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:start}
 .cform{border:1px solid var(--line);background:var(--bg-2);padding:clamp(20px,3vw,34px);position:relative}
@@ -227,7 +239,6 @@ body.splashing{overflow:hidden}
 .steps b{display:block;color:#fff;font-weight:400}
 @media (max-width:900px){.cgrid{grid-template-columns:1fr}}
 @media (max-width:560px){.two{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){#splash{display:none}}
 /* Compétences */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
 .skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
@@ -263,12 +274,12 @@ footer .logo{font-size:1.5rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
-<div id="splash" aria-hidden="true"><div class="mono"><span>R</span><span>D</span></div><i class="bar"></i><div class="tag">Rania Dridi</div></div>
+<div id="splash" aria-hidden="true"><div class="pane l"><span>R</span></div><div class="pane r"><span>D</span></div><i class="bar"></i><div class="tag">Rania Dridi</div></div>
 <noscript><style>#splash{display:none}body.splashing{overflow:auto}</style></noscript>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="logo" href="#top">Rania <b>Dridi</b></a>
+  <a class="logo" href="#top" aria-label="Rania Dridi"><span class="rd">R<b>D</b></span><span class="nm">Rania Dridi</span></a>
   <nav>
     <a class="hide-sm" href="#portfolio" data-i="n_portfolio"></a>
     <a class="hide-sm" href="#why" data-i="n_why"></a>
@@ -381,7 +392,7 @@ const L = {
   email:"randridi131117@gmail.com",
   phone:"+21650956856", phoneLabel:"+216 50 95 68 56",
   form:"https://formsubmit.co/ajax/randridi131117@gmail.com",
-  cv:"cv-rania-dridi.pdf"
+  cv:"https://rania-dridi.github.io/cv-rania-dridi.pdf"
 };
 
 const UI = {
@@ -394,7 +405,7 @@ fr:{
   f_send:"Envoyer le message", f_sending:"Envoi en cours", f_resp:"Réponse rapide",
   e_name:"Indiquez votre nom.", e_email:"Indiquez une adresse e-mail valide.", e_msg:"Votre message doit contenir au moins 20 caractères.",
   f_ok_t:"Message envoyé", f_ok_p:"Merci. Je lis votre message et je reviens vers vous très vite.", f_again:"Envoyer un autre message",
-  f_err:"L'envoi automatique n'a pas abouti. Vous pouvez m'écrire directement :", f_mailfb:"Écrire par e-mail", f_write:"Envoyer un message",
+  f_err:"L'envoi automatique n'a pas abouti. Vous pouvez m'écrire directement :", f_mailfb:"Application e-mail", f_gmail:"Ouvrir Gmail", f_write:"Envoyer un message",
   steps:[["Vous m'écrivez","Un message clair suffit : poste, mission ou question."],["Je réponds","Je reviens vers vous avec des disponibilités."],["On échange","Appel ou visio pour parler de votre besoin."]],
   n_services:"Services", n_portfolio:"Projets", n_skills:"Compétences", n_contact:"Contact", n_why:"Pourquoi moi",
   avail:"Disponible immédiatement",
@@ -423,7 +434,7 @@ en:{
   f_send:"Send message", f_sending:"Sending", f_resp:"Quick reply",
   e_name:"Please enter your name.", e_email:"Please enter a valid email address.", e_msg:"Your message must be at least 20 characters.",
   f_ok_t:"Message sent", f_ok_p:"Thank you. I will read your message and get back to you very soon.", f_again:"Send another message",
-  f_err:"The automatic sending failed. You can write to me directly:", f_mailfb:"Write by email", f_write:"Send a message",
+  f_err:"The automatic sending failed. You can write to me directly:", f_mailfb:"Email app", f_gmail:"Open Gmail", f_write:"Send a message",
   steps:[["You write to me","A clear message is enough: role, mission or question."],["I reply","I get back to you with availabilities."],["We talk","A call or video meeting about your needs."]],
   n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact", n_why:"Why me",
   avail:"Available immediately",
@@ -509,16 +520,16 @@ function render(){
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
 
   document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a>${L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<button class="btn" type="button" data-open-contact>${esc(u.write)}</button>`;
-  const cvSec = L.cv ? `<a class="btn fill" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cvDl)}</a>` : '';
+  const cvSec = L.cv ? `<a class="btn fill" href="${esc(L.cv)}" target="_blank" rel="noopener" download="CV-Rania-Dridi.pdf">${esc(u.cvDl)}</a>` : '';
   document.getElementById('contactBtns').innerHTML = cvSec;
   const mailto = `mailto:${L.email}?subject=${encodeURIComponent(u.mailSubject)}&body=${encodeURIComponent(u.mailBody)}`;
   const rows = `
-    <div class="crow"><span class="cic">${ICON_MAIL}</span><div class="ctxt"><small>${esc(u.cEmail)}</small><span>${esc(L.email)}</span></div><a class="btn sm" href="${mailto}">${esc(u.cWrite)}</a><button class="iconbtn" type="button" data-copy="${esc(L.email)}" aria-label="${esc(u.copy)}" title="${esc(u.copy)}">${ICON_COPY}</button></div>
+    <div class="crow"><span class="cic">${ICON_MAIL}</span><div class="ctxt"><small>${esc(u.cEmail)}</small><span>${esc(L.email)}</span></div><a class="btn sm" href="#cform" data-write>${esc(u.cWrite)}</a><button class="iconbtn" type="button" data-copy="${esc(L.email)}" aria-label="${esc(u.copy)}" title="${esc(u.copy)}">${ICON_COPY}</button></div>
     <div class="crow"><span class="cic">${ICON_IN}</span><div class="ctxt"><small>LinkedIn</small><span>linkedin.com/in/rania-dridi</span></div><a class="btn sm" href="${esc(L.linkedin)}" target="_blank" rel="noopener">${esc(u.cOpen)}</a><button class="iconbtn" type="button" data-copy="${esc(L.linkedin)}" aria-label="${esc(u.copyLink)}" title="${esc(u.copyLink)}">${ICON_COPY}</button></div>
     <div class="crow"><span class="cic">${ICON_TEL}</span><div class="ctxt"><small>${esc(u.cPhone)}</small><span>${esc(L.phoneLabel)}</span></div><a class="btn sm" href="tel:${esc(L.phone)}">${esc(u.cCall)}</a><button class="iconbtn" type="button" data-copy="${esc(L.phoneLabel)}" aria-label="${esc(u.copyPhone)}" title="${esc(u.copyPhone)}">${ICON_COPY}</button></div>`;
   document.getElementById('contactRows').innerHTML = rows;
   document.getElementById('dialogRows').innerHTML = rows;
-  const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cvDl)}</a>` : '';
+  const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener" download="CV-Rania-Dridi.pdf">${esc(u.cvDl)}</a>` : '';
   document.getElementById('dialogBtns').innerHTML = `<a class="btn fill" href="#contact" data-close-contact>${esc(u.f_write)}</a>${cvBtn}`;
   document.getElementById('steps').innerHTML = u.steps.map((x) => `<li><span><b>${esc(x[0])}</b>${esc(x[1])}</span></li>`).join('');
   document.getElementById('cTitle').textContent = u.cTitle;
@@ -616,7 +627,15 @@ const form = document.getElementById('cform');
 const cMsg = document.getElementById('cMsg');
 cMsg.addEventListener('input', () => { document.getElementById('cnt').textContent = `${cMsg.value.length} / 1000`; });
 document.addEventListener('click', (e) => {
-  if (e.target.closest('[data-close-contact]')) { document.getElementById('cdlg').close(); }
+  if (e.target.closest('[data-close-contact], [data-write]')) {
+    const d = document.getElementById('cdlg'); if (d.open) d.close();
+    if (e.target.closest('[data-write]') || e.target.closest('[data-close-contact]')) {
+      e.preventDefault();
+      const f = document.getElementById('cform');
+      f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => document.getElementById('cName').focus({ preventScroll: true }), 450);
+    }
+  }
 });
 
 function fieldError(name, text) {
@@ -674,7 +693,8 @@ form.addEventListener('submit', async (e) => {
     btn.disabled = false; btn.textContent = u.f_send;
     const href = `mailto:${L.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n' + data.name + ' <' + data.email + '>')}`;
     status.className = 'fstat err';
-    status.innerHTML = `${esc(u.f_err)}<br><a class="btn sm" href="${href}">${esc(u.f_mailfb)}</a>`;
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(L.email)}&su=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n' + data.name + ' <' + data.email + '>')}`;
+    status.innerHTML = `${esc(u.f_err)}<br><div class="btns" style="margin-top:10px;gap:8px"><a class="btn sm" href="${gmail}" target="_blank" rel="noopener">${esc(u.f_gmail)}</a><a class="btn sm" href="${href}">${esc(u.f_mailfb)}</a><button class="btn sm" type="button" data-copy="${esc(L.email)}">${esc(u.copy)}</button></div>`;
   }
 });
 
@@ -682,19 +702,16 @@ form.addEventListener('submit', async (e) => {
 (function splash() {
   const el = document.getElementById('splash');
   if (!el) return;
-  let seen = false;
-  try { seen = sessionStorage.getItem('rd-splash') === '1'; } catch (e) { /* ignore */ }
   const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (seen || reduced) { el.remove(); return; }
+  if (reduced) el.classList.add('fade'); // same intro, fade instead of motion
   document.body.classList.add('splashing');
   let done = false;
   const finish = () => {
     if (done) return; done = true;
-    try { sessionStorage.setItem('rd-splash', '1'); } catch (e) { /* ignore */ }
     el.classList.add('out');
-    setTimeout(() => { el.remove(); document.body.classList.remove('splashing'); }, 800);
+    setTimeout(() => { el.remove(); document.body.classList.remove('splashing'); }, reduced ? 600 : 950);
   };
-  setTimeout(finish, 1700);
+  setTimeout(finish, reduced ? 1300 : 1900);
   el.addEventListener('click', finish);
   window.addEventListener('keydown', finish, { once: true });
 })();
