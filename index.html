@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, Python, TypeScript, Laravel). Projets et contact.">
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, Python, TypeScript, Laravel). Projets avec démos en direct, et contact.">
 <meta property="og:title" content="Rania Dridi — Développeuse full-stack">
-<meta property="og:description" content="Interfaces, API, paiement, IA et tests automatisés. Découvrez mes projets.">
+<meta property="og:description" content="Démos en direct : Wledi Academy, FreelancePro, TalentFlow et BookingKit.">
 <meta property="og:type" content="website">
 <title>Rania Dridi — Développeuse full-stack</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,6 +103,18 @@ dialog::backdrop{background:rgba(0,0,0,.8)}
 .meta small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
 .meta span{font-weight:400}
 
+.tile .live{position:absolute;top:12px;right:12px;background:var(--accent);color:#1b1b1b;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;font-weight:500;z-index:1}
+.demo{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1px solid var(--line);padding:14px 16px;background:var(--bg)}
+.demo p{margin:0;font-size:.9rem;color:var(--muted);flex:1;min-width:200px}
+.shot{border:0;padding:0;background:none;cursor:zoom-in;display:block}
+.shot img{transition:border-color .15s,transform .15s}
+.shot:hover img{border-color:var(--accent);transform:translateY(-2px)}
+dialog.lightbox{width:min(1200px,calc(100% - 16px));max-height:96vh;padding:12px;display:none;background:#0f0f0f;border:1px solid var(--line);overflow:auto}
+dialog.lightbox[open]{display:block}
+.lightbox img{display:block;max-width:100%;max-height:82vh;margin:0 auto}
+.lightbox .x{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6)}
+.lbbar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;color:var(--soft)}
+.lbbar .x{position:static}
 /* Compétences */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px 40px}
 .skills h3{font-size:1.5rem;color:var(--accent);margin-bottom:12px;letter-spacing:.1em}
@@ -188,6 +200,12 @@ footer .logo{font-size:1.5rem}
   <div class="dbody" id="dBody"></div>
 </dialog>
 
+<dialog id="lb" class="lightbox" aria-label="Capture">
+  <button class="x" id="lbClose" type="button" aria-label="Fermer">✕</button>
+  <img id="lbImg" alt="">
+  <div class="lbbar"><button class="x" id="lbPrev" type="button" aria-label="Précédente">←</button><span id="lbCount"></span><button class="x" id="lbNext" type="button" aria-label="Suivante">→</button></div>
+</dialog>
+
 <script>
 const L = {
   linkedin:"https://www.linkedin.com/in/rania-dridi-a5a733397/",
@@ -207,7 +225,7 @@ fr:{
   port_t:"Projets", port_p:"Cliquez sur un projet pour voir les détails.",
   skills_t:"Compétences",
   c_t:"Un nouveau projet ?", c_p:"Un poste en développement full-stack ou en automatisation de tests ? Écrivez-moi, je réponds vite.",
-  copy:"Copier", copied:"Copié", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
+  copy:"Copier", copied:"Copié", demo:"Ouvrir la démo en direct", live:"Démo", tech:"Développé avec", date:"Date", cat:"Catégorie", ctx:"Contexte"
 },
 en:{
   n_services:"Services", n_portfolio:"Projects", n_skills:"Skills", n_contact:"Contact",
@@ -220,7 +238,7 @@ en:{
   port_t:"Projects", port_p:"Click a project to see the details.",
   skills_t:"Skills",
   c_t:"Have a new project?", c_p:"A full-stack development or test automation role? Write to me, I reply fast.",
-  copy:"Copy", copied:"Copied", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
+  copy:"Copy", copied:"Copied", demo:"Open the live demo", live:"Demo", tech:"Built with", date:"Date", cat:"Category", ctx:"Context"
 }};
 
 const SKILLS = [
@@ -233,7 +251,7 @@ const SKILLS = [
 ];
 
 const P = [
- {id:"wledi", big:true, img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+ {id:"wledi", big:true, demo:"https://rania-dridi.github.io/demo/wledi/#/sso", demoHint:{fr:"Comptes de démonstration (mot de passe 1234) : sara@test.com (élève), admin@test.com (administrateur).",en:"Demo accounts (password 1234): sara@test.com (student), admin@test.com (administrator)."}, img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
   t:{fr:"Wledi Academy et Wledi Parent",en:"Wledi Academy and Wledi Parent"},
   cat:{fr:"Plateforme e-learning · PFE",en:"E-learning platform · Final-year project"},
   d:{fr:"Digitalisation de la gestion pédagogique pour les élèves, parents, professeurs, écoles et administrateurs, réalisée pendant mon PFE chez Audasoft Technology.",en:"Digitalisation of academic management for students, parents, teachers, schools and administrators, built during my final-year project at Audasoft Technology."},
@@ -244,19 +262,19 @@ const P = [
   t:{fr:"Analyse des revenus",en:"Revenue analysis"}, cat:{fr:"Analyse de données",en:"Data analysis"},
   d:{fr:"Nettoyage de données de ventes, calcul des indicateurs (chiffre d'affaires, panier moyen, dépendance aux gros clients) et graphiques, en suivant les six phases de CRISP-DM.",en:"Cleaning of sales data, computation of indicators (revenue, average order value, dependence on top customers) and charts, following the six CRISP-DM phases."},
   tech:["Python","pandas","matplotlib","CRISP-DM"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"freelance", img:"assets/fl-missions.png", shots:["fl-home","fl-missions","fl-apply","fl-freelance","fl-proposals","fl-client","fl-admin"],
+ {id:"freelance", demo:"https://rania-dridi.github.io/demo/freelancepro/", demoHint:{fr:"Connexion en un clic avec les comptes de test, ou création d'un compte.",en:"One-click login with the test accounts, or create an account."}, img:"assets/fl-missions.png", shots:["fl-home","fl-missions","fl-apply","fl-freelance","fl-proposals","fl-client","fl-admin"],
   t:{fr:"FreelancePro, freelances et clients",en:"FreelancePro, freelancers and clients"}, cat:{fr:"Application web · Laravel",en:"Web application · Laravel"},
   d:{fr:"Plateforme de mise en relation : les clients publient des missions, les freelances candidatent, le client accepte une candidature et l'administrateur supervise. Application fonctionnelle avec trois rôles.",en:"Matching platform: clients publish missions, freelancers apply, the client accepts one proposal and an administrator supervises. Working application with three roles."},
   b:{fr:["Accès par rôle (client, freelance, administrateur) vérifié côté serveur.","Une seule candidature par freelance et par mission, contrainte en base.","Acceptation d'une candidature en transaction : les autres sont refusées et la mission passe en cours.","Recherche, filtre par catégorie, pagination et tableaux de bord par rôle."],
      en:["Role-based access (client, freelancer, administrator) enforced on the server.","One proposal per freelancer and mission, enforced in the database.","Accepting a proposal runs in a transaction: the others are rejected and the mission moves to in progress.","Search, category filter, pagination and a dashboard per role."]},
   tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
- {id:"talentflow", img:"assets/tf-dashboard.png", shots:["tf-dashboard","tf-pipeline","tf-jobs"],
+ {id:"talentflow", demo:"https://rania-dridi.github.io/demo/talentflow/", demoHint:{fr:"Glissez les cartes entre les colonnes : les règles métier sont appliquées comme sur la vraie API.",en:"Drag cards between columns: business rules apply as on the real API."}, img:"assets/tf-dashboard.png", shots:["tf-dashboard","tf-pipeline","tf-jobs"],
   t:{fr:"TalentFlow, pipeline de recrutement",en:"TalentFlow, hiring pipeline"}, cat:{fr:"Projet personnel · Python",en:"Personal project · Python"},
   d:{fr:"Application de recrutement pour équipes IT : offres, candidats, tableau kanban en glisser-déposer, score explicable et entonnoir de conversion. Application fonctionnelle de démonstration avec des données fictives.",en:"Recruitment app for IT teams: jobs, candidates, a drag-and-drop kanban board, an explainable score and a conversion funnel. Working demo application with fictional data."},
   b:{fr:["Architecture en couches : API, services, repositories, modèles (FastAPI et SQLAlchemy).","Règles métier côté serveur : embauche seulement après une offre, clôture de l'offre quand les postes sont pourvus.","Le glisser-déposer annule le déplacement si le serveur le refuse.","20 tests automatisés (pytest) : règles, score, API et pages."],
      en:["Layered architecture: API, services, repositories, models (FastAPI and SQLAlchemy).","Server-side rules: hiring only after an offer, job closes when openings are filled.","Drag and drop rolls back if the server refuses the move.","20 automated tests (pytest): rules, scoring, API and pages."]},
   tech:["Python","FastAPI","SQLAlchemy","SQLite","pytest"], date:{fr:"2026 · projet de démonstration",en:"2026 · demo project"}, client:"Projet personnel"},
- {id:"bookingkit", img:"assets/bk-slots.png", shots:["bk-service","bk-slots","bk-confirm","bk-agenda"],
+ {id:"bookingkit", demo:"https://rania-dridi.github.io/demo/bookingkit/", demoHint:{fr:"Réservez un créneau puis ouvrez l'agenda pour le voir apparaître.",en:"Book a slot, then open the agenda to see it appear."}, img:"assets/bk-slots.png", shots:["bk-service","bk-slots","bk-confirm","bk-agenda"],
   t:{fr:"BookingKit, réservation en ligne",en:"BookingKit, online booking"}, cat:{fr:"Projet personnel · TypeScript",en:"Personal project · TypeScript"},
   d:{fr:"Plateforme de prise de rendez-vous pour salons et cliniques : parcours client en quatre étapes et agenda de l'équipe. Application fonctionnelle de démonstration avec des données fictives.",en:"Appointment booking platform for salons and clinics: a four-step client flow and a team agenda. Working demo application with fictional data."},
   b:{fr:["Créneaux calculés par une fonction pure, avec l'heure injectée pour tester les règles.","Contrôle du créneau à la validation : deux clients ne peuvent pas réserver la même heure.","Règle d'annulation à 24 heures et horaires d'ouverture.","22 tests automatisés (Vitest) sur le domaine, les services, l'API et SQLite."],
@@ -292,7 +310,7 @@ function render(){
 
   document.getElementById('grid').innerHTML = P.map(p => `
     <button class="tile${p.big?' big':''}" type="button" data-id="${p.id}">
-      <span class="art" ${p.bg?`style="background:${p.bg}"`:''}>${art(p)}</span>
+      <span class="art" ${p.bg?`style="background:${p.bg}"`:''}>${art(p)}</span>${p.demo?`<span class="live">${esc(UI[lang].live)}</span>`:''}
       <span class="cap"><small>${esc(p.cat[lang])}</small><h3>${esc(p.t[lang])}</h3></span>
     </button>`).join('');
 
@@ -303,9 +321,10 @@ function openProject(id){
   const p = P.find(x => x.id === id), u = UI[lang];
   document.getElementById('dTitle').textContent = p.t[lang];
   const media = p.shots
-    ? `<div class="shots">${p.shots.map(n=>`<a href="assets/${esc(n)}.png" target="_blank" rel="noopener"><img src="assets/${esc(n)}.png" alt="${esc(p.t[lang])}" loading="lazy"></a>`).join('')}</div>`
+    ? `<div class="shots">${p.shots.map((n,i)=>`<button type="button" class="shot" data-i="${i}" aria-label="${esc(p.t[lang])} ${i+1}"><img src="assets/${esc(n)}.png" alt="${esc(p.t[lang])}" loading="lazy"></button>`).join('')}</div>`
     : (p.img ? `<img class="one" src="${esc(p.img)}" alt="${esc(p.t[lang])}">` : '');
   document.getElementById('dBody').innerHTML = `
+    ${p.demo ? `<div class="demo"><a class="btn fill" href="${esc(p.demo)}" target="_blank" rel="noopener">${esc(u.demo)} →</a>${p.demoHint ? `<p>${esc(p.demoHint[lang])}</p>` : ''}</div>` : ''}
     ${media}
     <p>${esc(p.d[lang])}</p>
     ${p.b ? `<ul>${p.b[lang].map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}
@@ -315,9 +334,26 @@ function openProject(id){
       <div><small>${esc(u.date)}</small><span>${esc(p.date[lang])}</span></div>
       <div><small>${esc(u.ctx)}</small><span>${esc(p.client)}</span></div>
     </div>`;
+  document.querySelectorAll('#dBody .shot').forEach((b) => b.addEventListener('click', () => openLightbox(p.shots.map((n) => `assets/${n}.png`), Number(b.dataset.i))));
   const d = document.getElementById('dlg');
   if (d.showModal) d.showModal(); else d.setAttribute('open','');
 }
+
+// Full-screen viewer for screenshots: arrows, Escape and click outside to close.
+let lbList = []; let lbIndex = 0;
+function showLightbox() { document.getElementById('lbImg').src = lbList[lbIndex]; document.getElementById('lbCount').textContent = `${lbIndex + 1} / ${lbList.length}`; }
+function openLightbox(list, index) {
+  lbList = list; lbIndex = index; showLightbox();
+  const lb = document.getElementById('lb');
+  if (lb.showModal) lb.showModal(); else lb.setAttribute('open','');
+}
+const stepLightbox = (delta) => { lbIndex = (lbIndex + delta + lbList.length) % lbList.length; showLightbox(); };
+document.getElementById('lbPrev').onclick = () => stepLightbox(-1);
+document.getElementById('lbNext').onclick = () => stepLightbox(1);
+document.getElementById('lbClose').onclick = () => document.getElementById('lb').close();
+document.getElementById('lb').addEventListener('click', (e) => { if (e.target.id === 'lb') e.currentTarget.close(); });
+document.getElementById('lb').addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') stepLightbox(1); if (e.key === 'ArrowLeft') stepLightbox(-1); });
+
 
 document.getElementById('grid').addEventListener('click', e => {
   const b = e.target.closest('.tile'); if (b) openProject(b.dataset.id);
