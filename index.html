@@ -392,7 +392,7 @@ const L = {
   email:"randridi131117@gmail.com",
   phone:"+21650956856", phoneLabel:"+216 50 95 68 56",
   form:"https://formsubmit.co/ajax/randridi131117@gmail.com",
-  cv:"https://rania-dridi.github.io/cv-rania-dridi.pdf"
+  cv:"cv.html"
 };
 
 const UI = {
@@ -411,12 +411,12 @@ fr:{
   avail:"Disponible immédiatement",
   mailSubject:"Opportunité professionnelle", mailBody:"Bonjour Rania,\n\nJe vous contacte au sujet d'une opportunité.\n\nCordialement,",
   why_t:"Pourquoi me recruter",
-  why:[["Je livre de bout en bout","Interface, API, base de données, intégrations et tests : une plateforme complète livrée pendant mon PFE chez Audasoft Technology."],["Je teste ce que je construis","Tests d'intégration, d'API et de bout en bout. Mes projets personnels totalisent 42 tests automatisés."],["À l'aise avec les clients","Conseillère client depuis 2020 chez Téléperformance (télécoms et e-commerce) : écoute, clarté et résolution de problèmes."],["Trilingue","Arabe (langue maternelle), français et anglais bilingues, pour travailler avec des équipes et des clients internationaux."]],
+  why:[["Je livre de bout en bout","Interface, API, base de données, intégrations et tests : une plateforme complète livrée pendant mon PFE chez Audasoft Technology."],["Je teste ce que je construis","Tests d'intégration, d'API et de bout en bout."],["À l'aise avec les clients","Conseillère client depuis 2020 chez Téléperformance (télécoms et e-commerce) : écoute, clarté et résolution de problèmes."],["Trilingue","Arabe (langue maternelle), français et anglais bilingues, pour travailler avec des équipes et des clients internationaux."]],
   proof:[["4","démos jouables en ligne"],["42","tests automatisés (projets perso)"],["5","espaces par rôle sur Wledi"],["3","langues : AR, FR, EN"]],
   h1:'Vous recherchez une <em>développeuse</em> full-stack ?',
   intro:"Diplômée en Informatique de Gestion. Je conçois des applications web et mobiles complètes : interfaces, API, paiement, e-mail, IA et tests automatisés.",
   who:"Rania Dridi · Développeuse full-stack, web et mobile",
-  cTitle:"Me contacter", cIntro:"Choisissez le moyen qui vous convient. Je réponds rapidement.", cEmail:"E-mail", cWrite:"Écrire", cOpen:"Ouvrir", cCall:"Appeler", cPhone:"Téléphone", cvDl:"Télécharger mon CV",
+  cTitle:"Me contacter", cIntro:"Choisissez le moyen qui vous convient. Je réponds rapidement.", cEmail:"E-mail", cWrite:"Écrire", cOpen:"Ouvrir", cCall:"Appeler", cPhone:"Téléphone", cvDl:"Voir mon CV",
   see:"Voir mes projets", write:"Me contacter", linkedin:"LinkedIn", cv:"Mon CV", hire:"Me recruter", live:"Démo en direct",
   svc_t:"Ce que je fais",
   svc:[["Développement full-stack","Interfaces React, API Go, Java ou PHP, bases PostgreSQL et MySQL : de la maquette à la mise en ligne."],["API et intégrations","Paiement en ligne, e-mails, médias et IA branchés proprement sur votre application."],["Tests automatisés","Tests d'API, d'intégration et de bout en bout pour livrer sans régression."],["Analyse de données","Nettoyage, indicateurs et graphiques pour décider sur des chiffres fiables."]],
@@ -440,12 +440,12 @@ en:{
   avail:"Available immediately",
   mailSubject:"Job opportunity", mailBody:"Hello Rania,\n\nI'm contacting you about an opportunity.\n\nBest regards,",
   why_t:"Why hire me",
-  why:[["I deliver end to end","Interface, API, database, integrations and tests: a complete platform delivered during my final-year project at Audasoft Technology."],["I test what I build","Integration, API and end-to-end tests. My personal projects add up to 42 automated tests."],["Comfortable with clients","Customer advisor since 2020 at Teleperformance (telecom and e-commerce): listening, clarity and problem solving."],["Trilingual","Arabic (native), French and English (bilingual), to work with international teams and clients."]],
+  why:[["I deliver end to end","Interface, API, database, integrations and tests: a complete platform delivered during my final-year project at Audasoft Technology."],["I test what I build","Integration, API and end-to-end tests."],["Comfortable with clients","Customer advisor since 2020 at Teleperformance (telecom and e-commerce): listening, clarity and problem solving."],["Trilingual","Arabic (native), French and English (bilingual), to work with international teams and clients."]],
   proof:[["4","live playable demos"],["42","automated tests (personal projects)"],["5","role-based spaces on Wledi"],["3","languages: AR, FR, EN"]],
   h1:'Looking for a full-stack <em>developer</em>?',
   intro:"Business Information Systems graduate. I design complete web and mobile applications: interfaces, APIs, payments, email, AI and automated tests.",
   who:"Rania Dridi · Full-stack developer, web and mobile",
-  cTitle:"Contact me", cIntro:"Choose the way that suits you. I reply quickly.", cEmail:"Email", cWrite:"Write", cOpen:"Open", cCall:"Call", cPhone:"Phone", cvDl:"Download my CV",
+  cTitle:"Contact me", cIntro:"Choose the way that suits you. I reply quickly.", cEmail:"Email", cWrite:"Write", cOpen:"Open", cCall:"Call", cPhone:"Phone", cvDl:"View my CV",
   see:"See my projects", write:"Contact me", linkedin:"LinkedIn", cv:"My CV", hire:"Hire me", live:"Live demo",
   svc_t:"What I do",
   svc:[["Full-stack development","React interfaces, Go, Java or PHP APIs, PostgreSQL and MySQL databases: from mock-up to launch."],["APIs and integrations","Online payment, email, media and AI plugged cleanly into your application."],["Test automation","API, integration and end-to-end tests to ship without regressions."],["Data analysis","Cleaning, indicators and charts to decide on reliable numbers."]],
@@ -461,8 +461,7 @@ const SKILLS = [
   ["Bases de données","Databases",["PostgreSQL","MySQL","SQLite","Neon"]],
   ["Tests et qualité","Testing & quality",["Playwright","Selenium","pytest","Vitest","Postman","Newman"]],
   ["Données et BI","Data & BI",["pandas","scikit-learn","Power BI","CRISP-DM"]],
-  ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]],
-  ["Certifications HackerRank","HackerRank certifications",["Frontend Developer (React)","REST API (Intermediate)","SQL (Advanced)","Software Engineer Intern","Angular (Basic)"]]
+  ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]]
 ];
 
 const P = [
@@ -519,8 +518,8 @@ function render(){
   document.getElementById('h1').innerHTML = u.h1;
   document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
 
-  document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a>${L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<button class="btn" type="button" data-open-contact>${esc(u.write)}</button>`;
-  const cvSec = L.cv ? `<a class="btn fill" href="${esc(L.cv)}" target="_blank" rel="noopener" download="CV-Rania-Dridi.pdf">${esc(u.cvDl)}</a>` : '';
+  document.getElementById('heroBtns').innerHTML = `<a class="btn fill" href="#portfolio">${esc(u.see)}</a>${L.cv ? `<a class="btn" href="${esc(L.cv)}">${esc(u.cv)}</a>` : ''}<button class="btn" type="button" data-open-contact>${esc(u.write)}</button>`;
+  const cvSec = L.cv ? `<a class="btn fill" href="${esc(L.cv)}">${esc(u.cvDl)}</a>` : '';
   document.getElementById('contactBtns').innerHTML = cvSec;
   const mailto = `mailto:${L.email}?subject=${encodeURIComponent(u.mailSubject)}&body=${encodeURIComponent(u.mailBody)}`;
   const rows = `
@@ -529,12 +528,12 @@ function render(){
     <div class="crow"><span class="cic">${ICON_TEL}</span><div class="ctxt"><small>${esc(u.cPhone)}</small><span>${esc(L.phoneLabel)}</span></div><a class="btn sm" href="tel:${esc(L.phone)}">${esc(u.cCall)}</a><button class="iconbtn" type="button" data-copy="${esc(L.phoneLabel)}" aria-label="${esc(u.copyPhone)}" title="${esc(u.copyPhone)}">${ICON_COPY}</button></div>`;
   document.getElementById('contactRows').innerHTML = rows;
   document.getElementById('dialogRows').innerHTML = rows;
-  const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}" target="_blank" rel="noopener" download="CV-Rania-Dridi.pdf">${esc(u.cvDl)}</a>` : '';
+  const cvBtn = L.cv ? `<a class="btn" href="${esc(L.cv)}">${esc(u.cvDl)}</a>` : '';
   document.getElementById('dialogBtns').innerHTML = `<a class="btn fill" href="#contact" data-close-contact>${esc(u.f_write)}</a>${cvBtn}`;
   document.getElementById('steps').innerHTML = u.steps.map((x) => `<li><span><b>${esc(x[0])}</b>${esc(x[1])}</span></li>`).join('');
   document.getElementById('cTitle').textContent = u.cTitle;
   document.getElementById('cIntro').textContent = u.cIntro;
-  document.getElementById('flinks').innerHTML = `<a href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>${L.cv ? `<a href="${esc(L.cv)}" target="_blank" rel="noopener">${esc(u.cv)}</a>` : ''}<a href="#portfolio">${esc(u.n_portfolio)}</a>`;
+  document.getElementById('flinks').innerHTML = `<a href="${esc(L.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>${L.cv ? `<a href="${esc(L.cv)}">${esc(u.cv)}</a>` : ''}<a href="#portfolio">${esc(u.n_portfolio)}</a>`;
   document.getElementById('proof').innerHTML = u.proof.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
   document.getElementById('whyList').innerHTML = u.why.map((x) => `<div><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
 
@@ -694,7 +693,7 @@ form.addEventListener('submit', async (e) => {
     const href = `mailto:${L.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n' + data.name + ' <' + data.email + '>')}`;
     status.className = 'fstat err';
     const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(L.email)}&su=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n' + data.name + ' <' + data.email + '>')}`;
-    status.innerHTML = `${esc(u.f_err)}<br><div class="btns" style="margin-top:10px;gap:8px"><a class="btn sm" href="${gmail}" target="_blank" rel="noopener">${esc(u.f_gmail)}</a><a class="btn sm" href="${href}">${esc(u.f_mailfb)}</a><button class="btn sm" type="button" data-copy="${esc(L.email)}">${esc(u.copy)}</button></div>`;
+    status.innerHTML = `${esc(u.f_err)}<br><div class="btns" style="margin-top:10px;gap:8px"><a class="btn sm" href="${gmail}" target="_blank" rel="noopener">${esc(u.f_gmail)}</a><button class="btn sm" type="button" data-copy="${esc(L.email)}">${esc(u.copy)}</button></div>`;
   }
 });
 
