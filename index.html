@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, PostgreSQL, Laravel). Projets et contact.">
+<meta name="description" content="Rania Dridi, développeuse full-stack (React, Go, Python, TypeScript, Laravel). Projets et contact.">
 <meta property="og:title" content="Rania Dridi — Développeuse full-stack">
 <meta property="og:description" content="Interfaces, API, paiement, IA et tests automatisés. Découvrez mes projets.">
 <meta property="og:type" content="website">
@@ -121,6 +121,7 @@ footer .logo{font-size:1.5rem}
 @media (max-width:860px){
   .grid{grid-template-columns:1fr}
   .tile{aspect-ratio:16/10}
+  .tile.big{grid-column:auto;aspect-ratio:16/10}
   nav a.hide-sm{display:none}
 }
 @media (max-width:560px){
@@ -224,15 +225,15 @@ en:{
 
 const SKILLS = [
   ["Langages","Languages",["TypeScript","JavaScript","Go","Java","PHP","Python","SQL","C#"]],
-  ["Frameworks","Frameworks",["React","Angular","Gin","Spring Boot","Laravel","Tailwind CSS",".NET"]],
-  ["Bases de données","Databases",["PostgreSQL","MySQL","Neon"]],
-  ["Tests et qualité","Testing & quality",["Playwright","Selenium","pytest","Postman","Newman"]],
+  ["Frameworks","Frameworks",["React","Angular","Gin","FastAPI","Express","Spring Boot","Laravel","Tailwind CSS",".NET"]],
+  ["Bases de données","Databases",["PostgreSQL","MySQL","SQLite","Neon"]],
+  ["Tests et qualité","Testing & quality",["Playwright","Selenium","pytest","Vitest","Postman","Newman"]],
   ["Données et BI","Data & BI",["pandas","scikit-learn","Power BI","CRISP-DM"]],
   ["Conception et outils","Design & tools",["UML","BPMN","MVC","Git","Vite","Android Studio"]]
 ];
 
 const P = [
- {id:"wledi", img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
+ {id:"wledi", big:true, img:"assets/wledi-home.png", shots:["wledi-home","wledi-courses","wledi-student","wledi-admin"],
   t:{fr:"Wledi Academy et Wledi Parent",en:"Wledi Academy and Wledi Parent"},
   cat:{fr:"Plateforme e-learning · PFE",en:"E-learning platform · Final-year project"},
   d:{fr:"Digitalisation de la gestion pédagogique pour les élèves, parents, professeurs, écoles et administrateurs, réalisée pendant mon PFE chez Audasoft Technology.",en:"Digitalisation of academic management for students, parents, teachers, schools and administrators, built during my final-year project at Audasoft Technology."},
@@ -249,7 +250,18 @@ const P = [
   b:{fr:["Accès par rôle (client, freelance, administrateur) vérifié côté serveur.","Une seule candidature par freelance et par mission, contrainte en base.","Acceptation d'une candidature en transaction : les autres sont refusées et la mission passe en cours.","Recherche, filtre par catégorie, pagination et tableaux de bord par rôle."],
      en:["Role-based access (client, freelancer, administrator) enforced on the server.","One proposal per freelancer and mission, enforced in the database.","Accepting a proposal runs in a transaction: the others are rejected and the mission moves to in progress.","Search, category filter, pagination and a dashboard per role."]},
   tech:["PHP","Laravel","Eloquent","SQLite / MySQL","Blade"], date:{fr:"Cursus 2023 – 2026",en:"Degree 2023 – 2026"}, client:"Esprit School of Business"},
-
+ {id:"talentflow", img:"assets/tf-dashboard.png", shots:["tf-dashboard","tf-pipeline","tf-jobs"],
+  t:{fr:"TalentFlow, pipeline de recrutement",en:"TalentFlow, hiring pipeline"}, cat:{fr:"Projet personnel · Python",en:"Personal project · Python"},
+  d:{fr:"Application de recrutement pour équipes IT : offres, candidats, tableau kanban en glisser-déposer, score explicable et entonnoir de conversion. Application fonctionnelle de démonstration avec des données fictives.",en:"Recruitment app for IT teams: jobs, candidates, a drag-and-drop kanban board, an explainable score and a conversion funnel. Working demo application with fictional data."},
+  b:{fr:["Architecture en couches : API, services, repositories, modèles (FastAPI et SQLAlchemy).","Règles métier côté serveur : embauche seulement après une offre, clôture de l'offre quand les postes sont pourvus.","Le glisser-déposer annule le déplacement si le serveur le refuse.","20 tests automatisés (pytest) : règles, score, API et pages."],
+     en:["Layered architecture: API, services, repositories, models (FastAPI and SQLAlchemy).","Server-side rules: hiring only after an offer, job closes when openings are filled.","Drag and drop rolls back if the server refuses the move.","20 automated tests (pytest): rules, scoring, API and pages."]},
+  tech:["Python","FastAPI","SQLAlchemy","SQLite","pytest"], date:{fr:"2026 · projet de démonstration",en:"2026 · demo project"}, client:"Projet personnel"},
+ {id:"bookingkit", img:"assets/bk-slots.png", shots:["bk-service","bk-slots","bk-confirm","bk-agenda"],
+  t:{fr:"BookingKit, réservation en ligne",en:"BookingKit, online booking"}, cat:{fr:"Projet personnel · TypeScript",en:"Personal project · TypeScript"},
+  d:{fr:"Plateforme de prise de rendez-vous pour salons et cliniques : parcours client en quatre étapes et agenda de l'équipe. Application fonctionnelle de démonstration avec des données fictives.",en:"Appointment booking platform for salons and clinics: a four-step client flow and a team agenda. Working demo application with fictional data."},
+  b:{fr:["Créneaux calculés par une fonction pure, avec l'heure injectée pour tester les règles.","Contrôle du créneau à la validation : deux clients ne peuvent pas réserver la même heure.","Règle d'annulation à 24 heures et horaires d'ouverture.","22 tests automatisés (Vitest) sur le domaine, les services, l'API et SQLite."],
+     en:["Slots computed by a pure function, with the clock injected to test the rules.","Slot re-checked on submit: two clients cannot book the same time.","24-hour cancellation rule and opening hours.","22 automated tests (Vitest) on the domain, services, API and SQLite."]},
+  tech:["TypeScript","Node.js","Express","SQLite","Vitest"], date:{fr:"2026 · projet de démonstration",en:"2026 · demo project"}, client:"Projet personnel"}
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
